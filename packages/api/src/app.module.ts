@@ -2,6 +2,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/infrastructure/user.module'; 
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 import config from './ormconfig';
 
 
@@ -11,7 +12,8 @@ import config from './ormconfig';
     TypeOrmModule.forRoot({...config, 
                            keepConnectionAlive: true, 
                            autoLoadEntities: true}),
-    UserModule
+    UserModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],
