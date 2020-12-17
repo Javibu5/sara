@@ -7,11 +7,11 @@ import { UserMapper } from "../user.mapper";
 
 @Injectable()
 export class UserRepository {
+
     constructor(
-        @InjectRepository(UserEntity)
-            private userRepository: Repository<UserEntity>,
-            private mapper: UserMapper
-    ){};
+        @InjectRepository(UserEntity) private userRepository: Repository<UserEntity>,
+        private mapper: UserMapper){}
+    
 
     getUserByName(name: string): Promise<UserEntity> {
         return this.userRepository.findOne({ name });
