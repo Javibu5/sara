@@ -7,7 +7,11 @@ export class UserWasCreated extends StorableEvent {
   constructor(
     public readonly id: string,
     public readonly username: string,
-    public readonly password: string
+    public readonly password: string,
+    public readonly name: string,
+    public readonly surname: string,
+    public readonly nid: string,
+    public readonly phonenumber: string,
   ) {
     super();
   }

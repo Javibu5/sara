@@ -14,6 +14,10 @@ export const UserList = (props) => (
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="username" />
+      <TextField source="name" />
+      <TextField source="surname" />
+      <TextField source="nid" />
+      <TextField source="phoneNumber" />
       <ArrayField source="roles">
         <SingleFieldList>
           <SimpleChipField />

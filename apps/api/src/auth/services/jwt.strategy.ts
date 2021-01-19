@@ -1,7 +1,7 @@
-import { JwtPayloadInterface } from '@sara/contracts';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { PassportStrategy } from '@nestjs/passport';
+import { JwtPayloadInterface } from '@sara/contracts';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { GetUserByUsernameQuery, UserView } from '../../user/application';

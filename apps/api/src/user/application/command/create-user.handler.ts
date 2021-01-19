@@ -2,8 +2,12 @@ import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 
 import {
+  Name,
+  Nid,
   Password,
+  PhoneNumber,
   Role,
+  Surname,
   User,
   UserId,
   Username,
@@ -23,6 +27,10 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
   async execute(command: CreateUserCommand) {
     const userId = UserId.fromString(command.userId);
     const username = Username.fromString(command.username);
+    const name = Name.fromString(command.name);
+    const surname = Surname.fromString(command.surname);
+    const nid = Nid.fromString(command.nid);
+    const phonenumber = PhoneNumber.fromString(command.phoneNumber);
     const password = Password.fromString(command.password);
 
     if (await this.users.find(userId)) {
@@ -33,7 +41,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
       throw UsernameAlreadyTakenError.with(username);
     }
 
-    const user = User.add(userId, username, password);
+    const user = User.add(userId, username, password, nid, name, surname, phonenumber);
     command.roles.map((role: string) => user.addRole(Role.fromString(role)));
 
     this.users.save(user);

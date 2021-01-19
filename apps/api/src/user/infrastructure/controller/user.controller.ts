@@ -1,4 +1,3 @@
-import { CreateUserDTO, EditUserDTO, Role } from '@sara/contracts';
 import {
   BadRequestException,
   Body,
@@ -14,6 +13,7 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { CreateUserDTO, EditUserDTO, Role } from '@sara/contracts';
 import { Response } from 'express';
 
 import { Roles } from '../../../auth/security/roles.decorator';
@@ -50,6 +50,10 @@ export class UserController {
         new CreateUserCommand(
           createUserDto.id,
           createUserDto.username,
+          createUserDto.name,
+          createUserDto.surname,
+          createUserDto.nid,
+          createUserDto.phoneNumber,
           password,
           createUserDto.roles
         )

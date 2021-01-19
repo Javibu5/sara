@@ -1,10 +1,10 @@
+import { Injectable } from '@nestjs/common';
+import { QueryBus } from '@nestjs/cqrs';
+import { JwtService } from '@nestjs/jwt';
 import {
   AccessTokenInterface,
   JwtPayloadInterface,
 } from '@sara/contracts';
-import { Injectable } from '@nestjs/common';
-import { QueryBus } from '@nestjs/cqrs';
-import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
 import { GetUserByUsernameQuery, UserView } from '../../user/application';

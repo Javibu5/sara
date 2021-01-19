@@ -40,3 +40,13 @@ Then('estoy en la página de edición del usuario {string}', (username) => {
     expect(el).to.have.value(username)
   );
 });
+
+Then('el formulario contiene los siguientes datos:', (table)=>{
+  table.rawTable.map((row) => {
+    cy.get(EditPage.elements.input(row[0])).should((el) =>
+    expect(el).to.have.value(row[2])
+  );
+
+  })
+
+})

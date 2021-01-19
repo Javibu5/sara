@@ -24,6 +24,10 @@ export const UserCreate = (props) => (
           { id: 'ROLE_USER', name: 'Usuario' },
         ]}
       />
+      <TextInput source="name" />
+      <TextInput source="surname" />
+      <TextInput source="nid" />
+      <TextInput source="phoneNumber" />
       <PasswordInput data-test="contraseña" source="plainPassword" validate={[required()]} />
       <PasswordInput data-test="confirmar" source="plainPasswordRepeat" validate={[required()]} />
     </SimpleForm>

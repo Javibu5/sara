@@ -1,5 +1,5 @@
-import { theme } from '@sara/ui'
 import { ServerStyleSheets } from '@material-ui/core'
+import { theme } from '@sara/ui'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import React from 'react'
 

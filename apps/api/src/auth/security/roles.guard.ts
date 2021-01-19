@@ -1,7 +1,7 @@
-import { Role } from '@sara/contracts';
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
+import { Role } from '@sara/contracts';
 
 import { UserView } from '../../user/application';
 import { ROLES_KEY } from './roles.decorator';

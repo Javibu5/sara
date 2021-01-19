@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import * as uuid from 'uuid';
 
-import { Password, Role, User, UserId, Username } from '../../domain';
+import { Name, Nid, Password, PhoneNumber, Role, Surname, User, UserId, Username } from '../../domain';
 import { UserEntity } from '../entity/user.entity';
 import { UserMapper } from './user.mapper';
 
@@ -10,6 +10,10 @@ describe('User mapper', () => {
   const userId = UserId.fromString(uuid.v4());
   const username = Username.fromString('username');
   const password = Password.fromString('password');
+  const name = Name.fromString('name');
+  const surname = Surname.fromString('surname');
+  const nid = Nid.fromString('nid');
+  const phonenumber = PhoneNumber.fromString('600000000');
   const roleUser = Role.fromString('ROLE_USER');
   const roleAdmin = Role.fromString('ROLE_ADMIN');
   const roleAnonymous = Role.fromString('ROLE_ANONYMOUS');
@@ -24,7 +28,7 @@ describe('User mapper', () => {
 
   it('converts from entity to aggregate', () => {
     const aggregate = userMapper.entityToAggregate(
-      new UserEntity(userId.value, username.value, password.value, [
+      new UserEntity(userId.value, username.value, password.value, name.value, surname.value, nid.value , phonenumber.value, [
         roleUser.value,
         roleAdmin.value,
       ])
@@ -39,7 +43,7 @@ describe('User mapper', () => {
   });
 
   it('converts from aggregate to entity', () => {
-    const user = User.add(userId, username, password);
+    const user = User.add(userId, username,password, name, surname, phonenumber, nid);
     user.addRole(roleUser);
     user.addRole(roleAdmin);
 

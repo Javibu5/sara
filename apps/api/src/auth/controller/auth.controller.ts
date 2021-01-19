@@ -1,4 +1,3 @@
-import { AccessTokenInterface } from '@sara/contracts';
 import {
   Body,
   Controller,
@@ -6,6 +5,7 @@ import {
   Post,
   UnauthorizedException,
 } from '@nestjs/common';
+import { AccessTokenInterface } from '@sara/contracts';
 
 import { LoginDTO } from '../dto/login.dto';
 import { AuthService } from '../services/auth.service';

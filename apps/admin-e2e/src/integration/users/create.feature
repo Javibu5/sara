@@ -11,7 +11,16 @@ Característica: Crear usuarios
       | roles               | select | Administrador |
       | plainPassword       | input  | password      |
       | plainPasswordRepeat | input  | password      |
+      | name                | input  | John          |
+      | surname             | input  | Doe           |
+      | nid                 | input  | 0000001       |
+      | phoneNumber         | input  | 600000000     |
+
     Y pulso guardar
     Entonces estoy en la página de edición del usuario "johndoe"
-
-
+    Y el formulario contiene los siguientes datos:
+      | username    | input | johndoe   |
+      | name        | input | John      |
+      | surname     | input | Doe       |
+      | nid         | input | 0000001   |
+      | phoneNumber | input | 600000000 |

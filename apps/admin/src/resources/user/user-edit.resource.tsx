@@ -22,6 +22,10 @@ export const UserEdit = ({ permissions, ...props }) => (
           { id: 'ROLE_USER', name: 'Usuario' },
         ]}
       />
+      <TextInput source="name" />
+      <TextInput source="surname" />
+      <TextInput source="nid" />
+      <TextInput source="phoneNumber" />
       <PasswordInput source="plainPassword" />
       <PasswordInput source="plainPasswordRepeat" />
     </SimpleForm>

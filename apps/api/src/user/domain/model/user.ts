@@ -7,8 +7,12 @@ import {
   UserWasCreated,
 } from '../event';
 import { UserWasDeleted } from '../event/user-was-deleted.event';
+import { Name } from './name';
+import { Nid } from './nid';
 import { Password } from './password';
+import { PhoneNumber } from './phonenumber';
 import { Role } from './role';
+import { Surname } from './surname';
 import { UserId } from './user-id';
 import { Username } from './username';
 
@@ -16,6 +20,10 @@ export class User extends AggregateRoot {
   private _userId: UserId;
   private _username: Username;
   private _password: Password;
+  private _name: Name;
+  private _surname: Surname;
+  private _phonenumber: PhoneNumber;
+  private _nid: Nid
   private _roles: Role[];
   private _deleted?: Date;
 
@@ -26,12 +34,17 @@ export class User extends AggregateRoot {
   public static add(
     userId: UserId,
     username: Username,
-    password: Password
+    password: Password,
+    name: Name,
+    surname: Surname,
+    phonenumber: PhoneNumber,
+    nid: Nid
+
   ): User {
     const user = new User();
 
     user.apply(
-      new UserWasCreated(userId.value, username.value, password.value)
+      new UserWasCreated(userId.value, username.value, password.value, name.value, surname.value, nid.value, phonenumber.value)
     );
 
     return user;
@@ -48,6 +61,25 @@ export class User extends AggregateRoot {
   get password(): Password {
     return this._password;
   }
+
+  get name(): Name{
+    return this._name;
+  }
+
+  get surname(): Surname{
+    return this._surname;
+  } 
+
+  get phonenumber(): PhoneNumber{
+    return this._phonenumber
+  }
+
+  get nid(): Nid{
+    return this.nid
+  }
+
+
+
 
   get roles(): Role[] {
     return Array.from(this._roles);
@@ -93,6 +125,10 @@ export class User extends AggregateRoot {
     this._userId = UserId.fromString(event.id);
     this._username = Username.fromString(event.username);
     this._password = Password.fromString(event.password);
+    this._nid = Nid.fromString(event.nid);
+    this._name = Name.fromString(event.name);
+    this._surname = Surname.fromString(event.surname);
+    this._phonenumber = PhoneNumber.fromString(event.phonenumber);
     this._roles = [];
     this._deleted = null;
   }
