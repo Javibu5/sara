@@ -75,11 +75,8 @@ export class User extends AggregateRoot {
   }
 
   get nid(): Nid{
-    return this.nid
+    return this._nid
   }
-
-
-
 
   get roles(): Role[] {
     return Array.from(this._roles);

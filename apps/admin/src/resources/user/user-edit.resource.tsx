@@ -25,7 +25,7 @@ export const UserEdit = ({ permissions, ...props }) => (
       <TextInput source="name" />
       <TextInput source="surname" />
       <TextInput source="nid" />
-      <TextInput source="phoneNumber" />
+      <TextInput source="phonenumber" />
       <PasswordInput source="plainPassword" />
       <PasswordInput source="plainPasswordRepeat" />
     </SimpleForm>

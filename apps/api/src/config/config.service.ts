@@ -34,7 +34,7 @@ class ConfigService {
         database: path.join(__dirname, '../../../tmp/test.sqlite3'),
         dropSchema: true,
         entities: [
-          path.join(__dirname, '../../../../libs/**/*.entity{.ts,.js}'),
+          path.join(__dirname, '../../../../apps/**/*.entity{.ts,.js}'),
         ],
         synchronize: true,
         autoLoadEntities: true,
@@ -53,7 +53,7 @@ class ConfigService {
 
       migrationsTableName: 'migrations',
 
-      entities: [path.join(__dirname, '../../../../libs/**/*.entity{.ts,.js}')],
+      entities: [path.join(__dirname, '../../../../apps/**/*.entity{.ts,.js}')],
       migrations: [path.join(__dirname, '../migrations/*{.ts,.js}')],
 
       cli: {

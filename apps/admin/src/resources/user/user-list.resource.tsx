@@ -17,7 +17,7 @@ export const UserList = (props) => (
       <TextField source="name" />
       <TextField source="surname" />
       <TextField source="nid" />
-      <TextField source="phoneNumber" />
+      <TextField source="phonenumber" />
       <ArrayField source="roles">
         <SingleFieldList>
           <SimpleChipField />
