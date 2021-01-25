@@ -1,5 +1,5 @@
 {
-  "typescript.preferences.importModuleSpecifier": "project-relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
   "cucumberautocomplete.formatConfOverride": {
     "Característica:": 0,
     "Escenario:": 1,

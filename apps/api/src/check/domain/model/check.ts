@@ -1,17 +1,15 @@
 import { AggregateRoot } from "@nestjs/cqrs";
+import { UserId } from "../../../user/domain";
 import { CheckinWasDone } from "../event/checkin-was-done";
 import { CheckId } from "./check-id";
-import { Employee } from "./employee";
-import { inAt } from "./in-at";
-import { isAutoClosed } from "./is-auto-closed";
-import { outAt } from "./out-at";
+
 
 export class Check extends AggregateRoot{
     private _checkId: CheckId;
-    private _employee: Employee;
-    private _inAt: inAt;
-    private _inOut: outAt;
-    private _isAutoCosed: isAutoClosed;
+    private _employeeId: UserId;
+    private _inAt: Date;
+    private _outAt? : Date;
+    private _isAutoClosed: boolean;
 
     private constructor(){
         super();
@@ -19,17 +17,24 @@ export class Check extends AggregateRoot{
 
     public static add(
          checkId: CheckId,
-         employee: Employee,
-         inAt: inAt,
-         outAt: outAt,
-         isAutoClosed: isAutoClosed,
+         employeeId: UserId,
+         inAt: Date,
     ):Check {
         const check = new Check();
 
         check.apply(
-            new CheckinWasDone(checkId.value , employee, inAt, outAt, isAutoClosed)
+            new CheckinWasDone(checkId.value , employeeId.value, inAt)
         );
+
          return check;
+    }
+
+    private onCheckinWasDone(event : CheckinWasDone){
+        this._checkId = CheckId.fromString(event.id);
+        this._employeeId = UserId.fromString(event.employeeId);
+        this._inAt = event.inAt;
+        this._outAt = null;
+        this._isAutoClosed = false;
     }
     
 }
