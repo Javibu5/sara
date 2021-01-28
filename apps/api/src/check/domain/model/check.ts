@@ -1,6 +1,7 @@
 import { AggregateRoot } from "@nestjs/cqrs";
 import { UserId } from "../../../user/domain";
 import { CheckinWasDone } from "../event/checkin-was-done";
+import { CheckOutWasDone } from "../event/checkout-was-done";
 import { CheckId } from "./check-id";
 
 
@@ -29,6 +30,14 @@ export class Check extends AggregateRoot{
          return check;
     }
 
+    public checkout(outAt : Date) {
+        if (outAt === this._outAt) {
+            return;
+        }
+
+        this.apply(new CheckOutWasDone(this._checkId.value,outAt))
+    }
+
     private onCheckinWasDone(event : CheckinWasDone){
         this._checkId = CheckId.fromString(event.id);
         this._employeeId = UserId.fromString(event.employeeId);
@@ -37,4 +46,8 @@ export class Check extends AggregateRoot{
         this._isAutoClosed = false;
     }
     
+
+    private onCheckOutWasDone(event: CheckOutWasDone){
+        this._outAt = event.outAt;
+    }
 }

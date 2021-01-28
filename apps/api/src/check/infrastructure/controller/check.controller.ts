@@ -1,5 +1,5 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import { CommandBus } from "@nestjs/cqrs";
+import { Body, Controller, Get, Post } from "@nestjs/common";
+import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { User } from "../../../auth/security/user.decorator";
 import { UserView } from "../../../user/application";
 import { CheckInCommand } from "../../application/command/check-in.command";
@@ -7,26 +7,43 @@ import { CheckDto } from "../dto/check.dto";
 import { Roles } from '../../../auth/security/roles.decorator';
 import { Role } from '@sara/contracts';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { CheckOutCommand } from "../../application/command/check-out.command";
+import { RegisterCheckDto } from "../dto/register-check.dto";
+import { GetChecksQuery } from "../../application/query/get-checks.query";
+import { CheckView } from "../read-model/schema/check.schema";
+import { CheckMapper } from "../repository/check.mapper";
 
 @ApiBearerAuth()
 @Controller('checks')
 export class CheckController {
     constructor(
-        private commandBus: CommandBus
-    ){}
+        private queryBus: QueryBus,
+        private commandBus: CommandBus,
+        private checkMapper: CheckMapper,
+    ) { }
 
-    @Post()
+    @Post('in')
     @Roles(Role.Admin)
-    async CheckIn(@Body() checkDto : CheckDto, @User() user : UserView ): Promise<CheckDto> {
+    async checkIn(@Body() registerCheckDto: RegisterCheckDto, @User() user: UserView): Promise<void> {
         const inAt = new Date();
-        await this.commandBus.execute( new CheckInCommand( checkDto.id, user.id, inAt))
-        return checkDto;
+        await this.commandBus.execute(new CheckInCommand(registerCheckDto.id, user.id, inAt))
     }
 
 
-    async Checkout(@Body() user : UserView): Promise<UserView> {
+    @Post('out')
+    @Roles(Role.Admin)
+    async checkOut(@Body() registerCheckDto: RegisterCheckDto): Promise<void> {
+        const outAt = new Date();
+        await this.commandBus.execute(new CheckOutCommand(registerCheckDto.id, outAt))
+    }
 
-        await this.commandBus.execute(new CheckOutCommand(user.id));
-        return user;
+    @Get()
+    @Roles(Role.Admin)
+    async findAll(@User() user: UserView): Promise<CheckDto[]> {
+        const checks = await this.queryBus.execute<GetChecksQuery, CheckView[]>(
+            new GetChecksQuery(user.id)
+        );
+
+        return checks.map(this.checkMapper.viewToDto);
     }
 }
