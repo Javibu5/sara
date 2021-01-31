@@ -9,7 +9,7 @@ export class GetChecksHandler implements IQueryHandler<GetChecksQuery>{
 
     constructor(
         @Inject(CHECK_MODEL) private readonly checkModel: Model<CheckView>
-    ) { }
+    ) {}
 
 
     async execute(query: GetChecksQuery): Promise<CheckView[]> {

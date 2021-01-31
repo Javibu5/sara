@@ -1,16 +1,16 @@
 import { Inject } from "@nestjs/common";
 import { IViewUpdater, ViewUpdaterHandler } from "event-sourcing-nestjs";
-import { CheckinWasDone } from "../../../domain/event/checkin-was-done";
+import { CheckInWasDone } from "../../../domain/event/checkin-was-done";
 import { CheckView} from "../schema/check.schema";
 import { Model } from 'mongoose';
 
 
-@ViewUpdaterHandler(CheckinWasDone)
-export class CheckInWasDoneProjection implements IViewUpdater<CheckinWasDone>{
+@ViewUpdaterHandler(CheckInWasDone)
+export class CheckInWasDoneProjection implements IViewUpdater<CheckInWasDone>{
     constructor(
         @Inject('CHECK_MODEL') private readonly checkModel: Model<CheckView>){}
    
-    async handle(event: CheckinWasDone){
+    async handle(event: CheckInWasDone){
          const checkView = new this.checkModel({
              _id:event.id,
              employeeId : event.employeeId,

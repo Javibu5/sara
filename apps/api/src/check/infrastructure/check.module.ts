@@ -4,6 +4,7 @@ import { EventSourcingModule } from "event-sourcing-nestjs";
 import { AuthModule } from "../../auth/auth.module";
 import { DatabaseModule } from "../../database/database.module";
 import { CheckInHandler } from "../application/command/check-in.handler";
+import { CheckOutHandler } from "../application/command/check-out.handler";
 import { GetChecksHandler } from "../application/query/get-checks.handler";
 import { CheckProviders } from "./check.providers";
 import { CheckController } from "./controller/check.controller";
@@ -11,7 +12,7 @@ import { CheckInWasDoneProjection } from "./read-model/projection/check-in-was-d
 import { CheckMapper } from "./repository/check.mapper";
 
 
-const CommandHandlers = [CheckInHandler];
+const CommandHandlers = [CheckInHandler, CheckOutHandler];
 
 const ProjectionHandlers = [CheckInWasDoneProjection];
 

@@ -1,7 +1,7 @@
 import { StorableEvent } from "event-sourcing-nestjs";
 import { CHECK_AGGREGATE_NAME } from "../model";
-import { Check } from "../model/check";
-export class CheckinWasDone extends StorableEvent{
+
+export class CheckInWasDone extends StorableEvent{
 
     eventAggregate = CHECK_AGGREGATE_NAME;
     eventVersion = 1;

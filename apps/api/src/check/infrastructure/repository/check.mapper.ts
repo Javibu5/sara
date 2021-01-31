@@ -6,7 +6,7 @@ import { CheckView } from "../read-model/schema/check.schema";
 export class CheckMapper {
     viewToDto(checkView: CheckView): CheckDto {
 
-        const { _id: id, ...data } = checkView;
+        const { _id: id, ...data } = checkView.toObject();
 
         return {
             id,

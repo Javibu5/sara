@@ -1,4 +1,5 @@
 export class CheckDto {
+
     readonly id: string;
     readonly employeeId: string;
     readonly inAt: Date;
