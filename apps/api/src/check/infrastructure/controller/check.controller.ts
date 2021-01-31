@@ -32,9 +32,9 @@ export class CheckController {
 
     @Post('out')
     @Roles(Role.Admin)
-    async checkOut(@Body() registerCheckDto: RegisterCheckDto): Promise<void> {
+    async checkOut(@Body() registerCheckDto: RegisterCheckDto, @User() user: UserView): Promise<void> {
         const outAt = new Date();
-        await this.commandBus.execute(new CheckOutCommand(registerCheckDto.id, outAt))
+        await this.commandBus.execute(new CheckOutCommand(registerCheckDto.id, user.id, outAt))
     }
 
     @Get()

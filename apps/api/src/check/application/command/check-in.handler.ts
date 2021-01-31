@@ -10,17 +10,17 @@ import { CheckInCommand } from "./check-in.command";
 export class CheckInHandler implements ICommandHandler<CheckInCommand>{
     constructor(
         @Inject(CHECKS) private checks: Checks
-    ){}
+    ) { }
 
-    async execute(command: CheckInCommand){
+    async execute(command: CheckInCommand) {
         const checkId = CheckId.fromString(command.id);
         const employeeId = UserId.fromString(command.employeeId);
 
-        if ( await this.checks.find(checkId) ){
+        if (await this.checks.find(checkId)) {
             throw new Error();
         }
 
-        const check = Check.add(checkId, employeeId, command.inAt);
+        const check = Check.withCheckIn(checkId, employeeId, command.inAt);
 
         this.checks.save(check);
     }

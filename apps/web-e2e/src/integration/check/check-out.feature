@@ -16,4 +16,4 @@ Antecedentes:
         Cuando pulse sobre el botón salida
         Entonces aparece el mensaje "salida registrada"
         Dado que estoy en la página de registro de jornadas
-        Entonces aparecerá 1 jornada completa
+        Entonces aparecerá 1 jornada sin entrada

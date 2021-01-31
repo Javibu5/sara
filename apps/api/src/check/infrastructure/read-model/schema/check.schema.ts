@@ -9,12 +9,12 @@ export const CheckSchema = new Schema({
 });
 
 
-export interface CheckView extends Document{
+export interface CheckView extends Document {
     readonly _id: string,
     readonly employeeId: string;
     readonly inAt: Date;
     readonly outAt: Date;
-    readonly isAutoClosed: boolean; 
+    readonly isAutoClosed: boolean;
 }
 
 export const CHECK_MODEL = 'CHECK_MODEL';

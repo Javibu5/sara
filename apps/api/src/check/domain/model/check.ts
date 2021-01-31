@@ -1,53 +1,86 @@
 import { AggregateRoot } from "@nestjs/cqrs";
 import { UserId } from "../../../user/domain";
+import { CheckWasCreated } from "../event/check-was-created";
 import { CheckInWasDone } from "../event/checkin-was-done";
 import { CheckOutWasDone } from "../event/checkout-was-done";
 import { CheckId } from "./check-id";
 
 
-export class Check extends AggregateRoot{
+export class Check extends AggregateRoot {
     private _checkId: CheckId;
     private _employeeId: UserId;
-    private _inAt: Date;
-    private _outAt? : Date;
+    private _inAt?: Date;
+    private _outAt?: Date;
     private _isAutoClosed: boolean;
 
-    private constructor(){
+    private constructor() {
         super();
     }
 
-    public static add(
-         checkId: CheckId,
-         employeeId: UserId,
-         inAt: Date,
-    ):Check {
+    public static withCheckIn(
+        checkId: CheckId,
+        employeeId: UserId,
+        inAt: Date,
+    ): Check {
         const check = new Check();
 
         check.apply(
-            new CheckInWasDone(checkId.value , employeeId.value, inAt)
+            new CheckWasCreated(checkId.value, employeeId.value)
         );
 
-         return check;
+        check.checkIn(inAt);
+
+        return check;
     }
 
-    public checkout(outAt : Date) {
+    public static withCheckOut(checkId: CheckId, employeeId: UserId, outAt: Date): Check {
+        const check = new Check();
+
+        check.apply(
+            new CheckWasCreated(checkId.value, employeeId.value)
+        );
+
+        check.checkOut(outAt);
+
+        return check;
+    }
+
+    get outAt(): Date {
+        return this._outAt;
+    }
+
+    public checkIn(inAt: Date) {
+        if (inAt === this._inAt) {
+            return;
+        }
+
+        this.apply(new CheckInWasDone(this._checkId.value, inAt))
+
+    }
+
+    public checkOut(outAt: Date) {
         if (outAt === this._outAt) {
             return;
         }
 
-        this.apply(new CheckOutWasDone(this._checkId.value,outAt))
+        this.apply(new CheckOutWasDone(this._checkId.value, outAt))
     }
 
-    private onCheckinWasDone(event : CheckInWasDone){
+    private onCheckWasCreated(event: CheckWasCreated) {
         this._checkId = CheckId.fromString(event.id);
         this._employeeId = UserId.fromString(event.employeeId);
-        this._inAt = event.inAt;
+        this._inAt = null;
         this._outAt = null;
         this._isAutoClosed = false;
     }
-    
 
-    private onCheckOutWasDone(event: CheckOutWasDone){
+    private onCheckInWasDone(event: CheckInWasDone) {
+        this._checkId = CheckId.fromString(event.id);
+        this._inAt = event.inAt;
+    }
+
+    private onCheckOutWasDone(event: CheckOutWasDone) {
+        this._checkId = CheckId.fromString(event.id);
         this._outAt = event.outAt;
     }
 }

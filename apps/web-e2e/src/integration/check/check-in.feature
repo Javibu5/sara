@@ -9,11 +9,11 @@ Antecedentes:
         Cuando pulse sobre el botón entrada
         Entonces aparece el mensaje "entrada registrada"
         Dado que estoy en la página de registro de jornadas
-        Entonces aparecerá 1 jornada registrada
+        Entonces aparecerá 1 jornada sin salida
 
     Escenario: Fichar entrada más de una vez al día
         Dado que ya había fichado anteriormente
         Cuando pulse sobre el botón entrada
         Entonces aparece el mensaje "entrada registrada"
         Dado que estoy en la página de registro de jornadas
-        Entonces aparecerán 2 jornadas registradas
+        Entonces aparecerán 2 jornadas sin salida

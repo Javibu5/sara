@@ -62,19 +62,19 @@ export class User extends AggregateRoot {
     return this._password;
   }
 
-  get name(): Name{
+  get name(): Name {
     return this._name;
   }
 
-  get surname(): Surname{
+  get surname(): Surname {
     return this._surname;
-  } 
+  }
 
-  get phonenumber(): PhoneNumber{
+  get phonenumber(): PhoneNumber {
     return this._phonenumber
   }
 
-  get nid(): Nid{
+  get nid(): Nid {
     return this._nid
   }
 
