@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { EventStore, StoreEventPublisher } from "event-sourcing-nestjs";
+
 import { CHECK_AGGREGATE_NAME } from "../../domain/model";
 import { Check } from "../../domain/model/check";
 import { CheckId } from "../../domain/model/check-id";

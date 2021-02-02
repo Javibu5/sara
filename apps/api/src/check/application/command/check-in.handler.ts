@@ -1,9 +1,10 @@
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
+
 import { UserId } from "../../../user/domain";
 import { Check } from "../../domain/model/check";
 import { CheckId } from "../../domain/model/check-id";
-import { Checks, CHECKS } from "../../domain/repository/checks";
+import { CHECKS,Checks } from "../../domain/repository/checks";
 import { CheckInCommand } from "./check-in.command";
 
 @CommandHandler(CheckInCommand)

@@ -1,8 +1,8 @@
 import { Connection } from "mongoose";
-import { DATABASE_CONNECTION } from "../../database/database.provider";
 
+import { DATABASE_CONNECTION } from "../../database/database.provider";
 import { CHECKS } from "../domain/repository/checks";
-import { CheckSchema, CHECK_MODEL } from "./read-model/schema/check.schema";
+import { CHECK_MODEL,CheckSchema } from "./read-model/schema/check.schema";
 import { CheckRepository } from "./repository/check.repository";
 
 export const CheckProviders =[

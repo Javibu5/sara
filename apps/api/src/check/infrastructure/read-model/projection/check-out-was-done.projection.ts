@@ -1,6 +1,7 @@
 import { Inject } from "@nestjs/common";
 import { IViewUpdater, ViewUpdaterHandler } from "event-sourcing-nestjs";
 import { Model } from "mongoose";
+
 import { CheckOutWasDone } from "../../../domain/event/checkout-was-done";
 import { CheckView } from "../schema/check.schema";
 
@@ -13,6 +14,6 @@ export class CheckOutWasDoneProjection implements IViewUpdater<CheckOutWasDone>{
     ){}
 
     async handle(event: CheckOutWasDone){
-       await this.checkModel.updateOne({ _id: event.id}, {outAt: event.outAt}).exec();
+       await this.checkModel.updateOne({ _id: event.id}, {$set: {outAt: event.outAt}}).exec();
     }
 }

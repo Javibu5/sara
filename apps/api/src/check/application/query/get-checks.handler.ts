@@ -1,7 +1,8 @@
 import { Inject } from "@nestjs/common";
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { Model } from "mongoose";
-import { CheckView, CHECK_MODEL } from "../../infrastructure/read-model/schema/check.schema";
+
+import { CHECK_MODEL,CheckView } from "../../infrastructure/read-model/schema/check.schema";
 import { GetChecksQuery } from "./get-checks.query";
 
 @QueryHandler(GetChecksQuery)

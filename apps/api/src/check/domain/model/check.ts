@@ -1,4 +1,5 @@
 import { AggregateRoot } from "@nestjs/cqrs";
+
 import { UserId } from "../../../user/domain";
 import { CheckWasCreated } from "../event/check-was-created";
 import { CheckInWasDone } from "../event/checkin-was-done";
