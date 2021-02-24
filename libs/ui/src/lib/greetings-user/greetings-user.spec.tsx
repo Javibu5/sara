@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 
-import GreetingsUser from './greetings-status';
+import GreetingsUser from './greetings-user';
 
 describe('GreetingsStatus', () => {
   it('should render successfully', () => {

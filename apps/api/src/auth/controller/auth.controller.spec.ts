@@ -2,13 +2,19 @@ import { UnauthorizedException } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
+import { stringify } from 'uuid';
 
 import { UserView } from '../../user/application';
+import { Name } from '../../user/domain';
 import { AuthService } from '../services/auth.service';
 import { AuthController } from './auth.controller';
 
 const ID = '78dbd5bd-86c1-4925-a08c-1d0170e4851d';
 const USERNAME = 'username';
+const NAME = 'name';
+const SURNAME = 'surname';
+const PHONENUMBER = '000000000';
+const NID = 'nid';
 const PASSWORD = 'password';
 const CRYPT_PASSWORD =
   '$2a$04$J.qvJcqZRPBlGFKWIxPOYOsPRXpkZmTyTHScEF3Kq5/QXV.8oMcfy';
@@ -39,6 +45,10 @@ describe('AuthController', () => {
     user = {
       id: ID,
       username: USERNAME,
+      name: NAME,
+      surname: SURNAME,
+      phonenumber: PHONENUMBER,
+      nid: NID,
       password: CRYPT_PASSWORD,
       roles: [],
     };
