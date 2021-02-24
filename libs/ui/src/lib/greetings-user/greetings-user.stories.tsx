@@ -19,5 +19,15 @@ const user: UserDto = {
 
 export const Default = Template.bind({});
 Default.arg = {
-    username: "Jose Raul"
+}
+
+export const LoguedIn = Template.bind({});
+LoguedIn.args = {
+    username: 'Raul'
+}
+
+export const LoguedInWorking = Template.bind({});
+LoguedInWorking.args = {
+    username: 'Raul',
+    working: true,
 }
