@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
+import { CheckDto } from "@sara/contracts";
 
-import { CheckDto } from "../dto/check.dto";
 import { CheckView } from "../read-model/schema/check.schema";
 
 @Injectable()

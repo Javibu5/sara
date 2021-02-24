@@ -10,7 +10,7 @@ import {
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import clsx from 'clsx';
 import React from 'react';
 
@@ -48,9 +48,9 @@ export function Sidebar({ open, onCloseSidebar }: SidebarProps) {
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <ShoppingCartIcon />
+            <QueryBuilderIcon />
           </ListItemIcon>
-          <ListItemText primary="Orders" />
+          <ListItemText primary="Ticajes" />
         </ListItem>
       </List>
     </Drawer>
