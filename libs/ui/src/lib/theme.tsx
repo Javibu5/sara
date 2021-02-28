@@ -10,6 +10,11 @@ export const useStyles = makeStyles((theme) => ({
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
+  divider:{
+    marginTop: '8px',
+    marginBottom: '8px',
+  },
+
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
