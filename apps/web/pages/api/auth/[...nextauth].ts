@@ -18,6 +18,8 @@ const options: InitOptions = {
     session: async (session, user) => {
       // @ts-expect-error: Custom session attributes
       session.roles = user.roles;
+      // @ts-expect-error: Custom session attributes
+      session.accessToken = user.accessToken
       return Promise.resolve(session);
     },
     jwt: async (token, user, account, profile, isNewUser) => {

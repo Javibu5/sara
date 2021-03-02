@@ -5,6 +5,7 @@ import React from 'react'
 
 
 export default class MyDocument extends Document {
+
   render() {
     return (
       <Html lang="es">
@@ -23,6 +24,8 @@ export default class MyDocument extends Document {
     )
   }
 }
+
+
 
 MyDocument.getInitialProps = async (ctx) => {
   const sheets = new ServerStyleSheets();
