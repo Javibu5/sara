@@ -5,7 +5,6 @@ import React from 'react';
 
 import { useStyles } from '../theme';
 
-/* eslint-disable-next-line */
 export interface GreetingsUserProps {
   username: string;
   working: boolean;

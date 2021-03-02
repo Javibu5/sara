@@ -1,7 +1,7 @@
-import UIcheckModule, { UIcheckModuleProps } from './uicheck-module';
 import { Meta, Story } from '@storybook/react';
-
 import React from 'react';
+
+import UIcheckModule, { UIcheckModuleProps } from './uicheck-module';
 
 export default {
   component: UIcheckModule,
@@ -20,4 +20,5 @@ const user = {
 export const Default = Template.bind({});
 Default.args = {
   userDto: user,
+  checks: []
 };

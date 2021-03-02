@@ -7,7 +7,9 @@ import { useStyles } from '../theme';
 
 /* eslint-disable-next-line */
 export interface CheckButtonsGroupProps {
+  /* eslint-disable-next-line */
   onCheckInHandler: any,
+  /* eslint-disable-next-line */
   onCheckOuthandler: any,
   working: boolean
 }
