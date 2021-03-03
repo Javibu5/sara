@@ -11,6 +11,9 @@ import useSWR, { SWRConfig } from 'swr'
 
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  let token = null;
+
+
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -20,23 +23,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
 
-
   return (
     <NextAuthProvider session={pageProps.session}>
       <SWRConfig
         value={{
-          fetcher: async (url) => {
-            const res = await fetch(url, {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `e4b60d7ef5ff4b3f6ead0f3acfb0185621ccba2a0bf2295e19fa748544b76c14%7Cada5968dc1052928318829d9abae28c9b7ef8dedb4697fc9025c1146ab3b3c5d`,
-              },
-            });
-            return res.json();
-          },
+          refreshInterval: 3000,
+          fetcher: (...args) => url => fetch(url).then(r => r.json())
         }}
       >
-
         <React.Fragment>
           <Head>
             <title>NX Sara</title>
