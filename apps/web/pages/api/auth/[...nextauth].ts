@@ -20,7 +20,8 @@ const options: InitOptions = {
       session.roles = user.roles;
       // @ts-expect-error: Custom session attributes
       session.access_token = user.access_token;
-      return Promise.resolve(session);
+      console.log(session);
+      return session;
     },
     jwt: async (token, user, account, profile, isNewUser) => {
       const isSignIn = user ? true : false;

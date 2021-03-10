@@ -5,15 +5,9 @@ import Head from 'next/head';
 import { Provider as NextAuthProvider } from 'next-auth/client';
 import PropTypes from 'prop-types';
 import React from 'react';
-import useSWR, { SWRConfig } from 'swr'
-
-
-
+import useSWR, { SWRConfig } from 'swr';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  let token = null;
-
-
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -22,13 +16,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
 
-
   return (
     <NextAuthProvider session={pageProps.session}>
       <SWRConfig
         value={{
-          refreshInterval: 3000,
-          fetcher: (...args) => url => fetch(url).then(r => r.json())
+          fetcher: (resource, init) =>
+            fetch(resource, init).then((res) => res.json()),
         }}
       >
         <React.Fragment>

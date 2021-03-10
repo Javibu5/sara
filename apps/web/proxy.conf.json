@@ -1,5 +1,5 @@
 {
-  "/api/(users|login)": {
+  "/api/(users|login|checks)": {
     "target": "http://localhost:3333",
     "secure": false
   }

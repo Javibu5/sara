@@ -3,22 +3,17 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { Layout } from '@sara/ui';
 import { useSession } from 'next-auth/client';
+import jwt from 'next-auth/jwt';
 import React from 'react';
+
 import { useUser } from '../hooks/useSWR';
 
 export default function Index() {
-  const [session, loading] = useSession()
+  const [session, loading] = useSession();
 
-  const { user, isLoading, isError } = useUser(1);
-
-  console.log(user, isError, isLoading);
-
-  React.useEffect(() => {
-    console.log('session', session)
-  }, []);
+  const { user, isLoading, isError } = useUser();
 
   return (
-
     <Layout session={session}>
       <Container maxWidth="sm">
         <Box my={4}>
