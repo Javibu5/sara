@@ -11,8 +11,6 @@ import { useUser } from '../hooks/useSWR';
 export default function Index() {
   const [session, loading] = useSession();
 
-  const { user, isLoading, isError } = useUser();
-
   return (
     <Layout session={session}>
       <Container maxWidth="sm">

@@ -16,9 +16,9 @@ export interface UIcheckModuleProps {
   date: Date;
   checks: CheckDto[];
   /* eslint-disable-next-line */
-  onCheckInHandler: any,
+  onCheckInHandler: any;
   /* eslint-disable-next-line */
-  onCheckOuthandler: any,
+  onCheckOuthandler: any;
 }
 
 export function UIcheckModule(props: UIcheckModuleProps) {
@@ -34,10 +34,18 @@ export function UIcheckModule(props: UIcheckModuleProps) {
           ></GreetingsUser>
         </Grid>
         <Grid item xs={12} justify="center" style={{ margin: 'auto' }}>
-          <CheckButtonsGroup onCheckInHandler={props.onCheckInHandler} onCheckOuthandler={props.onCheckOuthandler} working={props.working} />
+          <CheckButtonsGroup
+            onCheckInHandler={props.onCheckInHandler}
+            onCheckOuthandler={props.onCheckOuthandler}
+            working={props.working}
+          />
         </Grid>
         <Grid item xs={12} justify="center" style={{ margin: 'auto' }}>
-          <LastChecks checks={props.checks} date={new Date()} working={props.working} />
+          <LastChecks
+            checks={props.checks}
+            date={new Date()}
+            working={props.working}
+          />
         </Grid>
       </Grid>
     </div>
