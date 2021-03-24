@@ -17,7 +17,8 @@
     "paths": {
       "@sara/domain": ["libs/domain/src/index.ts"],
       "@sara/ui": ["libs/ui/src/index.ts"],
-      "@sara/contracts": ["libs/contracts/src/index.ts"]
+      "@sara/contracts": ["libs/contracts/src/index.ts"],
+      "@sara/hooks": ["libs/hooks/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

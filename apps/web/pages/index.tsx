@@ -3,10 +3,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { Layout } from '@sara/ui';
 import { useSession } from 'next-auth/client';
-import jwt from 'next-auth/jwt';
 import React from 'react';
-
-import { useUser } from '../hooks/useSWR';
 
 export default function Index() {
   const [session, loading] = useSession();

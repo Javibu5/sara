@@ -56,10 +56,11 @@ export function LastChecks(props: LastChecksProps) {
         <Divider className={classes.divider} />
 
         <List>
-          {!props.checks.length && <ListItem>No hay ticajes</ListItem>}
-          {props.checks.map((check: CheckDto) => (
-            <PrintCheck id={check.id} inAt={check.inAt} outAt={check.outAt} />
-          ))}
+          {!props.checks && <ListItem>No hay ticajes</ListItem>}
+          {props.checks &&
+            props.checks.map((check: CheckDto) => (
+              <PrintCheck id={check.id} inAt={check.inAt} outAt={check.outAt} />
+            ))}
         </List>
       </CardContent>
     </Card>

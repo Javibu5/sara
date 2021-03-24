@@ -2,10 +2,8 @@ import { UnauthorizedException } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { stringify } from 'uuid';
 
 import { UserView } from '../../user/application';
-import { Name } from '../../user/domain';
 import { AuthService } from '../services/auth.service';
 import { AuthController } from './auth.controller';
 

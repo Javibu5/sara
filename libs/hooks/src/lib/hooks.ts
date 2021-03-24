@@ -1,7 +1,6 @@
+import { CheckDto } from '@sara/contracts';
 import { useSession } from 'next-auth/client';
 import useSWR from 'swr';
-import { Loader } from 'webpack';
-import { CheckDto } from '../../../libs/contracts/src';
 
 export interface IuseTodayChecks {
   todayChecks: CheckDto[];
@@ -36,25 +35,6 @@ export function useTodayChecks(): IuseTodayChecks {
     todayChecks: data,
     isLoadingTodayChecks: !error && !data,
     isErrorTodayChecks: error,
-  };
-}
-
-export function useCheck(method) {
-  const [session, loading] = useSession();
-
-  if (method !== 'in' || 'out') {
-    return new Error();
-  }
-
-  const { data, error } = useSWR(
-    !loading ? [`/api/checks/${method}`, session.access_token] : null,
-    fetchWithUser
-  );
-
-  return {
-    res: data,
-    isLoadingCheck: !error && !data,
-    isErrorCheck: error,
   };
 }
 

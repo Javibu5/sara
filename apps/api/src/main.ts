@@ -15,6 +15,8 @@ async function bootstrap() {
   });
   app.setGlobalPrefix(GLOBAL_PREFIX);
 
+  app.enableCors();
+
   const options = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('Sara API')

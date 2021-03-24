@@ -2,5 +2,9 @@
   "/api/(users|login|checks)": {
     "target": "http://localhost:3333",
     "secure": false
+  },
+  "/api/checks/(in|out|today)": {
+    "target": "http://localhost:3333",
+    "secure": false
   }
 }
