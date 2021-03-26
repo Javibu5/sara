@@ -1,12 +1,11 @@
 import Button from '@material-ui/core/Button';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import axios from 'axios';
+import { getOptions,useCheckInHandler, useCheckOutHandler  } from '@sara/hooks';
 import { useSession } from 'next-auth/client';
-import React, { useEffect, useState } from 'react';
-import { mutate } from 'swr';
+import React from 'react';
+import useFetch from 'use-http';
 
 import { useStyles } from '../theme';
-
 /* eslint-disable-next-line */
 export interface CheckButtonsGroupProps {
   working: boolean;
@@ -14,14 +13,23 @@ export interface CheckButtonsGroupProps {
 
 export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
   const classes = useStyles();
-  const [session, loading] = useSession();
+  const [session, loadingSession] = useSession();
+  const { request, loading, error } = useFetch('/api/checks');
+
+  const handleClickCheckIn = () => {
+    request.post('/in', getOptions(session.accessToken));
+  };
+
+  const handleClickCheckOut = () => {
+    request.post('/out');
+  };
 
   return (
     <div>
       <Button
         variant="contained"
         color="primary"
-        onClick={'daf'}
+        onClick={handleClickCheckIn}
         size={props.working ? 'small' : 'large'}
         endIcon={<ExitToAppOutlinedIcon />}
       >
@@ -32,7 +40,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
       <Button
         variant="contained"
         color="secondary"
-        onClick={'sad'}
+        onClick={handleClickCheckOut}
         size={props.working ? 'large' : 'small'}
         endIcon={<ExitToAppOutlinedIcon />}
       >
