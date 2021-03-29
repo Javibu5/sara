@@ -9,6 +9,7 @@ import { UserView } from '../../../user/application';
 import { CheckInCommand } from '../../application/command/check-in.command';
 import { CheckOutCommand } from '../../application/command/check-out.command';
 import { GetChecksQuery } from '../../application/query/get-checks.query';
+import { GetChecksTodayQuery } from '../../application/query/get-checks-today.query';
 import { CheckView } from '../read-model/schema/check.schema';
 import { CheckMapper } from '../repository/check.mapper';
 
@@ -19,7 +20,7 @@ export class CheckController {
     private queryBus: QueryBus,
     private commandBus: CommandBus,
     private checkMapper: CheckMapper
-  ) {}
+  ) { }
 
   @Post('in')
   @Roles(Role.Admin)
@@ -28,6 +29,7 @@ export class CheckController {
     @User() user: UserView
   ): Promise<void> {
     const inAt = new Date();
+
     await this.commandBus.execute(
       new CheckInCommand(registerCheckDto.id, user.id, inAt)
     );
@@ -57,16 +59,12 @@ export class CheckController {
 
   @Get('today')
   @Roles(Role.Admin)
-  async findToday(@Body() user: UserView): Promise<CheckDto[]> {
-    const checks = await this.queryBus.execute<GetChecksQuery, CheckView[]>(
-      new GetChecksQuery(user.id)
+  async findToday(@User() user: UserView): Promise<CheckDto[]> {
+    const todayChecks = await this.queryBus.execute<GetChecksTodayQuery, CheckView[]>(
+      new GetChecksTodayQuery(user.id)
     );
-    const todayChecks = checks.filter((check) => {
-      if (check.inAt.getDay() !== new Date().getDay()) {
-        return [];
-      }
-      return check.inAt.getDate() === new Date().getDay();
-    });
+
+
     return todayChecks.map(this.checkMapper.viewToDto);
   }
 }

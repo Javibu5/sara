@@ -1,9 +1,11 @@
 import Button from '@material-ui/core/Button';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import { getOptions,useCheckInHandler, useCheckOutHandler  } from '@sara/hooks';
+import { CheckDto } from '@sara/contracts'
+import { getOptions, useCheckInHandler, useCheckOutHandler, useTodayChecks } from '@sara/hooks';
 import { useSession } from 'next-auth/client';
 import React from 'react';
-import useFetch from 'use-http';
+import { mutate } from 'swr';
+import * as uuid from 'uuid';
 
 import { useStyles } from '../theme';
 /* eslint-disable-next-line */
@@ -14,14 +16,36 @@ export interface CheckButtonsGroupProps {
 export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
   const classes = useStyles();
   const [session, loadingSession] = useSession();
-  const { request, loading, error } = useFetch('/api/checks');
+  const { todayChecks } = useTodayChecks();
 
-  const handleClickCheckIn = () => {
-    request.post('/in', getOptions(session.accessToken));
+  const handleClickCheckIn = async () => {
+    const response = await fetch('/api/checks/in', {
+      method: 'Post',
+      headers: {
+        'Authorization': `Bearer ${session.access_token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: uuid.v4() })
+    })
+
+    mutate([`/api/checks/today`, session.access_token]);
   };
 
-  const handleClickCheckOut = () => {
-    request.post('/out');
+  const handleClickCheckOut = async () => {
+
+    const id = todayChecks.length == 0 || todayChecks[todayChecks.length - 1].outAt
+      ? uuid.v4() : todayChecks[todayChecks.length - 1].id;
+
+    const response = await fetch('/api/checks/out', {
+      method: 'Post',
+      headers: {
+        'Authorization': `Bearer ${session.access_token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: id })
+    })
+
+    mutate([`/api/checks/today`, session.access_token]);
   };
 
   return (

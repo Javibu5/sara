@@ -31,13 +31,15 @@ const PrintCheck: React.FunctionComponent<PrintCheckProps> = ({
   id,
   inAt,
   outAt,
-}) => (
-  <ListItem key={id}>
-    Entrada: {inAt ? `${inAt.getHours()}:${inAt.getMinutes()}` : 'pendiente'}
+}) => {
+  return (
+    <ListItem key={id}>
+      Entrada: {inAt ? `${new Date(inAt).getHours()}:${new Date(inAt).getMinutes()}` : 'pendiente'}
     &nbsp;|&nbsp;Salida:{' '}
-    {outAt ? `${outAt.getHours()}:${outAt.getMinutes()}` : 'pendiente'}
-  </ListItem>
-);
+      {outAt ? `${new Date(outAt).getHours()}:${new Date(outAt).getMinutes()}` : 'pendiente'}
+    </ListItem>
+  )
+};
 
 export function LastChecks(props: LastChecksProps) {
   const classes = useStyles();

@@ -7,6 +7,7 @@ import { DatabaseModule } from "../../database/database.module";
 import { CheckInHandler } from "../application/command/check-in.handler";
 import { CheckOutHandler } from "../application/command/check-out.handler";
 import { GetChecksHandler } from "../application/query/get-checks.handler";
+import { GetChecksTodayHandler } from "../application/query/get-checks-today.handler";
 import { CheckProviders } from "./check.providers";
 import { CheckController } from "./controller/check.controller";
 import { CheckInWasDoneProjection } from "./read-model/projection/check-in-was-done.projections";
@@ -19,7 +20,7 @@ const CommandHandlers = [CheckInHandler, CheckOutHandler];
 
 const ProjectionHandlers = [CheckInWasDoneProjection, CheckOutWasDoneProjection, CheckWasCreatedProjection];
 
-const QueryHandlers = [GetChecksHandler];
+const QueryHandlers = [GetChecksHandler, GetChecksTodayHandler];
 
 @Module({
     controllers: [CheckController],
