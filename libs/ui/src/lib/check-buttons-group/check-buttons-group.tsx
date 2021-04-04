@@ -1,7 +1,7 @@
 import Button from '@material-ui/core/Button';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import { CheckDto } from '@sara/contracts'
-import { getOptions, useCheckInHandler, useCheckOutHandler, useTodayChecks } from '@sara/hooks';
+import { CheckDto } from '@sara/contracts';
+import { useTodayChecks } from '@sara/hooks';
 import { useSession } from 'next-auth/client';
 import React from 'react';
 import { mutate } from 'swr';
@@ -19,31 +19,32 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
   const { todayChecks } = useTodayChecks();
 
   const handleClickCheckIn = async () => {
-    const response = await fetch('/api/checks/in', {
+    await fetch('/api/checks/in', {
       method: 'Post',
       headers: {
-        'Authorization': `Bearer ${session.access_token}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${session.access_token}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id: uuid.v4() })
-    })
+      body: JSON.stringify({ id: uuid.v4() }),
+    });
 
     mutate([`/api/checks/today`, session.access_token]);
   };
 
   const handleClickCheckOut = async () => {
+    const id =
+      todayChecks.length === 0 || todayChecks[todayChecks.length - 1].outAt
+        ? uuid.v4()
+        : todayChecks[todayChecks.length - 1].id;
 
-    const id = todayChecks.length == 0 || todayChecks[todayChecks.length - 1].outAt
-      ? uuid.v4() : todayChecks[todayChecks.length - 1].id;
-
-    const response = await fetch('/api/checks/out', {
+    await fetch('/api/checks/out', {
       method: 'Post',
       headers: {
-        'Authorization': `Bearer ${session.access_token}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${session.access_token}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id: id })
-    })
+      body: JSON.stringify({ id: id }),
+    });
 
     mutate([`/api/checks/today`, session.access_token]);
   };

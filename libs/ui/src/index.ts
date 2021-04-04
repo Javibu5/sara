@@ -1,3 +1,4 @@
+export * from './lib/access-denied/access-denied';
 export * from './lib/check-buttons-group/check-buttons-group';
 export * from './lib/greetings-user/greetings-user';
 export * from './lib/last-checks/last-checks';

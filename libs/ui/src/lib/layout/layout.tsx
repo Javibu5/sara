@@ -10,17 +10,25 @@ import {
 import { Session } from 'next-auth';
 import React from 'react';
 
+import AccessDenied from '../access-denied/access-denied';
 import Navbar from '../navbar/navbar';
 import Sidebar from '../sidebar/sidebar';
 import { useStyles } from '../theme';
 
 export interface LayoutProps {
-  session?: Session
+  session?: Session;
 }
 
-export const Layout: React.FunctionComponent<LayoutProps> = ({session, children}) => {
+export const Layout: React.FunctionComponent<LayoutProps> = ({
+  session,
+  children,
+}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
+  if (!session) {
+    return <AccessDenied />;
+  }
 
   return (
     <div className={classes.root}>
@@ -39,6 +47,6 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({session, children}
       </main>
     </div>
   );
-}
+};
 
 export default Layout;

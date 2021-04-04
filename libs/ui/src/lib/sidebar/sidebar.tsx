@@ -12,6 +12,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import clsx from 'clsx';
+import Link from 'next/link';
 import React from 'react';
 
 import { useStyles } from '../theme';
@@ -46,12 +47,14 @@ export function Sidebar({ open, onCloseSidebar }: SidebarProps) {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <QueryBuilderIcon />
-          </ListItemIcon>
-          <ListItemText primary="Ticajes" />
-        </ListItem>
+        <Link href="/check">
+          <ListItem button>
+            <ListItemIcon>
+              <QueryBuilderIcon />
+            </ListItemIcon>
+            <ListItemText primary="Ticajes" />
+          </ListItem>
+        </Link>
       </List>
     </Drawer>
   );
