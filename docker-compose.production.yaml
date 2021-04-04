@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:latest
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+
+  db:
+    image: mariadb:10.5
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=saradb
+      - MYSQL_USER=sara
+      - MYSQL_PASSWORD=sara
+    volumes:
+      - db_data:/var/lib/mysql
+
+  api:
+    image: sara:api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api
+    depends_on:
+      - db
+      - mongo
+    ports:
+      - 3333:3333
+    environment:
+      - JWT_SECRET=secret
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=sara
+      - DB_PASSWORD=sara
+      - DB_DATABASE=saradb
+      - MONGODB_URI=mongodb://mongo:27017/sara
+      - EVENTSOURCING_URI=mongodb://mongo:27017/es
+
+volumes:
+  db_data:
+    driver: local

@@ -6,9 +6,9 @@ export const DatabaseProvider = [
   {
     provide: DATABASE_CONNECTION,
     useFactory: async (): Promise<Connection> =>
-      await createConnection('mongodb://localhost:27017/sara', {
+      await createConnection(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-      })
-  }
+      }),
+  },
 ];

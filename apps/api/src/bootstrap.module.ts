@@ -10,8 +10,8 @@ import { DatabaseModule } from './database/database.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
-    EventSourcingModule.forRoot({ mongoURL: 'mongodb://localhost:27017/cqrs' }),
-    DatabaseModule
+    EventSourcingModule.forRoot({ mongoURL: process.env.EVENTSOURCING_URI }),
+    DatabaseModule,
   ],
   providers: [
     {
