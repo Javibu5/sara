@@ -4,8 +4,6 @@ import {
   Divider,
   List,
   ListItem,
-  ListItemText,
-  TableContainer,
   Typography,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
