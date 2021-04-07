@@ -1,0 +1,21 @@
+{
+  "type": "mariadb",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "1234",
+  "database": "sara",
+  "migrationsTableName": "migrations",
+  "entities": [
+    "/home/javi/Development/sara/apps/**/*.entity{.ts,.js}"
+  ],
+  "migrations": [
+    "/home/javi/Development/sara/apps/api/src/migrations/*{.ts,.js}"
+  ],
+  "cli": {
+    "migrationsDir": "apps/api/src/migrations"
+  },
+  "keepConnectionAlive": true,
+  "autoLoadEntities": true,
+  "synchronize": false
+}

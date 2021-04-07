@@ -39,6 +39,6 @@ testem.log
 Thumbs.db
 
 # Project Files
-ormconfig.json
+./ormconfig.json
 .env.local
 cyreport

@@ -18,6 +18,8 @@ COPY docker/api/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 COPY docker/api/ormconfig.json /app/ormconfig.json
 COPY apps/api/ /app/apps/api/
 COPY --from=builder /app/dist/apps/api/  /app/dist/apps/api/
+
 EXPOSE 3333
-#CMD ["node","dist/apps/api/main.js"]
-CMD ["docker-entrypoint"]
+
+ENTRYPOINT ["docker-entrypoint"]
+CMD ["node","dist/apps/api/main.js"]
