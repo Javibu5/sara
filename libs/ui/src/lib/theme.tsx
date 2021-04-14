@@ -1,5 +1,9 @@
 import red from '@material-ui/core/colors/red';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  makeStyles,
+  responsiveFontSizes,
+} from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -10,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
-  divider:{
+  divider: {
     marginTop: '8px',
     marginBottom: '8px',
   },
@@ -87,19 +91,20 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const theme = createMuiTheme({
+let muiTheme = createMuiTheme({
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#414BB2',
     },
     secondary: {
-      main: '#19857b',
+      main: '#32936F',
     },
     error: {
       main: red.A400,
     },
-    background: {
-      default: '#fff',
-    },
+    type: 'dark',
   },
 });
+
+muiTheme = responsiveFontSizes(muiTheme);
+export const theme = muiTheme;

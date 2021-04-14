@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import { CheckDto } from '@sara/contracts';
@@ -51,26 +52,30 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleClickCheckIn}
-        size={props.working ? 'small' : 'large'}
-        endIcon={<ExitToAppOutlinedIcon />}
-      >
-        Entrada
-      </Button>
-      <br />
-      <br />
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={handleClickCheckOut}
-        size={props.working ? 'large' : 'small'}
-        endIcon={<ExitToAppOutlinedIcon />}
-      >
-        Salida
-      </Button>
+      <Grid container spacing={2}>
+        <Grid>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleClickCheckIn}
+            size={props.working ? 'small' : 'large'}
+            endIcon={<ExitToAppOutlinedIcon />}
+          >
+            Entrada
+          </Button>
+        </Grid>
+        <Grid>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleClickCheckOut}
+            size={props.working ? 'large' : 'small'}
+            endIcon={<ExitToAppOutlinedIcon />}
+          >
+            Salida
+          </Button>
+        </Grid>
+      </Grid>
     </div>
   );
 }

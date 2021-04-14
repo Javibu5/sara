@@ -20,5 +20,5 @@ const user = {
 export const Default = Template.bind({});
 Default.args = {
   userDto: user,
-  checks: []
+  checks: [],
 };
