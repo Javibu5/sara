@@ -1,9 +1,9 @@
 #!/bin/sh
 set -e
 
-TYPEORM=node_modules/.bin/ts-node -P apps/api/tsconfig.typeorm.json node_modules/.bin/typeorm
+TYPEORM="node_modules/.bin/ts-node -P apps/api/tsconfig.typeorm.json node_modules/.bin/typeorm"
 
-if ["$1" = 'node'];
+if [ "$1" = 'node' ];
 then
 	echo "Waiting for db to be ready..."
 	ATTEMPTS_LEFT_TO_REACH_DATABASE=60

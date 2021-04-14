@@ -17,10 +17,11 @@ export interface PrintTaskProps {
 
 const PrintTask: React.FunctionComponent<PrintTaskProps> = ({ id, name, cluster, isFinished }) => {
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
+
   };
 
   return (<ListItem key={id}>

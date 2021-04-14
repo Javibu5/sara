@@ -39,6 +39,20 @@ services:
       - DB_DATABASE=saradb
       - MONGODB_URI=mongodb://mongo:27017/sara
       - EVENTSOURCING_URI=mongodb://mongo:27017/es
+  
+  web:
+    image: sara:web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: web
+    depends_on:
+      - api
+    ports:
+      - 4200:4200
+    environment:
+      - NEXTAUTH_URL=http://localhost:4200
+    
 
 volumes:
   db_data:
