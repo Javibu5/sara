@@ -8,7 +8,7 @@ import React from 'react';
 import { mutate } from 'swr';
 import * as uuid from 'uuid';
 
-import { useStyles } from '../theme';
+import { useStyles } from '../../theme';
 /* eslint-disable-next-line */
 export interface CheckButtonsGroupProps {
   working: boolean;
@@ -52,7 +52,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
 
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid item spacing={2}>
         <Grid>
           <Button
             variant="contained"

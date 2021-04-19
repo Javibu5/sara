@@ -26,14 +26,11 @@ export default function Check() {
 
   return (
     <Layout session={session}>
-      <Container maxWidth="sm">
-        <Box my={4}></Box>
-        <UIcheckModule
-          working={isWorking}
-          date={todaysDate}
-          checks={todayChecks}
-        ></UIcheckModule>
-      </Container>
+      <UIcheckModule
+        working={isWorking}
+        date={todaysDate}
+        checks={todayChecks}
+      ></UIcheckModule>
     </Layout>
   );
 }

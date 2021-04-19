@@ -50,7 +50,7 @@ export function Navbar({
           noWrap
           className={classes.title}
         >
-          Sara
+          Software Ara del Rey
         </Typography>
         {session && (
           <Link href="/api/auth/signout">

@@ -11,7 +11,7 @@ import Alert from '@material-ui/lab/Alert';
 import { CheckDto } from '@sara/contracts';
 import React from 'react';
 
-import { useStyles } from '../theme';
+import { useStyles } from '../../theme';
 
 /* eslint-disable-next-line */
 export interface LastChecksProps {
@@ -50,7 +50,7 @@ export function LastChecks(props: LastChecksProps) {
 
   return (
     <Grid container>
-      <Card>
+      <Card style={{ width: '100%' }}>
         <CardContent>
           <Typography component="h2">{props.date.toLocaleString()}</Typography>
 

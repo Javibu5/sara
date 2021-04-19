@@ -21,4 +21,12 @@ export const Default = Template.bind({});
 Default.args = {
   userDto: user,
   checks: [],
+  session: undefined,
+};
+
+export const Logged = Template.bind({});
+Logged.args = {
+  userDto: user,
+  checks: [],
+  session: {},
 };

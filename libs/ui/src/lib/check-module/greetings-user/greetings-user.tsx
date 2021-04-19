@@ -3,7 +3,7 @@ import { green } from '@material-ui/core/colors';
 import AdjustIcon from '@material-ui/icons/Adjust';
 import React from 'react';
 
-import { useStyles } from '../theme';
+import { useStyles } from '../../theme';
 
 export interface GreetingsUserProps {
   username: string;

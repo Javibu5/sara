@@ -41,7 +41,7 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({
       <Sidebar open={open} onCloseSidebar={() => setOpen(false)} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <Container maxWidth={false} className={classes.container}>
           {children}
         </Container>
       </main>
