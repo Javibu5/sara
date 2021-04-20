@@ -6,7 +6,6 @@ import { Session } from 'node:inspector';
 import React, { useEffect } from 'react';
 
 import { CheckButtonsGroup, GreetingsUser, LastChecks } from '../check-module';
-
 import Navbar from '../navbar/navbar';
 import { useStyles } from '../theme';
 
