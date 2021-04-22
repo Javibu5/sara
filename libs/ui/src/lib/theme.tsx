@@ -12,6 +12,9 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexGrow: 1,
   },
+  table: {
+    minWidth: 650,
+  },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
