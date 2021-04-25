@@ -10,8 +10,10 @@ import {
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import MenuIcon from '@material-ui/icons/Menu';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import clsx from 'clsx';
+import Link from 'next/link';
 import React from 'react';
 
 import { useStyles } from '../theme';
@@ -34,7 +36,7 @@ export function Sidebar({ open, onCloseSidebar }: SidebarProps) {
     >
       <div className={classes.toolbarIcon}>
         <IconButton onClick={onCloseSidebar}>
-          <ChevronLeftIcon />
+          <MenuIcon />
         </IconButton>
       </div>
       <Divider />
@@ -46,12 +48,14 @@ export function Sidebar({ open, onCloseSidebar }: SidebarProps) {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Orders" />
-        </ListItem>
+        <Link href="/check">
+          <ListItem button>
+            <ListItemIcon>
+              <QueryBuilderIcon />
+            </ListItemIcon>
+            <ListItemText primary="Ticajes" />
+          </ListItem>
+        </Link>
       </List>
     </Drawer>
   );

@@ -10,7 +10,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
   constructor(@Inject(USERS) private users: Users) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async execute(query: GetUsersQuery): Promise<UserView[] | null> {
+  async execute(query: GetUsersQuery): Promise<UserView[]> {
     const users = await this.users.findAll();
 
     return users.map<UserView>((user) => ({
@@ -21,6 +21,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
       surname: user.surname.value,
       nid: user.nid.value,
       phonenumber: user.phonenumber.value,
+      lock: user.isLock,
       roles: user.roles.map((role) => role.value),
     }));
   }

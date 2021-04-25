@@ -32,6 +32,7 @@ export function Navbar({
     <AppBar
       position="absolute"
       className={clsx(classes.appBar, open && classes.appBarShift)}
+      color="transparent"
     >
       <Toolbar className={classes.toolbar}>
         <IconButton
@@ -50,7 +51,7 @@ export function Navbar({
           noWrap
           className={classes.title}
         >
-          Sara
+          Software Ara del Rey
         </Typography>
         {session && (
           <Link href="/api/auth/signout">

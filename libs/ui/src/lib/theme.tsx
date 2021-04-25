@@ -1,15 +1,28 @@
 import red from '@material-ui/core/colors/red';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  makeStyles,
+  responsiveFontSizes,
+} from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
 export const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    flexGrow: 1,
+  },
+  table: {
+    minWidth: 650,
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
+  divider: {
+    marginTop: '8px',
+    marginBottom: '8px',
+  },
+
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
@@ -68,8 +81,7 @@ export const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    padding: theme.spacing(2),
   },
   paper: {
     padding: theme.spacing(2),
@@ -80,21 +92,26 @@ export const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  listRoot: {
+    backgroundColor: theme.palette.background.paper,
+    width: 500,
+  },
 }));
 
-export const theme = createMuiTheme({
+let muiTheme = createMuiTheme({
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#414BB2',
     },
     secondary: {
-      main: '#19857b',
+      main: '#32936F',
     },
     error: {
       main: red.A400,
     },
-    background: {
-      default: '#fff',
-    },
+    type: 'dark',
   },
 });
+
+muiTheme = responsiveFontSizes(muiTheme);
+export const theme = muiTheme;

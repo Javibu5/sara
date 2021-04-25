@@ -1,0 +1,7 @@
+dist/
+node_modules/
+Dockerfile
+docker-compose.yaml
+docker-compose.*.yaml
+.env
+apps/api/.env

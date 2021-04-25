@@ -32,6 +32,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
     const nid = Nid.fromString(command.nid);
     const phonenumber = PhoneNumber.fromString(command.phoneNumber);
     const password = Password.fromString(command.password);
+    const lock = command.lock;
 
     if (await this.users.find(userId)) {
       throw UserIdAlreadyTakenError.with(userId);
@@ -41,7 +42,16 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
       throw UsernameAlreadyTakenError.with(username);
     }
 
-    const user = User.add(userId, username, password, nid, name, surname, phonenumber);
+    const user = User.add(
+      userId,
+      username,
+      password,
+      name,
+      surname,
+      phonenumber,
+      nid,
+      lock
+    );
     command.roles.map((role: string) => user.addRole(Role.fromString(role)));
 
     this.users.save(user);

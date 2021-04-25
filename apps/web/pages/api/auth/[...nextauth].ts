@@ -18,12 +18,16 @@ const options: InitOptions = {
     session: async (session, user) => {
       // @ts-expect-error: Custom session attributes
       session.roles = user.roles;
-      return Promise.resolve(session);
+      // @ts-expect-error: Custom session attributes
+      session.access_token = user.access_token;
+      console.log(session);
+      return session;
     },
     jwt: async (token, user, account, profile, isNewUser) => {
       const isSignIn = user ? true : false;
       if (isSignIn) {
         token.roles = profile.roles;
+        token.access_token = profile.access_token;
       }
       return Promise.resolve(token);
     },
@@ -97,6 +101,7 @@ const options: InitOptions = {
             name: verify.username,
             email: verify.username,
             roles: verify.roles,
+            access_token: res.data.access_token
           });
         } catch (e) {
           console.error('next-auth - error in credentials');

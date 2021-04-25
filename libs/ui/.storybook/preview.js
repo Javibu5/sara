@@ -3,4 +3,8 @@ import { addDecorator } from '@storybook/react';
 
 addDecorator(withKnobs);
 
-export const parameters = { layout: 'fullscreen' };
+export const parameters = {
+    actions: { argTypesRegex: '^on[A-Z].*' },
+    layout: 'fullscreen',
+
+};

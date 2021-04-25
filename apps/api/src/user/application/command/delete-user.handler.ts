@@ -15,7 +15,7 @@ export class DeleteUserHandler implements ICommandHandler<DeleteUserCommand> {
     if (!user) {
       throw UserIdNotFoundError.with(userId);
     }
-
+    user.lock();
     user.delete();
 
     this.users.save(user);

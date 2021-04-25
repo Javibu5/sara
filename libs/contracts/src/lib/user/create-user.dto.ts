@@ -8,5 +8,6 @@ export class CreateUserDTO {
   nid: string;
   phoneNumber: string;
   plainPassword: string;
+  lock: boolean;
   roles: Role[];
 }
