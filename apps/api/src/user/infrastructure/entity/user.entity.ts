@@ -48,16 +48,31 @@ export class UserEntity implements UserView {
   })
   phonenumber: string;
 
+  @Column({
+    type: 'varchar',
+    length: 70,
+  })
+  lock: boolean;
 
-
-  constructor(id: string, username: string, password: string, name:string, surname:string, nid:string, phonenumber: string, roles: string[]) {
+  constructor(
+    id: string,
+    username: string,
+    password: string,
+    name: string,
+    surname: string,
+    nid: string,
+    phonenumber: string,
+    lock: boolean,
+    roles: string[]
+  ) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.name = name;
-    this.surname= surname;
+    this.surname = surname;
     this.nid = nid;
     this.phonenumber = phonenumber;
     this.roles = roles;
+    this.lock = lock;
   }
 }

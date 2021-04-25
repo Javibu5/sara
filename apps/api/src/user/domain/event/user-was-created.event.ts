@@ -12,6 +12,7 @@ export class UserWasCreated extends StorableEvent {
     public readonly surname: string,
     public readonly nid: string,
     public readonly phonenumber: string,
+    public readonly lock: boolean
   ) {
     super();
   }

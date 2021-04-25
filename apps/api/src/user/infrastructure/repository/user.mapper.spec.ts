@@ -1,7 +1,17 @@
 import { Test } from '@nestjs/testing';
 import * as uuid from 'uuid';
 
-import { Name, Nid, Password, PhoneNumber, Role, Surname, User, UserId, Username } from '../../domain';
+import {
+  Name,
+  Nid,
+  Password,
+  PhoneNumber,
+  Role,
+  Surname,
+  User,
+  UserId,
+  Username,
+} from '../../domain';
 import { UserEntity } from '../entity/user.entity';
 import { UserMapper } from './user.mapper';
 
@@ -17,6 +27,7 @@ describe('User mapper', () => {
   const roleUser = Role.fromString('ROLE_USER');
   const roleAdmin = Role.fromString('ROLE_ADMIN');
   const roleAnonymous = Role.fromString('ROLE_ANONYMOUS');
+  const lock = false;
 
   beforeAll(async () => {
     const app = await Test.createTestingModule({
@@ -28,10 +39,17 @@ describe('User mapper', () => {
 
   it('converts from entity to aggregate', () => {
     const aggregate = userMapper.entityToAggregate(
-      new UserEntity(userId.value, username.value, password.value, name.value, surname.value, nid.value , phonenumber.value, [
-        roleUser.value,
-        roleAdmin.value,
-      ])
+      new UserEntity(
+        userId.value,
+        username.value,
+        password.value,
+        name.value,
+        surname.value,
+        nid.value,
+        phonenumber.value,
+        lock,
+        [roleUser.value, roleAdmin.value]
+      )
     );
 
     expect(aggregate.id.equals(userId)).toBeTruthy();
@@ -43,7 +61,16 @@ describe('User mapper', () => {
   });
 
   it('converts from aggregate to entity', () => {
-    const user = User.add(userId, username,password, name, surname, phonenumber, nid);
+    const user = User.add(
+      userId,
+      username,
+      password,
+      name,
+      surname,
+      phonenumber,
+      nid,
+      lock
+    );
     user.addRole(roleUser);
     user.addRole(roleAdmin);
 

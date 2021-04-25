@@ -16,6 +16,7 @@ const NID = 'nid';
 const PASSWORD = 'password';
 const CRYPT_PASSWORD =
   '$2a$04$J.qvJcqZRPBlGFKWIxPOYOsPRXpkZmTyTHScEF3Kq5/QXV.8oMcfy';
+const LOCK = false;
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -48,6 +49,7 @@ describe('AuthController', () => {
       phonenumber: PHONENUMBER,
       nid: NID,
       password: CRYPT_PASSWORD,
+      lock: LOCK,
       roles: [],
     };
     controller = app.get<AuthController>(AuthController);

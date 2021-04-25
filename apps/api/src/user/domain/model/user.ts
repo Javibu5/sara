@@ -7,6 +7,8 @@ import {
   UserWasCreated,
 } from '../event';
 import { UserWasDeleted } from '../event/user-was-deleted.event';
+import { UserWasLocked } from '../event/user-was-locked.event';
+import { UserWasUnlocked } from '../event/user-was-unlocked.event';
 import { Name } from './name';
 import { Nid } from './nid';
 import { Password } from './password';
@@ -23,9 +25,10 @@ export class User extends AggregateRoot {
   private _name: Name;
   private _surname: Surname;
   private _phonenumber: PhoneNumber;
-  private _nid: Nid
+  private _nid: Nid;
   private _roles: Role[];
   private _deleted?: Date;
+  private _lock: boolean;
 
   private constructor() {
     super();
@@ -38,13 +41,22 @@ export class User extends AggregateRoot {
     name: Name,
     surname: Surname,
     phonenumber: PhoneNumber,
-    nid: Nid
-
+    nid: Nid,
+    lock: boolean
   ): User {
     const user = new User();
 
     user.apply(
-      new UserWasCreated(userId.value, username.value, password.value, name.value, surname.value, nid.value, phonenumber.value)
+      new UserWasCreated(
+        userId.value,
+        username.value,
+        password.value,
+        name.value,
+        surname.value,
+        nid.value,
+        phonenumber.value,
+        lock
+      )
     );
 
     return user;
@@ -71,15 +83,19 @@ export class User extends AggregateRoot {
   }
 
   get phonenumber(): PhoneNumber {
-    return this._phonenumber
+    return this._phonenumber;
   }
 
   get nid(): Nid {
-    return this._nid
+    return this._nid;
   }
 
   get roles(): Role[] {
     return Array.from(this._roles);
+  }
+
+  get isLock(): boolean {
+    return this._lock;
   }
 
   hasRole(role: Role): boolean {
@@ -108,6 +124,14 @@ export class User extends AggregateRoot {
     }
 
     this.apply(new UserPasswordWasUpdated(this.id.value, password.value));
+  }
+
+  lock(): void {
+    this.apply(new UserWasLocked(this.id.value));
+  }
+
+  unlock(): void {
+    this.apply(new UserWasUnlocked(this.id.value));
   }
 
   delete(): void {
@@ -146,5 +170,12 @@ export class User extends AggregateRoot {
 
   private onUserWasDeleted(event: UserWasDeleted) {
     this._deleted = event.createdOn;
+  }
+
+  private onUserWasLocked(event: UserWasLocked) {
+    this._lock = true;
+  }
+  private onUserwasUnlocked(event: UserWasUnlocked) {
+    this._lock = false;
   }
 }

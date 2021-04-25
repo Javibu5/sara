@@ -23,6 +23,13 @@ export class UpdateUserHandler implements ICommandHandler<UpdateUserCommand> {
       throw UserIdNotFoundError.with(userId);
     }
 
+    if (command.lock === true) {
+      user.lock();
+    }
+    if (command.lock === false) {
+      user.unlock();
+    }
+
     // TODO: this.updateUsername(user, command);
     this.updatePassword(user, command);
     this.updateRoles(user, command);

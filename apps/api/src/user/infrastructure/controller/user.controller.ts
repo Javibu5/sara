@@ -55,6 +55,7 @@ export class UserController {
           createUserDto.nid,
           createUserDto.phoneNumber,
           password,
+          createUserDto.lock,
           createUserDto.roles
         )
       );
@@ -126,6 +127,7 @@ export class UserController {
         new UpdateUserCommand(
           id,
           editUserDTO.username,
+          editUserDTO.lock,
           editUserDTO.plainPassword,
           editUserDTO.roles
         )

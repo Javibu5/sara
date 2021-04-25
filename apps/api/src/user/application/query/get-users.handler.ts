@@ -21,6 +21,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
       surname: user.surname.value,
       nid: user.nid.value,
       phonenumber: user.phonenumber.value,
+      lock: user.isLock,
       roles: user.roles.map((role) => role.value),
     }));
   }

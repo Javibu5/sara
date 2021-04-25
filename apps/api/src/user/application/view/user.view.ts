@@ -6,5 +6,6 @@ export interface UserView {
   surname: string;
   phonenumber: string;
   nid: string;
+  lock: boolean;
   roles: string[];
 }
