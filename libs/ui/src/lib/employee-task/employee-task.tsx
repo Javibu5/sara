@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardContent,
   Checkbox,
@@ -46,6 +47,7 @@ const PrintTask: React.FunctionComponent<PrintTaskProps> = ({
         onChange={handleChange}
         inputProps={{ 'aria-label': 'primary checkbox' }}
       ></Checkbox>
+      <Button>Subir archivo</Button>
     </ListItem>
   );
 };

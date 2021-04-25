@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { ButtonGroup, Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import { CheckDto } from '@sara/contracts';
@@ -53,7 +53,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
   return (
     <div>
       <Grid item spacing={2}>
-        <Grid>
+        <ButtonGroup disableElevation variant="contained" color="primary">
           <Button
             variant="contained"
             color="primary"
@@ -63,8 +63,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
           >
             Entrada
           </Button>
-        </Grid>
-        <Grid>
+
           <Button
             variant="contained"
             color="secondary"
@@ -74,7 +73,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
           >
             Salida
           </Button>
-        </Grid>
+        </ButtonGroup>
       </Grid>
     </div>
   );

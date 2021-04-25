@@ -1,4 +1,5 @@
 import {
+  Link,
   Paper,
   Table,
   TableBody,
@@ -47,8 +48,12 @@ export function EmployeeDocuments(props: EmployeeDocumentsProps) {
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.type}</TableCell>
-              <TableCell align="right">{row.viewDocument}</TableCell>
-              <TableCell align="right">{row.downloadDocument}</TableCell>
+              <TableCell align="right">
+                <Link>{row.viewDocument}</Link>
+              </TableCell>
+              <TableCell align="right">
+                <Link>{row.downloadDocument}</Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

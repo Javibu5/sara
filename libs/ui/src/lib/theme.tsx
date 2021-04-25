@@ -92,6 +92,10 @@ export const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  listRoot: {
+    backgroundColor: theme.palette.background.paper,
+    width: 500,
+  },
 }));
 
 let muiTheme = createMuiTheme({

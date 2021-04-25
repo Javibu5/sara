@@ -62,7 +62,7 @@ export function LastChecks(props: LastChecksProps) {
 
           <Divider className={classes.divider} />
 
-          <List>
+          <List className={classes.listRoot}>
             {!props.checks && <ListItem>No hay ticajes</ListItem>}
             {props.checks &&
               props.checks.map((check: CheckDto) => (
