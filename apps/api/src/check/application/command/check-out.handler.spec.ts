@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { UserId } from '../../../user/domain';
 import { Check } from '../../domain/model/check';
 import { CheckId } from '../../domain/model/check-id';
-import { CHECKS,Checks } from '../../domain/repository/checks';
+import { CHECKS, Checks } from '../../domain/repository/checks';
 import { CheckOutCommand } from './check-out.command';
 import { CheckOutHandler } from './check-out.handler';
 
@@ -54,8 +54,6 @@ describe('CheckOutSpecHandler', () => {
     );
 
     await expect(checks.find(checkId)).resolves.toBe(null);
-    expect(checks.save).toBeCalledWith(
-      Check.withCheckOut(checkId, employeeId, date)
-    );
+    expect(checks.save).toBeCalledTimes(1);
   });
 });

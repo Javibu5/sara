@@ -19,7 +19,7 @@ export default function Check() {
   useEffect(() => {
     setTodaysDate(new Date());
     if (todayChecks && todayChecks.length !== 0) {
-      const lastTodayCheck = todayChecks[todayChecks.length - 1];
+      const lastTodayCheck = todayChecks[0];
       setIsWorking(lastTodayCheck.outAt === null);
     }
   }, [todayChecks]);

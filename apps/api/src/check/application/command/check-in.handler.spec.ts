@@ -2,9 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { v4 as uuid } from 'uuid';
 
 import { UserId } from '../../../user/domain';
-import { Check } from '../../domain/model/check';
 import { CheckId } from '../../domain/model/check-id';
-import { CHECKS,Checks } from '../../domain/repository/checks';
+import { CHECKS, Checks } from '../../domain/repository/checks';
 import { CheckInCommand } from './check-in.command';
 import { CheckInHandler } from './check-in.handler';
 
@@ -39,8 +38,6 @@ describe('CheckInSpecHandler', () => {
       new CheckInCommand(checkId.value, employeeId.value, date)
     );
 
-    expect(checks.save).toHaveBeenCalledWith(
-      Check.withCheckIn(checkId, employeeId, date)
-    );
+    expect(checks.save).toBeCalledTimes(1);
   });
 });

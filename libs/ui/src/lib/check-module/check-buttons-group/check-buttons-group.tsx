@@ -34,9 +34,9 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
 
   const handleClickCheckOut = async () => {
     const id =
-      todayChecks.length === 0 || todayChecks[todayChecks.length - 1].outAt
+      todayChecks.length === 0 || todayChecks[0].outAt
         ? uuid.v4()
-        : todayChecks[todayChecks.length - 1].id;
+        : todayChecks[0].id;
 
     await fetch('/api/checks/out', {
       method: 'Post',

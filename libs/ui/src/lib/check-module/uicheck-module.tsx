@@ -1,5 +1,4 @@
-import { CircularProgress } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import { CircularProgress, Grid } from '@material-ui/core';
 import { CheckDto, UserDto } from '@sara/contracts';
 import { useSession } from 'next-auth/client';
 import { Session } from 'node:inspector';
@@ -22,10 +21,6 @@ export function UIcheckModule(props: UIcheckModuleProps) {
   const [session, loading] = useSession();
 
   const classes = useStyles();
-
-  if (!session) {
-    return <CircularProgress />;
-  }
 
   return (
     <Grid
