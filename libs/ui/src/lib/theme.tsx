@@ -22,7 +22,9 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: '8px',
     marginBottom: '8px',
   },
-
+  containerItem: {
+    margin: '4px',
+  },
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',

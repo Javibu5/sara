@@ -10,6 +10,7 @@ import {
 import React from 'react';
 
 import { useStyles } from '../../theme';
+import { UploadDocumentWizard } from '../../wizard-upload-document/wizard-upload-document';
 
 /* eslint-disable-next-line */
 export interface EmployeeTaskProps {
@@ -32,7 +33,18 @@ const PrintTask: React.FunctionComponent<PrintTaskProps> = ({
   const [checked, setChecked] = React.useState(true);
   const [isFinishedTask, setisFinishedTask] = React.useState(isFinished);
 
-  const handleChange = (event) => {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpenWizard = () => {
+    setOpen(true);
+  };
+
+  const handleCloseWizard = () => {
+    setOpen(false);
+  };
+
+  const handleChangeCheckBox = (event) => {
     setChecked(event.target.checked);
     setisFinishedTask(!isFinished);
   };
@@ -44,10 +56,14 @@ const PrintTask: React.FunctionComponent<PrintTaskProps> = ({
       </Typography>
       <Checkbox
         checked={checked}
-        onChange={handleChange}
+        onChange={handleChangeCheckBox}
         inputProps={{ 'aria-label': 'primary checkbox' }}
       ></Checkbox>
-      <Button>Subir archivo</Button>
+
+      <Button onClick={handleClickOpenWizard}>
+        <Typography>Subir archivo</Typography>
+      </Button>
+      <UploadDocumentWizard open={open} onClose={handleCloseWizard}> </UploadDocumentWizard>
     </ListItem>
   );
 };
