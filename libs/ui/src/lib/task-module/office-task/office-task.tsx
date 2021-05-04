@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardContent,
   Checkbox,
@@ -9,21 +8,21 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 
-import { useStyles } from '../theme';
+import { useStyles } from '../../theme';
 
 /* eslint-disable-next-line */
-export interface EmployeeTaskProps {
+export interface OfficeTaskProps {
   tasks: any;
 }
 
-export interface PrintTaskProps {
+export interface PrintTaskOfficeProps {
   id: string;
   name: string;
   cluster: string;
   isFinished: boolean;
 }
 
-const PrintTask: React.FunctionComponent<PrintTaskProps> = ({
+const PrintTask: React.FunctionComponent<PrintTaskOfficeProps> = ({
   id,
   name,
   cluster,
@@ -47,12 +46,11 @@ const PrintTask: React.FunctionComponent<PrintTaskProps> = ({
         onChange={handleChange}
         inputProps={{ 'aria-label': 'primary checkbox' }}
       ></Checkbox>
-      <Button>Subir archivo</Button>
     </ListItem>
   );
 };
 
-export function EmployeeTask(props: EmployeeTaskProps) {
+export function OfficeTask(props: OfficeTaskProps) {
   const classes = useStyles();
 
   return (
@@ -79,4 +77,4 @@ export function EmployeeTask(props: EmployeeTaskProps) {
   );
 }
 
-export default EmployeeTask;
+export default OfficeTask;
