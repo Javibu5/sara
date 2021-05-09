@@ -1,4 +1,5 @@
 export * from './lib/access-denied/access-denied';
+export * from './lib/access-denied/access-denied';
 export * from './lib/check-module';
 export * from './lib/employee-documents/employee-documents';
 export * from './lib/employee-task/employee-task';

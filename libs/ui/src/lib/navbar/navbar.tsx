@@ -18,14 +18,10 @@ import { useStyles } from '../theme';
 export interface NavbarProps {
   open: boolean;
   onOpenSidebar: (event: React.MouseEvent) => void;
-  session: Session;
 }
 
-export function Navbar({
-  open,
-  onOpenSidebar: onOpenDrawer,
-  session,
-}: NavbarProps) {
+export function Navbar({ open, onOpenSidebar: onOpenDrawer }: NavbarProps) {
+  const [session, loading] = useSession();
   const classes = useStyles();
 
   return (

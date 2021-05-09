@@ -172,7 +172,7 @@
           "options": {
             "commands": [
               "(rm ormconfig.json || :) && yarn run ts-node tools/scripts/write-type-orm-config.ts",
-              "yarn run ts-node -P apps/api/tsconfig.typeorm.json node_modules/.bin/typeorm migration:create -n {args.name}"
+              "yarn run ts-node -P apps/api/tsconfig.typeorm.json node_modules/.bin/typeorm migration:create -o -n {args.name}"
             ],
             "parallel": false
           }
@@ -183,7 +183,7 @@
           "options": {
             "commands": [
               "(rm ormconfig.json || :) && yarn run ts-node tools/scripts/write-type-orm-config.ts",
-              "yarn run ts-node -P apps/api/tsconfig.typeorm.json node_modules/.bin/typeorm migration:generate -n {args.name}"
+              "yarn run ts-node -P apps/api/tsconfig.typeorm.json node_modules/.bin/typeorm migration:generate -o -n {args.name}"
             ],
             "parallel": false
           }

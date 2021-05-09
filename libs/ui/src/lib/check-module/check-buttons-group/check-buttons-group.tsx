@@ -20,7 +20,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
   const { todayChecks } = useTodayChecks();
 
   const handleClickCheckIn = async () => {
-    await fetch('/api/checks/in', {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/checks/in`, {
       method: 'Post',
       headers: {
         Authorization: `Bearer ${session.access_token}`,
@@ -38,7 +38,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
         ? uuid.v4()
         : todayChecks[0].id;
 
-    await fetch('/api/checks/out', {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/checks/out`, {
       method: 'Post',
       headers: {
         Authorization: `Bearer ${session.access_token}`,

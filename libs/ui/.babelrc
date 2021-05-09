@@ -1,4 +1,4 @@
 {
-  "presets": ["@nrwl/react/babel"],
-  "plugins": []
+  "presets": ["@nrwl/next/babel"],
+  "plugins": ["@babel/plugin-transform-runtime"]
 }

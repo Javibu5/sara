@@ -45,11 +45,11 @@ class ConfigService {
     return {
       type: 'mariadb',
 
-      host: this.getValue('DB_HOST'),
-      port: parseInt(this.getValue('DB_PORT')),
-      username: this.getValue('DB_USER'),
-      password: this.getValue('DB_PASSWORD'),
-      database: this.getValue('DB_DATABASE'),
+      host: this.getValue('NODE_DB_HOST'),
+      port: parseInt(this.getValue('NODE_DB_PORT')),
+      username: this.getValue('NODE_DB_USER'),
+      password: this.getValue('NODE_DB_PASSWORD'),
+      database: this.getValue('NODE_DB_DATABASE'),
 
       migrationsTableName: 'migrations',
 
@@ -68,11 +68,11 @@ class ConfigService {
 }
 
 const configService = new ConfigService(process.env).ensureValues([
-  'DB_HOST',
-  'DB_PORT',
-  'DB_USER',
-  'DB_PASSWORD',
-  'DB_DATABASE',
+  'NODE_DB_HOST',
+  'NODE_DB_PORT',
+  'NODE_DB_USER',
+  'NODE_DB_PASSWORD',
+  'NODE_DB_DATABASE',
 ]);
 
 export { configService };

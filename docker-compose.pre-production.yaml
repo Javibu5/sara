@@ -20,7 +20,7 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD:-sara}
 
   api:
-    image: ghcr.io/aulasoftwarelibre/sara-api:latest
+    image: sara:api
     build:
       context: .
       dockerfile: Dockerfile
@@ -39,17 +39,17 @@ services:
       NODE_EVENTSOURCING_URI: mongodb://${MONGO_HOST:-mongo}:${MONGO_PORT:-27017}/${DB_DATABASE:-saradb}_es
 
   web:
-    image: ghcr.io/aulasoftwarelibre/sara-web:latest
+    image: sara:web
     build:
       context: .
       dockerfile: Dockerfile
       target: web
       args:
-        API_URL: https://sara-api.aulasoftwarelibre.uco.es
-        API_URL_INTERNAL: http://sara-api.tfg-sara.svc.cluster.local:3333
-        NEXTAUTH_URL: https://sara.aulasoftwarelibre.uco.es
+        API_URL: http://${API_SERVER_NAME:-api.localhost}
+        API_URL_INTERNAL: http://${API_SERVER_NAME_INTERNAL:-api}:3333
+        NEXTAUTH_URL: http://${WEB_SERVER_NAME:-web.localhost}
         NEXTAUTH_URL_INTERNAL: http://localhost:3000
-        JWT_SECRET: a43c2e1c1532ee363bfe922097a78dcda9ddd5dc67989e794eae5bb4
+        JWT_SECRET: ${JWT_SECRET:-secret}
     depends_on:
       - api
     environment:
@@ -60,7 +60,7 @@ services:
       NODE_NEXTAUTH_URL_INTERNAL: http://localhost:3000
 
   admin:
-    image: ghcr.io/aulasoftwarelibre/sara-admin:latest
+    image: sara:admin
     build:
       context: .
       dockerfile: Dockerfile

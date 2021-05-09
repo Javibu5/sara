@@ -7,10 +7,10 @@
   "database": "saradb",
   "migrationsTableName": "migrations",
   "entities": [
-    "/Users/javi/Development/sara/apps/**/*.entity{.ts,.js}"
+    "/home/sergio/Developer/tfgs/javibu5/sara/apps/**/*.entity{.ts,.js}"
   ],
   "migrations": [
-    "/Users/javi/Development/sara/apps/api/src/migrations/*{.ts,.js}"
+    "/home/sergio/Developer/tfgs/javibu5/sara/apps/api/src/migrations/*{.ts,.js}"
   ],
   "cli": {
     "migrationsDir": "apps/api/src/migrations"
