@@ -49,8 +49,7 @@ export class UserEntity implements UserView {
   phonenumber: string;
 
   @Column({
-    type: 'varchar',
-    length: 70,
+    type: 'boolean',
   })
   lock: boolean;
 

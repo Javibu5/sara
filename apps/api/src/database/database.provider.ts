@@ -6,7 +6,7 @@ export const DatabaseProvider = [
   {
     provide: DATABASE_CONNECTION,
     useFactory: async (): Promise<Connection> =>
-      await createConnection(process.env.MONGODB_URI, {
+      await createConnection(process.env.NODE_MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       }),

@@ -19,25 +19,14 @@ export interface LayoutProps {
   session?: Session;
 }
 
-export const Layout: React.FunctionComponent<LayoutProps> = ({
-  session,
-  children,
-}) => {
+export const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-
-  if (!session) {
-    return <AccessDenied />;
-  }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Navbar
-        open={open}
-        session={session}
-        onOpenSidebar={() => setOpen(true)}
-      />
+      <Navbar open={open} onOpenSidebar={() => setOpen(true)} />
       <Sidebar open={open} onCloseSidebar={() => setOpen(false)} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

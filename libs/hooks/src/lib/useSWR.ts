@@ -53,7 +53,7 @@ export function useUser() {
 }
 
 export const fetchWithUser = async (url: string, token: string) => {
-  return fetch(`${url}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
     method: 'GET',
     credentials: 'include',
     headers: {
@@ -64,6 +64,7 @@ export const fetchWithUser = async (url: string, token: string) => {
     if (res.ok) {
       return res.json();
     } else {
+      console.log('NEXT_PUBLIC_API_URL', process.env.NEXT_PUBLIC_API_URL);
       throw Error;
     }
   });

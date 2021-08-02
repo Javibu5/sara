@@ -6,5 +6,10 @@ module.exports = (config, context) => {
   return {
     ...config,
     node: { global: true, fs: 'empty' },
+    devServer: {
+      ...config.devServer,
+      compress: true,
+      disableHostCheck: true, // That solved it
+    },
   };
 };

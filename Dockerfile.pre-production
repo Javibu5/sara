@@ -1,0 +1,43 @@
+FROM node:14 as builder
+WORKDIR /app
+RUN yarn global add nx
+COPY package.json yarn.lock /app/
+RUN yarn install
+COPY . /app
+
+
+FROM builder as api
+COPY docker/api/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+COPY docker/api/ormconfig.json /app/ormconfig.json
+
+EXPOSE 3333
+
+ENTRYPOINT ["docker-entrypoint"]
+CMD ["nx","serve", "api"]
+
+
+FROM builder as web
+
+EXPOSE 4200
+CMD [ "nx", "serve", "web" ]
+
+
+FROM builder as admin
+
+ENV NX_API_URL http://api:3333
+
+EXPOSE 4200
+CMD [ "nx", "serve", "admin", "--host=0.0.0.0", "--publicHost admin.localhost" ]
+
+
+FROM nginx as server
+
+COPY docker/server/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+
+ENV API_SERVER_NAME=api.localhost
+ENV WEB_SERVER_NAME=web.localhost
+ENV ADMIN_SERVER_NAME=admin.localhost
+
+COPY docker/server/*.conf /etc/nginx/conf.d/
+
+ENTRYPOINT ["docker-entrypoint"]
