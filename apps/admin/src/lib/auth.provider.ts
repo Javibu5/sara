@@ -3,7 +3,7 @@ import {
   isCredentials,
   isJwtPayload,
   JwtPayloadInterface,
-} from '@sara/contracts';
+} from '@sara/contracts/auth';
 import axios from 'axios';
 import jwt from 'jwt-decode';
 import { AuthProvider } from 'react-admin';

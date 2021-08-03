@@ -1,18 +1,92 @@
 {
   "migrations": [
     {
+      "version": "12.5.0-beta.1",
+      "description": "Rename the workspace-schematic script into workspace-generator script",
+      "factory": "./src/migrations/update-12-5-0/add-target-dependencies",
+      "cli": "nx",
+      "package": "@nrwl/workspace",
+      "name": "add-target-dependencies"
+    },
+    {
       "version": "12.1.0-beta.1",
+      "cli": "nx",
       "description": "Update jest-preset-angular to version 8.4.0",
-      "factory": "./src/migrations/update-12-1-0/update-jest-preset-angular",
+      "factory": "./src/migrations/update-12-1-2/update-jest-preset-angular",
       "package": "@nrwl/jest",
       "name": "update-jest-preset-angular-8-4-0"
     },
     {
-      "version": "12.1.0-beta.1",
+      "version": "12.1.2-beta.1",
+      "cli": "nx",
       "description": "Replace tsConfig with tsconfig for ts-jest in jest.config.js",
-      "factory": "./src/migrations/update-12-1-0/update-ts-jest",
+      "factory": "./src/migrations/update-12-1-2/update-ts-jest",
       "package": "@nrwl/jest",
       "name": "update-ts-jest-6-5-5"
+    },
+    {
+      "version": "12.4.0-beta.1",
+      "cli": "nx",
+      "description": "Add testEnvironment: 'jsdom' in web apps + libraries",
+      "factory": "./src/migrations/update-12-4-0/add-test-environment-for-node",
+      "package": "@nrwl/jest",
+      "name": "support-jest-27"
+    },
+    {
+      "version": "12.4.0-beta.1",
+      "cli": "nx",
+      "description": "Support for Jest 27 via updating ts-jest + jest-preset-angular",
+      "factory": "./src/migrations/update-12-4-0/update-jest-preset-angular",
+      "package": "@nrwl/jest",
+      "name": "update-ts-jest-and-jest-preset-angular"
+    },
+    {
+      "version": "12.6.0-beta.0",
+      "cli": "nx",
+      "description": "Uses `getJestProjects()` to populate projects array in root level `jest.config.js` file.",
+      "factory": "./src/migrations/update-12-6-0/update-base-jest-config",
+      "package": "@nrwl/jest",
+      "name": "update-jest-config-to-use-util"
+    },
+    {
+      "cli": "nx",
+      "version": "12.6.0-beta.0",
+      "description": "Add 'next' eslint config",
+      "factory": "./src/migrations/update-12-6-0/add-next-eslint",
+      "package": "@nrwl/next",
+      "name": "add-next-eslint-12.6.0"
+    },
+    {
+      "cli": "nx",
+      "version": "12.0.0-beta.0",
+      "description": "Migrate tsconfig.json to allow new jsx transform to be used. Removes the need for `import React from 'react'`",
+      "factory": "./src/migrations/update-12-0-0/use-react-jsx-in-tsconfig",
+      "package": "@nrwl/react",
+      "name": "use-react-jsx-in-tsconfig-12.0.0"
+    },
+    {
+      "cli": "nx",
+      "version": "12.0.0-beta.0",
+      "description": "Update workspace to use `@emotion/babel-plugin` instead of `@emotion/babel-preset-css-prop` to support new jsx transform",
+      "factory": "./src/migrations/update-12-0-0/update-emotion-setup",
+      "package": "@nrwl/react",
+      "name": "update-emotion-setup-12.0.0"
+    },
+    {
+      "cli": "nx",
+      "version": "12.0.0-beta.0",
+      "description": "Remove @types/react-redux from package.json since react-redux installs the package automatically now",
+      "factory": "./src/migrations/update-12-0-0/remove-react-redux-types-package",
+      "package": "@nrwl/react",
+      "name": "remove-react-redux-types-package-12.0.0"
+    },
+    {
+      "version": "11.6.4",
+      "cli": "nx",
+      "description": "Update storybook if installed and above 6 but below 6.2.9",
+      "factory": "./src/migrations/update-11-6-0/update-storybook",
+      "package": "@nrwl/storybook",
+      "name": "update-11-6-0"
     },
     {
       "version": "12.1.0-beta.7",
@@ -21,6 +95,38 @@
       "factory": "./src/migrations/update-12-1-0/fix-storybook-tsconfig",
       "package": "@nrwl/storybook",
       "name": "update-12-1-0"
+    },
+    {
+      "version": "12.3.0-rc.1",
+      "cli": "nx",
+      "description": "Update storybook if installed and above 6 but below 6.2.9",
+      "factory": "./src/migrations/update-11-6-0/update-storybook",
+      "package": "@nrwl/storybook",
+      "name": "update-12-3-0"
+    },
+    {
+      "version": "12.5.0-beta.5",
+      "cli": "nx",
+      "description": "Upgrade Storybook to v6.3",
+      "factory": "./src/migrations/update-12-5-0/migrate-storybook-6-3",
+      "package": "@nrwl/storybook",
+      "name": "update-12-5-0"
+    },
+    {
+      "version": "12.5.0-beta.5",
+      "cli": "nx",
+      "description": "Install the @storybook/addon-essentials package",
+      "factory": "./src/migrations/update-12-5-0/install-addon-essentials",
+      "package": "@nrwl/storybook",
+      "name": "install-addon-essentials"
+    },
+    {
+      "version": "12.5.9-beta.1",
+      "cli": "nx",
+      "description": "Update Storybook React typings in tsconfig files",
+      "factory": "./src/migrations/update-12-5-9/update-storybook-react-typings",
+      "package": "@nrwl/storybook",
+      "name": "update-12-5-9-beta.1"
     }
   ]
 }

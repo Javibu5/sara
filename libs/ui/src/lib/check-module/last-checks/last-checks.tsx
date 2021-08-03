@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import { CheckDto } from '@sara/contracts';
+import { CheckDto } from '@sara/nestjs/check';
 import React from 'react';
 
 import { useStyles } from '../../theme';
@@ -48,6 +48,8 @@ const PrintCheck: React.FunctionComponent<PrintCheckProps> = ({
 export function LastChecks(props: LastChecksProps) {
   const classes = useStyles();
 
+  console.debug('props', props);
+
   return (
     <Grid container>
       <Card style={{ width: '100%' }}>
@@ -67,7 +69,7 @@ export function LastChecks(props: LastChecksProps) {
             {props.checks &&
               props.checks.map((check: CheckDto) => (
                 <PrintCheck
-                  id={check.id}
+                  id={check._id}
                   inAt={check.inAt}
                   outAt={check.outAt}
                 />

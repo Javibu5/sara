@@ -1,4 +1,4 @@
-import { CheckDto } from '@sara/contracts';
+import { CheckDto } from '@sara/contracts/check';
 import { useSession } from 'next-auth/client';
 import useSWR from 'swr';
 

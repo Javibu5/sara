@@ -1,4 +1,4 @@
-import { isAccessToken, isCredentials, isJwtPayload } from '@sara/contracts';
+import { isAccessToken, isCredentials, isJwtPayload } from '@sara/contracts/auth';
 import axios from 'axios';
 import jose from 'jose';
 import jwt from 'jsonwebtoken';

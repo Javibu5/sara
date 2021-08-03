@@ -1,15 +1,14 @@
 import { ButtonGroup, Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import { CheckDto } from '@sara/contracts';
 import { useTodayChecks } from '@sara/hooks';
 import { useSession } from 'next-auth/client';
 import React from 'react';
 import { mutate } from 'swr';
-import * as uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 import { useStyles } from '../../theme';
-/* eslint-disable-next-line */
+
 export interface CheckButtonsGroupProps {
   working: boolean;
 }
@@ -20,14 +19,19 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
   const { todayChecks } = useTodayChecks();
 
   const handleClickCheckIn = async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/checks/in`, {
-      method: 'Post',
-      headers: {
-        Authorization: `Bearer ${session.access_token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id: uuid.v4() }),
-    });
+    await fetch(
+      `${
+        process.env.NEXT_PUBLIC_API_URL || process.env.NX_PUBLIC_API_URL
+      }/api/checks/in`,
+      {
+        method: 'Post',
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ _id: uuid() }),
+      }
+    );
 
     mutate([`/api/checks/today`, session.access_token]);
   };
@@ -35,17 +39,22 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
   const handleClickCheckOut = async () => {
     const id =
       todayChecks.length === 0 || todayChecks[0].outAt
-        ? uuid.v4()
-        : todayChecks[0].id;
+        ? uuid()
+        : todayChecks[0]._id;
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/checks/out`, {
-      method: 'Post',
-      headers: {
-        Authorization: `Bearer ${session.access_token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id: id }),
-    });
+    await fetch(
+      `${
+        process.env.NEXT_PUBLIC_API_URL || process.env.NX_PUBLIC_API_URL
+      }/api/checks/out`,
+      {
+        method: 'Post',
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ _id: id }),
+      }
+    );
 
     mutate([`/api/checks/today`, session.access_token]);
   };

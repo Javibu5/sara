@@ -15,10 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@sara/domain": ["libs/domain/src/index.ts"],
-      "@sara/ui": ["libs/ui/src/index.ts"],
-      "@sara/contracts": ["libs/contracts/src/index.ts"],
-      "@sara/hooks": ["libs/hooks/src/index.ts"]
+      "@sara/contracts/auth": ["libs/contracts/auth/src/index.ts"],
+      "@sara/contracts/check": ["libs/contracts/check/src/index.ts"],
+      "@sara/contracts/credit-card": [
+        "libs/contracts/credit-card/src/index.ts"
+      ],
+      "@sara/contracts/user": ["libs/contracts/user/src/index.ts"],
+      "@sara/hooks": ["libs/hooks/src/index.ts"],
+      "@sara/nestjs/auth": ["libs/nestjs/auth/src/index.ts"],
+      "@sara/nestjs/check": ["libs/nestjs/check/src/index.ts"],
+      "@sara/nestjs/common": ["libs/nestjs/common/src/index.ts"],
+      "@sara/nestjs/credit-card": ["libs/nestjs/credit-card/src/index.ts"],
+      "@sara/nestjs/user": ["libs/nestjs/user/src/index.ts"],
+      "@sara/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
