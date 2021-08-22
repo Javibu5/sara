@@ -1,13 +1,13 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { RegisterCreditCardDto } from '@sara/contracts/credit-card';
-import { catchError, Role, Roles, User } from '@sara/nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { CreditCardDto, RegisterCreditCardDto } from '@sara/contracts/credit-card';
+import { Role, Roles, User } from '@sara/nestjs/common';
 import { UserDto } from '@sara/contracts/user';
+import { CreditCardService } from '../services/credit-card.service';
 
 
 @Controller('creditCards')
 export class CreditCardController {
-  constructor(private queryBus: QueryBus, private commandBus: CommandBus) { }
+  constructor(private readonly creditCardService: CreditCardService) { }
 
   @Post('registerCreditCard')
   @Roles(Role.Admin)
@@ -15,6 +15,17 @@ export class CreditCardController {
     @Body() registerCreditCardDto: RegisterCreditCardDto,
     @User() user: UserDto
   ): Promise<void> {
-    //await this.commandBus.execute(new RegisterCreditCardCommand());
+    this.creditCardService.newCreditCard(registerCreditCardDto)
+  }
+
+  @Get()
+  @Roles(Role.Admin)
+  async findAll(
+    @Res({ passthrough: true }) res: Response
+  ): Promise<CreditCardDto[]> {
+
+    try {
+      const creditCards = await this.creditCardService.findAll()
+    }
   }
 }

@@ -6,7 +6,7 @@ import { CreditCardNumber } from './creditCard-number';
 
 export class CreditCard extends AggregateRoot {
   private _creditCardId: CreditCardId;
-  private _numberCreditCard: CreditCardNumber;
+  private _creditCardnumber: CreditCardNumber;
   private _isDeleted: boolean;
 
 

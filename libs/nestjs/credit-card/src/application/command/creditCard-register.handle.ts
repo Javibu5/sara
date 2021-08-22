@@ -1,5 +1,5 @@
-import { Inject } from '@nestjs/common';
-import { ICommandHandler } from '@nestjs/cqrs';
+
+import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { InjectAggregateRepository, AggregateRepository, IdAlreadyRegisteredError } from '@aulasoftwarelibre/nestjs-eventstore'
 
 import { CreditCard } from '../../domain/model/creditCard';
@@ -7,6 +7,7 @@ import { CreditCardId } from '../../domain/model/creditCard-id';
 import { CreditCardNumber } from '../../domain/model/creditCard-number';
 import { CreditCardWasRegisterCommand } from './creditCard-register.command';
 
+@CommandHandler(CreditCardWasRegisterCommand)
 export class CreditCardWasRegisterHandler
   implements ICommandHandler<CreditCardWasRegisterCommand> {
   constructor(
