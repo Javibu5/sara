@@ -1,18 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-
 interface Props {
-    readonly id: string;
-    readonly creditCardNumber: string;
+  readonly id: string;
+  readonly creditCardNumber: string;
 }
 
 export class CreditCardDto {
-    @ApiProperty()
-    readonly _id: string;
-    @ApiProperty()
-    readonly creditCardNumber: string;
+  @ApiProperty()
+  readonly _id: string;
+  @ApiProperty()
+  readonly creditCardNumber: string;
 
-    constructor(props: Props) {
-        Object.assign(this, props);
-    }
+  constructor(props: Partial<Props>) {
+    Object.assign(this, props);
+  }
 }
