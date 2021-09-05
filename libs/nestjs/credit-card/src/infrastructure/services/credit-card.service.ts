@@ -13,7 +13,7 @@ export class CreditCardService {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus
-  ) {}
+  ) { }
 
   async newCreditCard(registerCreditCard: RegisterCreditCardDto) {
     await this.commandBus.execute(
@@ -25,6 +25,7 @@ export class CreditCardService {
   }
 
   findAll(): Promise<CreditCardDto[]> {
-    return this.queryBus.execute(new GetCreditCardsQuery());
+    const creditCards = this.queryBus.execute(new GetCreditCardsQuery());
+    return creditCards;
   }
 }

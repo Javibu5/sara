@@ -12,7 +12,8 @@ import {
 import { CreditCardService } from './services';
 
 import { commandHandlers, queryHandlers } from '../application';
-import { creditCardProvider } from './creditCard.provider';
+import { projectionHandlers } from './read-model';
+import { creditCardProviders } from './credit-card.providers';
 
 @Module({
   controllers: [CreditCardController],
@@ -27,10 +28,11 @@ import { creditCardProvider } from './creditCard.provider';
     ]),
   ],
   providers: [
-    ...creditCardProvider,
+    ...creditCardProviders,
     ...commandHandlers,
     ...queryHandlers,
+    ...projectionHandlers,
     CreditCardService,
   ],
 })
-export class CheckModule {}
+export class CreditCardModule { }

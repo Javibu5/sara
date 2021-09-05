@@ -1,5 +1,5 @@
-import { GetCreditCardsQuery } from './get-credit-cards.query';
+import { GetCreditCardsHandler } from './get-credit-cards.handler';
 
 export * from './get-credit-cards.query';
 
-export const queryHandlers = [GetCreditCardsQuery];
+export const queryHandlers = [GetCreditCardsHandler];

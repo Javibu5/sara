@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { Model } from 'mongoose';
-import { identity } from 'rxjs';
+
 import { CreditCardDto } from '../../../../../contracts/credit-card/src';
 import { ICreditCardFinder } from '../../application/services';
 import { CreditCardId } from '../../domain/model/creditCard-id';
@@ -17,10 +17,10 @@ export class CreditCardFinder implements ICreditCardFinder {
   constructor(
     @InjectModel(CREDITCARD_PROJECTION)
     private readonly creditCards: Model<CreditCardDocument>
-  ) {}
+  ) { }
 
   async findAll(): Promise<CreditCardDto[]> {
-    const creditCards = await this.creditCards.find().lean();
+    const creditCards = await this.creditCards.find();
 
     return creditCards.map((creditCard) => new CreditCardDto(creditCard));
   }

@@ -8,9 +8,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import { CheckDto } from '@sara/nestjs/check';
 import React from 'react';
-
+import { CheckDto } from '@sara/contracts/check';
 import { useStyles } from '../../theme';
 
 /* eslint-disable-next-line */

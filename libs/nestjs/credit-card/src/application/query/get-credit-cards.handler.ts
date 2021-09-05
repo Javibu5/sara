@@ -12,10 +12,12 @@ export class GetCreditCardsHandler
   constructor(
     @Inject(CREDITCARD_FINDER)
     private readonly finder: ICreditCardFinder
-  ) {}
+  ) { }
 
   async execute(query: GetCreditCardsQuery): Promise<CreditCardDto[]> {
+
     if (!query.number) {
+      console.log("HoLAAA")
       return this.finder.findAll();
     }
 

@@ -15,9 +15,9 @@ export const UploadDocumentWizard: React.FunctionComponent<Props> = (props) => {
   const { open, onClose } = props;
 
   const [sport, setSport] = React.useState<string | null>('');
-  const [competition, setCompetition] = React.useState<string | null>('');
+  const [document, setDocument] = React.useState<string | null>('');
 
-  const handleCreateCompetition = () => {
+  const handleCreateDocument = () => {
     onClose();
   };
 
@@ -29,8 +29,8 @@ export const UploadDocumentWizard: React.FunctionComponent<Props> = (props) => {
     setSport(newSport);
   };
 
-  const handleCompetition = (newCompetition: string) => {
-    setCompetition(newCompetition);
+  const handleDocument = (newDocument: string) => {
+    setDocument(newDocument);
   };
 
   return (
@@ -50,7 +50,7 @@ export const UploadDocumentWizard: React.FunctionComponent<Props> = (props) => {
             className={classes.containerItem}
             color="primary"
             variant="contained"
-            onClick={handleCreateCompetition}
+            onClick={handleCreateDocument}
           >
             Subir archivo
           </Button>

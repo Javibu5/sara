@@ -30,7 +30,7 @@ export class CreditCard extends AggregateRoot {
 
   private onCreditCardWasCreated(event: CreditCardWasCreated) {
     this._creditCardId = CreditCardId.fromString(event.id);
-    this._numberCreditCard = CreditCardNumber.fromString(event.card_number);
+    this._creditCardnumber = CreditCardNumber.fromString(event.card_number);
     this._isDeleted = false;
   }
 }

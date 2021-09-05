@@ -8,9 +8,9 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core';
-import React from 'react';
+import react from 'react'
 
-import { useStyles } from '../theme';
+import { useStyles } from '../../theme';
 
 /* eslint-disable-next-line */
 export interface EmployeeDocumentsProps {

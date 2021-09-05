@@ -10,7 +10,6 @@ import {
 import { Session } from 'next-auth';
 import React from 'react';
 
-import AccessDenied from '../access-denied/access-denied';
 import Navbar from '../navbar/navbar';
 import Sidebar from '../sidebar/sidebar';
 import { useStyles } from '../theme';
