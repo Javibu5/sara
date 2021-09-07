@@ -1,9 +1,15 @@
-import { Button, Card, Grid, List, Typography } from "@material-ui/core";
+import { Button, Card, Grid, List, Typography, CardContent } from "@material-ui/core";
 import React from "react";
 import { useStyles } from "../theme";
 
+export interface Expense {
+    expense: ExpenseDto
+}
 
-export interface ExpensesPageProps { }
+
+export interface ExpensesPageProps {
+    expense: Expense[]
+}
 
 export function ExpensesPage(props: ExpensesPageProps) {
     const classes = useStyles();
@@ -28,8 +34,12 @@ export function ExpensesPage(props: ExpensesPageProps) {
                     Registrar gasto
                 </Button>
                 <Grid item xs={12} style={{ margin: 'auto' }}>
-                    <Card>
+                    <Card style={{ width: '100%' }}>
+                        <CardContent>
+                            <List className={classes.listRoot}>
 
+                            </List>
+                        </CardContent>
                     </Card>
                 </Grid>
             </Grid>
