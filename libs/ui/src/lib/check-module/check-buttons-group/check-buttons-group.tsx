@@ -1,7 +1,6 @@
 import { ButtonGroup, Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import { CheckDto } from '@sara/contracts';
 import { useTodayChecks } from '@sara/hooks';
 import { useSession } from 'next-auth/client';
 import React from 'react';

@@ -4,16 +4,22 @@ import { AppLoggerMiddleware } from './app.middleware';
 import { AuthModule } from './auth/auth.module';
 import { BootstrapModule } from './bootstrap.module';
 import { CheckModule } from './check/infrastructure/check.module';
+import { TaskModule } from './task/infrastructure/task.module';
 import { UserModule } from './user/infrastructure';
 
 export class AppModule implements NestModule {
   static forRoot(): DynamicModule {
     return {
       module: this,
-      imports: [BootstrapModule, AuthModule, UserModule, CheckModule],
+      imports: [
+        BootstrapModule,
+        AuthModule,
+        UserModule,
+        CheckModule,
+        TaskModule,
+      ],
     };
   }
-
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(AppLoggerMiddleware).forRoutes('*');
   }

@@ -440,6 +440,31 @@
           }
         }
       }
+    },
+    "task": {
+      "root": "libs/task",
+      "sourceRoot": "libs/task/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/task/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/task"
+          ],
+          "options": {
+            "jestConfig": "libs/task/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

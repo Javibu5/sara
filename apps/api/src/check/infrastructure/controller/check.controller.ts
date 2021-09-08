@@ -20,7 +20,7 @@ export class CheckController {
     private queryBus: QueryBus,
     private commandBus: CommandBus,
     private checkMapper: CheckMapper
-  ) { }
+  ) {}
 
   @Post('in')
   @Roles(Role.Admin)
@@ -60,10 +60,10 @@ export class CheckController {
   @Get('today')
   @Roles(Role.Admin)
   async findToday(@User() user: UserView): Promise<CheckDto[]> {
-    const todayChecks = await this.queryBus.execute<GetChecksTodayQuery, CheckView[]>(
-      new GetChecksTodayQuery(user.id)
-    );
-
+    const todayChecks = await this.queryBus.execute<
+      GetChecksTodayQuery,
+      CheckView[]
+    >(new GetChecksTodayQuery(user.id));
 
     return todayChecks.map(this.checkMapper.viewToDto);
   }

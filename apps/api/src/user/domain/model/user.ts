@@ -98,6 +98,10 @@ export class User extends AggregateRoot {
     return this._lock;
   }
 
+  get isAdmin(): boolean {
+    return this.isAdmin;
+  }
+
   hasRole(role: Role): boolean {
     return this._roles.some((item: Role) => item.equals(role));
   }

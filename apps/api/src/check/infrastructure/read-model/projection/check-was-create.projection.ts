@@ -16,8 +16,8 @@ export class CheckWasCreatedProjection
     const checkView = new this.checkModel({
       _id: event.id,
       employeeId: event.employeeId,
-      inAt: null,
-      outAt: null,
+      inAt: event.inAt,
+      outAt: event.outAt,
       isAutoClosed: false,
       createdAt: event.createdAt,
     });

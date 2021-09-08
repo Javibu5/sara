@@ -9,6 +9,8 @@ export class CheckWasCreated extends StorableEvent {
   constructor(
     public readonly id: string,
     public readonly employeeId: string,
+    public readonly inAt: Date | null,
+    public readonly outAt: Date | null,
     public readonly createdAt: Date
   ) {
     super();

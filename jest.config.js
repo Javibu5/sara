@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/libs/contracts',
     '<rootDir>/apps/admin',
     '<rootDir>/libs/hooks',
+    '<rootDir>/libs/task',
   ],
 };

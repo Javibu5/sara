@@ -26,10 +26,14 @@ export class Check extends AggregateRoot {
     const check = new Check();
 
     check.apply(
-      new CheckWasCreated(checkId.value, employeeId.value, new Date())
+      new CheckWasCreated(
+        checkId.value,
+        employeeId.value,
+        inAt,
+        null,
+        new Date()
+      )
     );
-
-    check.checkIn(inAt);
 
     return check;
   }
@@ -42,10 +46,14 @@ export class Check extends AggregateRoot {
     const check = new Check();
 
     check.apply(
-      new CheckWasCreated(checkId.value, employeeId.value, new Date())
+      new CheckWasCreated(
+        checkId.value,
+        employeeId.value,
+        null,
+        outAt,
+        new Date()
+      )
     );
-
-    check.checkOut(outAt);
 
     return check;
   }
@@ -76,9 +84,10 @@ export class Check extends AggregateRoot {
   private onCheckWasCreated(event: CheckWasCreated) {
     this._checkId = CheckId.fromString(event.id);
     this._employeeId = UserId.fromString(event.employeeId);
-    this._inAt = null;
-    this._outAt = null;
+    this._inAt = event.inAt;
+    this._outAt = event.outAt;
     this._isAutoClosed = false;
+    this._createdAt = event.createdAt;
   }
 
   private onCheckInWasDone(event: CheckInWasDone) {

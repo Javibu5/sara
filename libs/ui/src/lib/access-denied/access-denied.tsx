@@ -1,7 +1,7 @@
 import { signIn } from 'next-auth/client';
 import React from 'react';
 
-export default function AccessDenied() {
+export function AccessDenied() {
   return (
     <>
       <h1>Inicie sesion</h1>
@@ -19,3 +19,5 @@ export default function AccessDenied() {
     </>
   );
 }
+
+export default AccessDenied;
