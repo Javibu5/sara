@@ -9,7 +9,6 @@ export class CreditCard extends AggregateRoot {
   private _creditCardnumber: CreditCardNumber;
   private _isDeleted: boolean;
 
-
   public static registerCreditCard(
     creditCardId: CreditCardId,
     creditCardNumber: CreditCardNumber
@@ -26,7 +25,6 @@ export class CreditCard extends AggregateRoot {
   aggregateId(): string {
     return this._creditCardId.value;
   }
-
 
   private onCreditCardWasCreated(event: CreditCardWasCreated) {
     this._creditCardId = CreditCardId.fromString(event.id);

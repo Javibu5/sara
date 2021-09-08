@@ -17,10 +17,10 @@ export class CreditCardFinder implements ICreditCardFinder {
   constructor(
     @InjectModel(CREDITCARD_PROJECTION)
     private readonly creditCards: Model<CreditCardDocument>
-  ) { }
+  ) {}
 
   async findAll(): Promise<CreditCardDto[]> {
-    const creditCards = await this.creditCards.find();
+    const creditCards = await this.creditCards.find().lean();
 
     return creditCards.map((creditCard) => new CreditCardDto(creditCard));
   }

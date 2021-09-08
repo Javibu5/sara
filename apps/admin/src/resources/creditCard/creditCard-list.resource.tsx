@@ -5,7 +5,7 @@ export const CreditCardList = (props) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
-      <TextField source="cardNumber" />
+      <TextField source="creditCardNumber" />
     </Datagrid>
   </List>
 );

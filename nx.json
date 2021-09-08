@@ -48,6 +48,9 @@
     "contracts-credit-card": {
       "tags": []
     },
+    "contracts-expense": {
+      "tags": []
+    },
     "contracts-user": {
       "tags": []
     },
@@ -64,6 +67,9 @@
       "tags": []
     },
     "nestjs-credit-card": {
+      "tags": []
+    },
+    "nestjs-expense": {
       "tags": []
     },
     "nestjs-user": {

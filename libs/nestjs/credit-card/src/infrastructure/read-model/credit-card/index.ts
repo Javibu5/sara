@@ -1,7 +1,5 @@
-import { CreditCardWasCreated } from '../../../domain/event/creditCard-was-created'
+import { CreditCardWasCreatedProjection } from './credit-card-was-created.projection';
 
-export * from './credit-card.schema'
+export * from './credit-card.schema';
 
-export const projectionHandlers = [
-    CreditCardWasCreated
-]
+export const projectionHandlers = [CreditCardWasCreatedProjection];

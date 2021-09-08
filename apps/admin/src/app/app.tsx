@@ -1,5 +1,5 @@
 import React from 'react';
-import { Admin, Resource } from 'react-admin';
+import { Admin, Resource, ResourceContext } from 'react-admin';
 
 import { Dashboard } from '../components';
 import { authProvider, dataProvider } from '../lib';

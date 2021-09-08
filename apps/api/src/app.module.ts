@@ -8,8 +8,9 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from '@sara/nestjs/auth';
 import { CheckModule } from '@sara/nestjs/check';
-import { UserModule } from '@sara/nestjs/user';
 import { CreditCardModule } from '@sara/nestjs/credit-card';
+import { ExpenseModule } from '@sara/nestjs/expense';
+import { UserModule } from '@sara/nestjs/user';
 import { ConsoleModule } from 'nestjs-console';
 
 import configuration from './app.config';
@@ -50,7 +51,8 @@ import { appProviders } from './app.providers';
     AuthModule,
     UserModule,
     CheckModule,
-    CreditCardModule
+    CreditCardModule,
+    ExpenseModule,
   ],
   providers: [...appProviders],
 })

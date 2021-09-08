@@ -267,6 +267,27 @@
         }
       }
     },
+    "contracts-expense": {
+      "root": "libs/contracts/expense",
+      "sourceRoot": "libs/contracts/expense/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/contracts/expense/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/contracts/expense"],
+          "options": {
+            "jestConfig": "libs/contracts/expense/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "contracts-user": {
       "root": "libs/contracts/user",
       "sourceRoot": "libs/contracts/user/src",
@@ -388,6 +409,27 @@
           "outputs": ["coverage/libs/nestjs/credit-card"],
           "options": {
             "jestConfig": "libs/nestjs/credit-card/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "nestjs-expense": {
+      "root": "libs/nestjs/expense",
+      "sourceRoot": "libs/nestjs/expense/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/nestjs/expense/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nestjs/expense"],
+          "options": {
+            "jestConfig": "libs/nestjs/expense/jest.config.js",
             "passWithNoTests": true
           }
         }

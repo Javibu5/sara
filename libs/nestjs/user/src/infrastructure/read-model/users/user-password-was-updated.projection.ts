@@ -15,7 +15,7 @@ export class UserPasswordWasUpdatedProjection
   ) {}
 
   async handle(event: UserPasswordWasUpdated) {
-    this.users
+    await this.users
       .findByIdAndUpdate(event.aggregateId, {
         password: event.password,
       })

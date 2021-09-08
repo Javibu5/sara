@@ -5,7 +5,7 @@ export const CreditCardEdit = ({ permissions, ...props }) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
-      <TextInput source="cardNumber" />
+      <TextInput source="creditCardNumber" />
     </SimpleForm>
   </Edit>
 );

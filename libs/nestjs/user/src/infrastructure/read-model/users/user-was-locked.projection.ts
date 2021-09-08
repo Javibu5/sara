@@ -13,7 +13,7 @@ export class UserWasLockedProjection implements IEventHandler<UserWasLocked> {
   ) {}
 
   async handle(event: UserWasLocked) {
-    this.users
+    await this.users
       .findByIdAndUpdate(event.aggregateId, {
         lock: true,
       })

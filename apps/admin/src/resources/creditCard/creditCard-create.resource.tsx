@@ -7,7 +7,7 @@ const postDefaultValue = () => ({ id: uuid.v4() });
 export const CreditCardCreate = (props) => (
   <Create {...props}>
     <SimpleForm initialValues={postDefaultValue}>
-      <TextInput source="cardNumber" />
+      <TextInput source="creditCardNumber" />
     </SimpleForm>
   </Create>
 );
