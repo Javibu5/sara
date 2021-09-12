@@ -1,4 +1,4 @@
-import { ValueObject, DomainError } from '@aulasoftwarelibre/nestjs-eventstore';
+import { DomainError, ValueObject } from '@aulasoftwarelibre/nestjs-eventstore';
 
 interface Props {
   value: string;
@@ -7,7 +7,7 @@ interface Props {
 export class CreditCardNumber extends ValueObject<Props> {
   public static fromString(number: string): CreditCardNumber {
     if (number.length === 0) {
-      throw DomainError.because('Invalid credit card number')
+      throw DomainError.because('Invalid credit card number');
     }
 
     return new CreditCardNumber({ value: number });

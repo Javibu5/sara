@@ -1,2 +1,2 @@
 export * from './expense';
-export * from './expenseId';
+export * from './expense-id';

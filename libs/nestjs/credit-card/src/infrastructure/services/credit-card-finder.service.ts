@@ -1,15 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-
+import { CreditCardDto } from '@sara/contracts/credit-card';
 import { Model } from 'mongoose';
 
-import { CreditCardDto } from '../../../../../contracts/credit-card/src';
 import { ICreditCardFinder } from '../../application/services';
 import { CreditCardId } from '../../domain/model/creditCard-id';
 import { CreditCardNumber } from '../../domain/model/creditCard-number';
 import {
-  CreditCardDocument,
   CREDITCARD_PROJECTION,
+  CreditCardDocument,
 } from '../read-model/credit-card/credit-card.schema';
 
 @Injectable()
