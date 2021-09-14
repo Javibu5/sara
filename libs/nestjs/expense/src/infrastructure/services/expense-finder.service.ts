@@ -3,11 +3,11 @@ import { Model } from 'mongoose';
 
 import { ExpenseDto } from '../../../../../contracts/expense/src';
 import { IExpenseFinder } from '../../application/service/expense-finder.interface';
-import { EXPENSE_PROJECTION, ExpenseDocument } from '../read-model';
+import { ExpenseDocument, EXPENSES_PROJECTION } from '../read-model';
 
 export class ExpenseFinder implements IExpenseFinder {
   constructor(
-    @InjectModel(EXPENSE_PROJECTION)
+    @InjectModel(EXPENSES_PROJECTION)
     private readonly expenses: Model<ExpenseDocument>
   ) {}
   async findAll(): Promise<ExpenseDto[]> {

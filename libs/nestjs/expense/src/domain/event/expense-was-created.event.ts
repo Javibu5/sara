@@ -1,6 +1,15 @@
 import { Event } from '@aulasoftwarelibre/nestjs-eventstore';
 import { ExpenseDto } from '@sara/contracts/expense';
 
+export type ExpenseWasCreatedProps = {
+  _id: string;
+  reason: string;
+  amount: number;
+  employeeId: string;
+  creditCardId: string;
+  status: string;
+  createdAt: Date;
+};
 export class ExpenseWasCreated extends Event<ExpenseDto> {
   constructor(
     public readonly id: string,

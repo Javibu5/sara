@@ -1,7 +1,7 @@
 import { ExpenseDto } from '@sara/contracts/expense';
 import { Document, Schema } from 'mongoose';
 
-export const EXPENSE_PROJECTION = 'expenses';
+export const EXPENSES_PROJECTION = 'expenses';
 
 export type ExpenseDocument = ExpenseDto & Document;
 
