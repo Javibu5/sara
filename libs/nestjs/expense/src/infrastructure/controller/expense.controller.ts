@@ -7,10 +7,12 @@ import {
   ConflictException,
   Controller,
   Get,
+  NotFoundException,
+  Param,
   Post,
   Res,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { CreateExpenseDto, ExpenseDto } from '@sara/contracts/expense';
 import { UserDto } from '@sara/contracts/user';
 import { catchError, Role, Roles, User } from '@sara/nestjs/common';
@@ -41,11 +43,13 @@ export class ExpenseController {
   }
 
   @Get()
+  @Roles(Role.Admin)
   async findAll(
     @Res({ passthrough: true }) res: Response
   ): Promise<ExpenseDto[]> {
     try {
       const expenses = await this.expenseService.findAll();
+
       const length = expenses.length;
 
       res.setHeader('X-Total-Count', length);
@@ -53,6 +57,18 @@ export class ExpenseController {
       return expenses;
     } catch (e) {
       throw catchError(e.message);
+    }
+  }
+
+  async update(@Param('id') id: string, @Body() expenseDto: ExpenseDto) {
+    try {
+      return await this.expenseService.update(id, expenseDto);
+    } catch (e) {
+      if (e instanceof IdNotFoundError) {
+        throw new NotFoundException('Expense not found');
+      } else {
+        throw catchError(e);
+      }
     }
   }
 }

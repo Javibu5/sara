@@ -2,7 +2,7 @@ import { Inject } from '@nestjs/common';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { CreditCardDto } from '@sara/contracts/credit-card';
 
-import { CreditCardNumber } from '../../domain/model/creditCard-number';
+import { CreditCardId } from '../../domain/model/creditCard-id';
 import { CREDITCARD_FINDER, ICreditCardFinder } from '../services';
 import { GetCreditCardsQuery } from './get-credit-cards.query';
 
@@ -15,14 +15,15 @@ export class GetCreditCardsHandler
     private readonly finder: ICreditCardFinder
   ) {}
 
-  async execute(query: GetCreditCardsQuery): Promise<CreditCardDto[]> {
-    if (!query.number) {
-      console.log('HoLAAA');
+  async execute(
+    query: GetCreditCardsQuery
+  ): Promise<CreditCardDto[] | CreditCardDto> {
+    if (!query.id) {
       return this.finder.findAll();
     }
 
-    const creditCardNumber = CreditCardNumber.fromString(query.number);
+    const creditCardId = CreditCardId.fromString(query.id);
 
-    return this.finder.findByNumber(creditCardNumber);
+    return this.finder.findById(creditCardId);
   }
 }

@@ -1,10 +1,17 @@
+import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateExpenseDto, ExpenseDto } from '@sara/contracts/expense';
+import {
+  CreateExpenseDto,
+  EditExpenseDto,
+  ExpenseDto,
+} from '@sara/contracts/expense';
 import { UserDto } from '@sara/contracts/user';
 
 import { CreateExpenseCommand } from '../../application';
+import { UpdateExpenseCommand } from '../../application/command/update-expense.command';
 import { GetExpensesQuery } from '../../application/query/get-expenses.query';
 
+@Injectable()
 export class ExpenseService {
   constructor(
     private readonly commandBus: CommandBus,
@@ -18,7 +25,10 @@ export class ExpenseService {
   }
 
   async findAll(): Promise<ExpenseDto[]> {
-    const expenses = this.queryBus.execute(new GetExpensesQuery());
-    return expenses;
+    return await this.queryBus.execute(new GetExpensesQuery());
+  }
+
+  async update(id: string, editExpenseDto: EditExpenseDto) {
+    await this.commandBus.execute(new UpdateExpenseCommand(id, editExpenseDto));
   }
 }

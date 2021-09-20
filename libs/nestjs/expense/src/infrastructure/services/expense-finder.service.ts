@@ -1,7 +1,7 @@
 import { InjectModel } from '@nestjs/mongoose';
+import { ExpenseDto } from '@sara/contracts/expense';
 import { Model } from 'mongoose';
 
-import { ExpenseDto } from '../../../../../contracts/expense/src';
 import { IExpenseFinder } from '../../application/service/expense-finder.interface';
 import { ExpenseDocument, EXPENSES_PROJECTION } from '../read-model';
 

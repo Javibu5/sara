@@ -16,7 +16,7 @@ export class GetExpensesHandler implements IQueryHandler<GetExpensesQuery> {
   ) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async execute(query: GetExpensesQuery): Promise<ExpenseDto[]> {
+  async execute(): Promise<ExpenseDto[]> {
     return this.finder.findAll();
   }
 }

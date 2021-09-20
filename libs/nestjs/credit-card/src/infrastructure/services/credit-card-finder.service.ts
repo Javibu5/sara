@@ -25,7 +25,6 @@ export class CreditCardFinder implements ICreditCardFinder {
   }
   async findById(id: CreditCardId): Promise<CreditCardDto> {
     const creditCard = await this.creditCards.findById(id.value).lean();
-
     return new CreditCardDto(creditCard);
   }
   async findByNumber(number: CreditCardNumber): Promise<CreditCardDto[]> {

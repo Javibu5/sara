@@ -1,5 +1,4 @@
 import { Event } from '@aulasoftwarelibre/nestjs-eventstore';
-import { ExpenseDto } from '@sara/contracts/expense';
 
 export type ExpenseWasCreatedProps = {
   _id: string;
@@ -10,7 +9,7 @@ export type ExpenseWasCreatedProps = {
   status: string;
   createdAt: Date;
 };
-export class ExpenseWasCreated extends Event<ExpenseDto> {
+export class ExpenseWasCreated extends Event<ExpenseWasCreatedProps> {
   constructor(
     public readonly id: string,
     public readonly reason: string,

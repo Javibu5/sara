@@ -20,10 +20,10 @@ export class CreateExpenseHandler
     @InjectAggregateRepository(Expense)
     private readonly expenses: AggregateRepository<Expense, ExpenseId>
   ) {}
-  async execute(command: CreateExpenseCommand): Promise<any> {
+  async execute(command: CreateExpenseCommand) {
     const expenseId = ExpenseId.fromString(command.expense._id);
 
-    if (this.expenses.find(expenseId)) {
+    if (await this.expenses.find(expenseId)) {
       throw IdAlreadyRegisteredError.withId(expenseId);
     }
 

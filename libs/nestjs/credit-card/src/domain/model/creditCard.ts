@@ -1,12 +1,13 @@
 import { AggregateRoot } from '@aulasoftwarelibre/nestjs-eventstore';
 
 import { CreditCardWasCreated } from '../event/creditCard-was-created';
+import { CreditCardWasUpdate } from '../event/creditCard-was-updated';
 import { CreditCardId } from './creditCard-id';
 import { CreditCardNumber } from './creditCard-number';
 
 export class CreditCard extends AggregateRoot {
   private _creditCardId: CreditCardId;
-  private _creditCardnumber: CreditCardNumber;
+  private _creditCardNumber: CreditCardNumber;
   private _isDeleted: boolean;
 
   public static registerCreditCard(
@@ -22,13 +23,25 @@ export class CreditCard extends AggregateRoot {
     return creditCard;
   }
 
+  updateCreditCard(cardNumber: CreditCardNumber) {
+    this.apply(
+      new CreditCardWasUpdate(this._creditCardId.value, cardNumber.value)
+    );
+
+    return this;
+  }
+
   aggregateId(): string {
     return this._creditCardId.value;
   }
 
+  private onCreditCardWasUpdate(event: CreditCardWasUpdate) {
+    this._creditCardNumber = CreditCardNumber.fromString(event.cardNumber);
+  }
+
   private onCreditCardWasCreated(event: CreditCardWasCreated) {
     this._creditCardId = CreditCardId.fromString(event.id);
-    this._creditCardnumber = CreditCardNumber.fromString(event.card_number);
+    this._creditCardNumber = CreditCardNumber.fromString(event.card_number);
     this._isDeleted = false;
   }
 }

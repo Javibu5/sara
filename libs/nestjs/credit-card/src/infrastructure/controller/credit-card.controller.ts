@@ -1,7 +1,18 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { IdNotFoundError } from '@aulasoftwarelibre/nestjs-eventstore';
+import {
+  Body,
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  Res,
+} from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import {
   CreditCardDto,
+  EditCardDto,
   RegisterCreditCardDto,
 } from '@sara/contracts/credit-card';
 import { Role, Roles } from '@sara/nestjs/common';
@@ -38,6 +49,20 @@ export class CreditCardController {
       return creditCards;
     } catch (e) {
       throw catchError(e);
+    }
+  }
+
+  @Put(':id')
+  @Roles(Role.Admin)
+  async update(@Param('id') id: string, @Body() creditCardDto: EditCardDto) {
+    try {
+      return await this.creditCardService.update(id, creditCardDto);
+    } catch (e) {
+      if (e instanceof IdNotFoundError) {
+        throw new NotFoundException('Credit Card not found');
+      } else {
+        throw catchError(e);
+      }
     }
   }
 }
