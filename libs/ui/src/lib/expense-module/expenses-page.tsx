@@ -6,7 +6,7 @@ import {
   List,
   Typography,
 } from '@material-ui/core';
-import React from 'react';
+import { ExpenseDto } from '@sara/contracts/expense';
 
 import { useStyles } from '../theme';
 
