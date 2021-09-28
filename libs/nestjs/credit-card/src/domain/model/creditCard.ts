@@ -23,12 +23,10 @@ export class CreditCard extends AggregateRoot {
     return creditCard;
   }
 
-  updateCreditCard(cardNumber: CreditCardNumber) {
+  updateCreditCard(cardNumber: CreditCardNumber): void {
     this.apply(
       new CreditCardWasUpdate(this._creditCardId.value, cardNumber.value)
     );
-
-    return this;
   }
 
   aggregateId(): string {

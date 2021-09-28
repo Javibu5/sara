@@ -6,8 +6,8 @@ import {
   RegisterCreditCardDto,
 } from '@sara/contracts/credit-card';
 
-import { CreditCardWasRegisterCommand } from '../../application/command/creditCard-register.command';
-import { CreditCardWasUpdateCommand } from '../../application/command/creditCard-update.command';
+import { CreditCardRegisterCommand } from '../../application/command/creditCard-register.command';
+import { CreditCardUpdateCommand } from '../../application/command/creditCard-update.command';
 import { GetCreditCardsQuery } from '../../application/query/get-credit-cards.query';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class CreditCardService {
 
   async newCreditCard(registerCreditCard: RegisterCreditCardDto) {
     await this.commandBus.execute(
-      new CreditCardWasRegisterCommand(
+      new CreditCardRegisterCommand(
         registerCreditCard._id,
         registerCreditCard.card_number
       )
@@ -32,7 +32,7 @@ export class CreditCardService {
 
   async update(id: string, editCardDto: EditCardDto): Promise<CreditCardDto> {
     await this.commandBus.execute(
-      new CreditCardWasUpdateCommand(id, editCardDto.card_number)
+      new CreditCardUpdateCommand(id, editCardDto.card_number)
     );
 
     const creditCard = await this.queryBus.execute(new GetCreditCardsQuery(id));

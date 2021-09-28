@@ -288,6 +288,27 @@
         }
       }
     },
+    "contracts-project": {
+      "root": "libs/contracts/project",
+      "sourceRoot": "libs/contracts/project/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/contracts/project/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/contracts/project"],
+          "options": {
+            "jestConfig": "libs/contracts/project/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "contracts-user": {
       "root": "libs/contracts/user",
       "sourceRoot": "libs/contracts/user/src",
@@ -430,6 +451,27 @@
           "outputs": ["coverage/libs/nestjs/expense"],
           "options": {
             "jestConfig": "libs/nestjs/expense/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "nestjs-project": {
+      "root": "libs/nestjs/project",
+      "sourceRoot": "libs/nestjs/project/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/nestjs/project/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nestjs/project"],
+          "options": {
+            "jestConfig": "libs/nestjs/project/jest.config.js",
             "passWithNoTests": true
           }
         }

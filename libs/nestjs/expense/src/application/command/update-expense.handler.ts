@@ -23,25 +23,29 @@ export class UpdateExpenseHandler
   async execute(command: UpdateExpenseCommand) {
     const expenseId = ExpenseId.fromString(command.id);
     const expense = await this.expenses.find(expenseId);
-    if (expense) {
-      if (command.editExpenseDto.reason) {
-        const reason = Reason.fromString(command.editExpenseDto.reason);
-        this.updateReason(expense, reason);
-      }
-      if (command.editExpenseDto.amount) {
-        const amount = ExpenseAmount.fromString(command.editExpenseDto.amount);
-        this.updateAmount(expense, amount);
-      }
-      if (command.editExpenseDto.creditCardId) {
-        const creditCardId = CreditCardId.fromString(
-          command.editExpenseDto.creditCardId
-        );
-        this.updateCreditCard(expense, creditCardId);
-      }
 
-      this.expenses.save(expense);
+    if (!expense) {
+      throw IdNotFoundError.withId(expenseId);
     }
-    throw IdNotFoundError.withId(expenseId);
+
+    if (command.editExpenseDto.reason) {
+      const reason = Reason.fromString(command.editExpenseDto.reason);
+      this.updateReason(expense, reason);
+    }
+
+    if (command.editExpenseDto.amount) {
+      const amount = ExpenseAmount.fromString(command.editExpenseDto.amount);
+      this.updateAmount(expense, amount);
+    }
+
+    if (command.editExpenseDto.creditCardId) {
+      const creditCardId = CreditCardId.fromString(
+        command.editExpenseDto.creditCardId
+      );
+      this.updateCreditCard(expense, creditCardId);
+    }
+
+    this.expenses.save(expense);
   }
 
   private updateReason(expense: Expense, reason: Reason) {

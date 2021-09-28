@@ -1,6 +1,6 @@
 import { ICommand } from '@nestjs/cqrs';
 
-export class CreditCardWasRegisterCommand implements ICommand {
+export class CreditCardRegisterCommand implements ICommand {
   constructor(
     public readonly id: string,
     public readonly creditCardNumber: string

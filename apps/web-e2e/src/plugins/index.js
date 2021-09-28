@@ -55,5 +55,22 @@ module.exports = (on, config) => {
     'db:seed': () => {
       return seed();
     },
+    'db:clean': async () => {
+      const mongoose = require('mongoose');
+
+      await mongoose.connect(config.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      await mongoose.connection.db.dropDatabase();
+      await mongoose.disconnect();
+
+      return null;
+    },
+    sync: async () => {
+      await new Promise(r => setTimeout(r, 50));
+
+      return null;
+    },
   });
 };

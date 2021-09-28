@@ -14,5 +14,9 @@
     "Entonces": 2,
     "Y": 2,
     "Pero": 2,
-  }
+  },
+  "exportall.config.relExclusion": [
+    "/libs/contracts/project/src/dto/index.ts",
+    "/libs/nestjs/project/src/application/index.ts"
+  ]
 }

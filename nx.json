@@ -51,6 +51,9 @@
     "contracts-expense": {
       "tags": []
     },
+    "contracts-project": {
+      "tags": []
+    },
     "contracts-user": {
       "tags": []
     },
@@ -70,6 +73,9 @@
       "tags": []
     },
     "nestjs-expense": {
+      "tags": []
+    },
+    "nestjs-project": {
       "tags": []
     },
     "nestjs-user": {

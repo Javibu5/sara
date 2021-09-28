@@ -8,18 +8,18 @@ import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { CreditCard } from '../../domain/model/creditCard';
 import { CreditCardId } from '../../domain/model/creditCard-id';
 import { CreditCardNumber } from '../../domain/model/creditCard-number';
-import { CreditCardWasRegisterCommand } from './creditCard-register.command';
+import { CreditCardRegisterCommand } from './creditCard-register.command';
 
-@CommandHandler(CreditCardWasRegisterCommand)
-export class CreditCardWasRegisterHandler
-  implements ICommandHandler<CreditCardWasRegisterCommand>
+@CommandHandler(CreditCardRegisterCommand)
+export class CreditCardRegisterHandler
+  implements ICommandHandler<CreditCardRegisterCommand>
 {
   constructor(
     @InjectAggregateRepository(CreditCard)
     private readonly creditCards: AggregateRepository<CreditCard, CreditCardId>
   ) {}
 
-  async execute(commmand: CreditCardWasRegisterCommand) {
+  async execute(commmand: CreditCardRegisterCommand) {
     const creditCardId = CreditCardId.fromString(commmand.id);
     const creditCardNumber = CreditCardNumber.fromString(
       commmand.creditCardNumber

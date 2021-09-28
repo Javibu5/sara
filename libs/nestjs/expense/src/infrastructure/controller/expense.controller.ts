@@ -10,10 +10,15 @@ import {
   NotFoundException,
   Param,
   Post,
+  Put,
   Res,
 } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { CreateExpenseDto, ExpenseDto } from '@sara/contracts/expense';
+import {
+  CreateExpenseDto,
+  EditExpenseDto,
+  ExpenseDto,
+} from '@sara/contracts/expense';
 import { UserDto } from '@sara/contracts/user';
 import { catchError, Role, Roles, User } from '@sara/nestjs/common';
 import { Response } from 'express';
@@ -59,8 +64,9 @@ export class ExpenseController {
       throw catchError(e.message);
     }
   }
-
-  async update(@Param('id') id: string, @Body() expenseDto: ExpenseDto) {
+  @Put(':id')
+  @Roles(Role.Admin)
+  async update(@Param('id') id: string, @Body() expenseDto: EditExpenseDto) {
     try {
       return await this.expenseService.update(id, expenseDto);
     } catch (e) {
