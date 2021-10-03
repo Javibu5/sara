@@ -309,6 +309,27 @@
         }
       }
     },
+    "contracts-task": {
+      "root": "libs/contracts/task",
+      "sourceRoot": "libs/contracts/task/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/contracts/task/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/contracts/task"],
+          "options": {
+            "jestConfig": "libs/contracts/task/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "contracts-user": {
       "root": "libs/contracts/user",
       "sourceRoot": "libs/contracts/user/src",

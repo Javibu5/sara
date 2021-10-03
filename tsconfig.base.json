@@ -22,6 +22,7 @@
       ],
       "@sara/contracts/expense": ["libs/contracts/expense/src/index.ts"],
       "@sara/contracts/project": ["libs/contracts/project/src/index.ts"],
+      "@sara/contracts/task": ["libs/contracts/task/src/index.ts"],
       "@sara/contracts/user": ["libs/contracts/user/src/index.ts"],
       "@sara/hooks": ["libs/hooks/src/index.ts"],
       "@sara/nestjs/auth": ["libs/nestjs/auth/src/index.ts"],
