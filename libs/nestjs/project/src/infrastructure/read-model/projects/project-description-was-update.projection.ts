@@ -1,7 +1,7 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ProjectDocument, PROJECT_PROJECTION } from '.';
+import { ProjectDocument, PROJECT_PROJECTION } from './project.schema';
 
 import { ProjectDescriptionWasUpdated } from '../../../domain';
 

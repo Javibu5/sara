@@ -1,12 +1,10 @@
-import { CreateProjectHandler, UpdateProjectHandler } from '..';
+import { CreateProjectHandler } from './create-project.handler';
+import { UpdateProjectHandler } from './update-project.handler';
 
 export * from './create-project.command';
-export * from './create-project.handler';
 export * from './update-project.command';
-export * from './update-project.handler';
 
 export const commandHandlers = [
     CreateProjectHandler,
     UpdateProjectHandler
-
 ]

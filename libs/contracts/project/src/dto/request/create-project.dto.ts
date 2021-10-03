@@ -3,5 +3,5 @@ export class CreateProjectDto {
   public readonly name: string;
   public readonly description: string;
   public readonly deadline: Date;
-  public readonly isDone: boolean;
+
 }

@@ -28,7 +28,6 @@ import { ProjectService } from './services';
     ...queryHandlers,
     ...projectionHandlers,
     ProjectService,
-
   ],
 })
 export class ProjectModule { }

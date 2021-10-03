@@ -1,6 +1,10 @@
 import { AggregateRoot } from '@aulasoftwarelibre/nestjs-eventstore';
+import { ProjectDeadlineWasUpdated } from '../event/project-deadline-was-updated.event';
+import { ProjectDescriptionWasUpdated } from '../event/project-description-was-update.event';
+import { ProjectNameWasUpdated } from '../event/project-name-was-updated.event';
+import { ProjectStatusWasUpdated } from '../event/project-satus-was-updated.event';
+import { ProjectWasCreated } from '../event/project-was-created.event';
 
-import { ProjectDeadlineWasUpdated, ProjectDescriptionWasUpdated, ProjectNameWasUpdated, ProjectStatusWasUpdated, ProjectWasCreated } from '../event';
 import { ProjectDescription } from './project-description';
 import { ProjectId } from './project-id';
 import { ProjectName } from './project-name';

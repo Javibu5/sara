@@ -20,7 +20,7 @@ export class CreateProjectHandler
   constructor(
     @InjectAggregateRepository(Project)
     private readonly projects: AggregateRepository<Project, ProjectId>
-  ) {}
+  ) { }
 
   async execute(command: CreateProjectCommand) {
     const projectId = ProjectId.fromString(command.project._id);
@@ -33,9 +33,10 @@ export class CreateProjectHandler
       name: ProjectName.fromString(command.project.name),
       description: ProjectDescription.fromString(command.project.description),
       deadline: command.project.deadline,
-      isDone: command.project.isDone,
+      isDone: false
     };
     const project = Project.add(criteria);
+    console.log("🚀 ~ file: create-project.handler.ts ~ line 39 ~ execute ~ project", project)
 
     await this.projects.save(project);
   }

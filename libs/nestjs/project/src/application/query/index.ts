@@ -1,8 +1,7 @@
-import { GetProjectHandler, GetProjectsHandler } from '..';
+import { GetProjectHandler } from './get-project.handler';
+import { GetProjectsHandler } from './get-projects.handler';
 
-export * from './get-project.handler';
 export * from './get-project.query';
-export * from './get-projects.handler';
 export * from './get-projects.query';
 
 

@@ -1,9 +1,10 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateProjectDto, EditProjectDto, ProjectDto } from '@sara/contracts/project';
-
+import { Injectable } from '@nestjs/common';
 import { CreateProjectCommand, GetProjectQuery, GetProjectsQuery, UpdateProjectCommand } from '../../application';
 
 
+@Injectable()
 export class ProjectService {
 
 

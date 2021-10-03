@@ -1,9 +1,10 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ProjectDocument, PROJECT_PROJECTION } from '.';
+import { ProjectDocument, PROJECT_PROJECTION } from './project.schema';
+import { ProjectWasCreated } from '../../../domain/event/project-was-created.event';
 
-import { ProjectWasCreated } from '../../../domain';
+
 
 @EventsHandler(ProjectWasCreated)
 export class ProjectWasCreatedProjection implements IEventHandler<ProjectWasCreated> {
