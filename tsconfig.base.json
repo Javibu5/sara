@@ -30,6 +30,7 @@
       "@sara/nestjs/credit-card": ["libs/nestjs/credit-card/src/index.ts"],
       "@sara/nestjs/expense": ["libs/nestjs/expense/src/index.ts"],
       "@sara/nestjs/project": ["libs/nestjs/project/src/index.ts"],
+      "@sara/nestjs/task": ["libs/nestjs/task/src/index.ts"],
       "@sara/nestjs/user": ["libs/nestjs/user/src/index.ts"],
       "@sara/ui": ["libs/ui/src/index.ts"]
     }

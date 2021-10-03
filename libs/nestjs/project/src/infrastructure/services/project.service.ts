@@ -1,13 +1,16 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateProjectDto, ProjectDto } from '@sara/contracts/project';
+import { CreateProjectDto, EditProjectDto, ProjectDto } from '@sara/contracts/project';
 
-import { CreateProjectCommand, GetProjectsQuery } from '../../application';
+import { CreateProjectCommand, GetProjectQuery, GetProjectsQuery, UpdateProjectCommand } from '../../application';
+
 
 export class ProjectService {
+
+
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus
-  ) {}
+  ) { }
 
   async create(projectDto: CreateProjectDto): Promise<void> {
     await this.commandBus.execute(new CreateProjectCommand(projectDto));
@@ -15,4 +18,19 @@ export class ProjectService {
   findAll(): Promise<ProjectDto[]> {
     return this.queryBus.execute(new GetProjectsQuery());
   }
+
+  async findOne(id: string): Promise<ProjectDto> {
+    return this.queryBus.execute(new GetProjectQuery(id));
+  }
+
+
+  async update(id: string, projectDto: EditProjectDto) {
+    await this.commandBus.execute(new UpdateProjectCommand(id, projectDto))
+
+
+    const project = await this.queryBus.execute(new GetProjectQuery(id));
+
+    return new ProjectDto({ ...project });
+  }
+
 }

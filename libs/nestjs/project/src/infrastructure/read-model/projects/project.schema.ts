@@ -4,7 +4,7 @@ import { Schema } from 'mongoose';
 export const PROJECT_PROJECTION = 'project';
 export type ProjectDocument = ProjectDto & Document;
 
-export const ProjecSchema = new Schema(
+export const ProjectSchema = new Schema(
   {
     _id: String,
     name: String,

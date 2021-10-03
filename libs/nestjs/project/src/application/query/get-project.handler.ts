@@ -1,19 +1,30 @@
+import { IdNotFoundError } from '@aulasoftwarelibre/nestjs-eventstore';
 import { Inject } from '@nestjs/common';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { ProjectDto } from '@sara/contracts/project';
 
-import { IProjectFinder, PROJECT_FINDER } from '..';
-import { GetProjectsQuery } from '.';
 
-@QueryHandler(GetProjectsQuery)
-export class GetProjectsHandler implements IQueryHandler<GetProjectsQuery> {
-  constructor(
-    @Inject(PROJECT_FINDER)
-    private readonly finder: IProjectFinder
-  ) {}
+import { ProjectId } from '../../domain';
+import { IProjectFinder, PROJECT_FINDER } from '../service';
+import { GetProjectQuery } from './get-project.query';
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async execute(query: GetProjectsQuery): Promise<ProjectDto[]> {
-    return this.finder.findAll();
-  }
+
+@QueryHandler(GetProjectQuery)
+export class GetProjectHandler implements IQueryHandler<GetProjectQuery> {
+    constructor(
+        @Inject(PROJECT_FINDER)
+        private readonly finder: IProjectFinder
+    ) { }
+
+    async execute(query: GetProjectQuery): Promise<ProjectDto> {
+        const projectId = ProjectId.fromString(query.id);
+
+        const project = await this.finder.find(projectId);
+
+        if (!project) {
+            throw IdNotFoundError.withId(projectId);
+        }
+
+        return project;
+    }
 }

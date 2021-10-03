@@ -78,6 +78,9 @@
     "nestjs-project": {
       "tags": []
     },
+    "nestjs-task": {
+      "tags": []
+    },
     "nestjs-user": {
       "tags": []
     },

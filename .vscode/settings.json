@@ -17,6 +17,7 @@
   },
   "exportall.config.relExclusion": [
     "/libs/contracts/project/src/dto/index.ts",
-    "/libs/nestjs/project/src/application/index.ts"
+    "/libs/nestjs/project/src/application/index.ts",
+    "/libs/nestjs/project/src/infrastructure/services/index.ts"
   ]
 }

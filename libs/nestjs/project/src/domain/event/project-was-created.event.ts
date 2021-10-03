@@ -1,7 +1,14 @@
 import { Event } from '@aulasoftwarelibre/nestjs-eventstore';
-import { CreateProjectDto } from '@sara/contracts/project';
+export type ProjectWasCreatedProps = {
+  _id: string;
+  name: string;
+  description: string;
+  deadline: Date;
+  isDone: boolean;
+}
 
-export class ProjectWasCreated extends Event<CreateProjectDto> {
+
+export class ProjectWasCreated extends Event<ProjectWasCreatedProps> {
   constructor(
     public readonly id: string,
     public readonly name: string,
