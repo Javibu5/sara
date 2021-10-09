@@ -1,1 +1,1 @@
-export * from './nestjs-task.module';
+export * from './infrastructure/task.module';

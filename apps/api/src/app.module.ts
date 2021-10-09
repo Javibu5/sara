@@ -12,6 +12,7 @@ import { CreditCardModule } from '@sara/nestjs/credit-card';
 import { ExpenseModule } from '@sara/nestjs/expense';
 import { UserModule } from '@sara/nestjs/user';
 import { ProjectModule } from '@sara/nestjs/project'
+import { TaskModule } from '@sara/nestjs/task'
 import { ConsoleModule } from 'nestjs-console';
 
 import configuration from './app.config';
@@ -55,6 +56,7 @@ import { appProviders } from './app.providers';
     CreditCardModule,
     ExpenseModule,
     ProjectModule,
+    TaskModule,
   ],
   providers: [...appProviders],
 })

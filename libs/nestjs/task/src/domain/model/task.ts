@@ -1,44 +1,56 @@
-import { AggregateRoot } from "@aulasoftwarelibre/nestjs-eventstore";
-import { EmployeeId } from "./employee-id";
-import { ProjectId } from "./project-id";
-import { TaskId } from "./task-id";
-import { TaskName } from "./task-name";
+import { AggregateRoot } from '@aulasoftwarelibre/nestjs-eventstore';
+import { TaskWasCreated } from '../event/task-was-created.event';
+import { EmployeeId } from './employee-id';
+import { ProjectId } from './project-id';
+import { TaskId } from './task-id';
+import { TaskName } from './task-name';
 
 export class Task extends AggregateRoot {
+  private _taskId: TaskId;
+  private _name: TaskName;
+  private _projectId: ProjectId;
+  private _deadline?: Date;
+  private isFinished: boolean;
+  private employees: EmployeeId[];
 
+  aggregateId(): string {
+    return this._taskId.value;
+  }
 
-    private _taskId: TaskId;
-    private _name: TaskName;
-    private _projectId: ProjectId;
-    private _deadline?: Date;
-    private isFinished: boolean;
-    private employees: EmployeeId[];
+  static add(criteria: {
+    id: TaskId;
+    name: TaskName;
+    project: ProjectId;
+    employees: EmployeeId[];
+    deadline?: Date;
+  }) {
+    const { id, name, project, employees, deadline } = criteria;
+    const task = new Task();
 
-    aggregateId(): string {
-        return this._taskId.value;
-    }
+    const employeesIds = employees.map((employee) => employee.value);
 
-    static add(criteria: {
-        id: TaskId,
-        name: TaskName,
-        project: ProjectId,
-        employees: EmployeeId[],
-        deadline?: Date
-    }) {
-        const { id, name, project, employees, deadline } = criteria;
-        const task = new Task();
+    task.apply(
+      new TaskWasCreated(
+        id.value,
+        name.value,
+        project.value,
+        deadline,
+        false,
+        employeesIds
+      )
+    );
 
-        task.apply(new TaskWasCreated(
-            id.value,
-            name.value,
-            project.value,
-            deadline,
-            false
-            employees.values,
-        ))
-    }
+    return task;
+  }
 
-    private onTaskWasCreated(event: TaskWasCreated) {
-        this._taskId = 
-    }
+  private onTaskWasCreated(event: TaskWasCreated) {
+    this._taskId = TaskId.fromString(event.id);
+    this._name = TaskName.fromString(event.name);
+    this._projectId = ProjectId.fromString(event.projectId);
+    this._deadline = event.deadline;
+    this.isFinished = event.isFinished;
+    this.employees = event.employees.map((employee) =>
+      EmployeeId.fromString(employee)
+    );
+  }
 }
