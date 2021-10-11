@@ -17,13 +17,16 @@ export class CreditCardService {
     private readonly queryBus: QueryBus
   ) {}
 
-  async newCreditCard(registerCreditCard: RegisterCreditCardDto) {
+  async newCreditCard(
+    registerCreditCard: RegisterCreditCardDto
+  ): Promise<CreditCardDto> {
     await this.commandBus.execute(
       new CreditCardRegisterCommand(
-        registerCreditCard._id,
-        registerCreditCard.card_number
+        registerCreditCard.id,
+        registerCreditCard.creditCarNumber
       )
     );
+    return new CreditCardDto({ ...registerCreditCard });
   }
 
   findAll(): Promise<CreditCardDto[]> {

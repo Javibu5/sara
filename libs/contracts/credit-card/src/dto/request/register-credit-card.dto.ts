@@ -1,4 +1,4 @@
 export class RegisterCreditCardDto {
-  readonly _id: string;
-  readonly card_number: string;
+  readonly id: string;
+  readonly creditCarNumber: string;
 }

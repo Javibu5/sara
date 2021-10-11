@@ -11,6 +11,8 @@ import {
   UserEdit,
   UserList,
 } from '../resources';
+import { CheckList } from '../resources/check';
+import { ExpenseList, ExpenseEdit, ExpenseCreate } from '../resources/expense';
 
 const App = () => (
   <Admin
@@ -31,6 +33,15 @@ const App = () => (
       edit={CreditCardEdit}
       create={CreditCardCreate}
     />
+
+    <Resource
+      name="expenses"
+      list={ExpenseList}
+      edit={ExpenseEdit}
+      create={ExpenseCreate}
+    />
+
+    <Resource name="check" list={CheckList} />
   </Admin>
 );
 

@@ -6,7 +6,7 @@ interface Props {
 
 export class CreditCardNumber extends ValueObject<Props> {
   public static fromString(number: string): CreditCardNumber {
-    if (number.length === 0) {
+    if (number === null) {
       throw DomainError.because('Invalid credit card number');
     }
 
