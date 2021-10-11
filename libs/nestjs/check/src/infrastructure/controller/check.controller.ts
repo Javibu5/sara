@@ -8,11 +8,17 @@ import {
   Controller,
   Get,
   NotFoundException,
+  Param,
   Post,
+  Put,
   Res,
 } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { CheckDto, RegisterCheckDto } from '@sara/contracts/check';
+import {
+  CheckDto,
+  EditCheckDto,
+  RegisterCheckDto,
+} from '@sara/contracts/check';
 import { UserDto } from '@sara/contracts/user';
 import { catchError, Role, Roles, User } from '@sara/nestjs/common';
 import { Response } from 'express';
@@ -82,6 +88,34 @@ export class CheckController {
     } catch (e) {
       if (e instanceof IdNotFoundError) {
         throw new NotFoundException('User not found');
+      } else {
+        throw catchError(e);
+      }
+    }
+  }
+
+  @Put(':id')
+  @Roles(Role.Admin)
+  async update(@Param('id') id: string, @Body() checkDto: EditCheckDto) {
+    try {
+      return await this.checkService.update(id, checkDto);
+    } catch (e) {
+      if (e instanceof IdNotFoundError) {
+        throw new NotFoundException('Check not found');
+      } else {
+        throw catchError(e);
+      }
+    }
+  }
+
+  @Get(':id')
+  @Roles(Role.Admin)
+  async findOne(@Param('id') id: string): Promise<CheckDto> {
+    try {
+      return this.checkService.findOne(id);
+    } catch (e) {
+      if (e instanceof IdNotFoundError) {
+        throw new NotFoundException('Check not found');
       } else {
         throw catchError(e);
       }

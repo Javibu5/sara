@@ -1,13 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CheckDto, RegisterCheckDto } from '@sara/contracts/check';
+import {
+  CheckDto,
+  EditCheckDto,
+  RegisterCheckDto,
+} from '@sara/contracts/check';
 
 import {
   CheckInCommand,
   CheckOutCommand,
+  GetCheckQuery,
   GetChecksQuery,
   GetChecksTodayQuery,
 } from '../../application';
+import { UpdateCheckCommand } from '../../application/command/update-check.command';
 
 @Injectable()
 export class CheckService {
@@ -32,7 +38,19 @@ export class CheckService {
     );
   }
 
+  async update(id: string, editCheckDto: EditCheckDto): Promise<CheckDto> {
+    await this.commandBus.execute(new UpdateCheckCommand(id, editCheckDto));
+
+    const check = await this.queryBus.execute(new GetCheckQuery(id));
+
+    return new CheckDto({ ...check });
+  }
+
   async findTodayByUser(employeeId: string): Promise<CheckDto[]> {
     return this.queryBus.execute(new GetChecksTodayQuery(employeeId));
+  }
+
+  async findOne(id: string): Promise<CheckDto> {
+    return this.queryBus.execute(new GetCheckQuery(id));
   }
 }
