@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 interface Props {
-  readonly id: string;
+  readonly _id: string;
   readonly creditCardNumber: string;
 }
 

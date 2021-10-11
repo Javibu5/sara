@@ -8,6 +8,7 @@ import {
 
 import { CreditCardRegisterCommand } from '../../application/command/creditCard-register.command';
 import { CreditCardUpdateCommand } from '../../application/command/creditCard-update.command';
+import { GetCreditCardQuery } from '../../application/query/get-credit-card.query';
 import { GetCreditCardsQuery } from '../../application/query/get-credit-cards.query';
 
 @Injectable()
@@ -22,8 +23,8 @@ export class CreditCardService {
   ): Promise<CreditCardDto> {
     await this.commandBus.execute(
       new CreditCardRegisterCommand(
-        registerCreditCard.id,
-        registerCreditCard.creditCarNumber
+        registerCreditCard._id,
+        registerCreditCard.creditCardNumber
       )
     );
     return new CreditCardDto({ ...registerCreditCard });
@@ -31,6 +32,10 @@ export class CreditCardService {
 
   findAll(): Promise<CreditCardDto[]> {
     return this.queryBus.execute(new GetCreditCardsQuery());
+  }
+
+  async findOne(id: string): Promise<CreditCardDto> {
+    return this.queryBus.execute(new GetCreditCardQuery(id));
   }
 
   async update(id: string, editCardDto: EditCardDto): Promise<CreditCardDto> {

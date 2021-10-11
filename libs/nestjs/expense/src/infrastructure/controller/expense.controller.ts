@@ -64,6 +64,21 @@ export class ExpenseController {
       throw catchError(e.message);
     }
   }
+
+  @Get(':id')
+  @Roles(Role.Admin)
+  async findOne(@Param('id') id: string): Promise<ExpenseDto> {
+    try {
+      return this.expenseService.findOne(id);
+    } catch (e) {
+      if (e instanceof IdNotFoundError) {
+        throw new NotFoundException('Expense not found');
+      } else {
+        throw catchError(e);
+      }
+    }
+  }
+
   @Put(':id')
   @Roles(Role.Admin)
   async update(@Param('id') id: string, @Body() expenseDto: EditExpenseDto) {

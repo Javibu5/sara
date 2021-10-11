@@ -21,6 +21,10 @@ export class CreditCardRegisterHandler
 
   async execute(commmand: CreditCardRegisterCommand) {
     const creditCardId = CreditCardId.fromString(commmand.id);
+    console.log(
+      '🚀 ~ file: creditCard-register.handle.ts ~ line 24 ~ execute ~ creditCardId',
+      creditCardId
+    );
     const creditCardNumber = CreditCardNumber.fromString(
       commmand.creditCardNumber
     );

@@ -12,7 +12,7 @@ import {
   UserList,
 } from '../resources';
 import { CheckList } from '../resources/check';
-import { ExpenseList, ExpenseEdit, ExpenseCreate } from '../resources/expense';
+import { ExpenseCreate, ExpenseEdit, ExpenseList } from '../resources/expense';
 
 const App = () => (
   <Admin

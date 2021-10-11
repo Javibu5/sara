@@ -1,2 +1,2 @@
-export * from './project-finder.service';
 export * from './project.service';
+export * from './project-finder.service';
