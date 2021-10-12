@@ -22,6 +22,7 @@ export const dataProvider = restDataProvider(
     checks: '_id',
     expenses: '_id',
     projects: '_id',
+    tasks: '_id',
   },
   {},
   httpClient,

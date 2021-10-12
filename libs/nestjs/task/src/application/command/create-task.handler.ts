@@ -4,8 +4,9 @@ import {
   InjectAggregateRepository,
 } from '@aulasoftwarelibre/nestjs-eventstore';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { CreateTaskCommand } from './create-task.command';
+
 import { EmployeeId, ProjectId, Task, TaskId, TaskName } from '../../domain';
+import { CreateTaskCommand } from './create-task.command';
 
 @CommandHandler(CreateTaskCommand)
 export class CreateTaskHandler implements ICommandHandler<CreateTaskCommand> {
@@ -23,7 +24,7 @@ export class CreateTaskHandler implements ICommandHandler<CreateTaskCommand> {
     const criteria = {
       id: taskId,
       name: TaskName.fromString(command.taskDto.name),
-      project: ProjectId.fromString(command.taskDto.projecId),
+      project: ProjectId.fromString(command.taskDto.projectId),
       employees: command.taskDto.employees.map((employee) =>
         EmployeeId.fromString(employee)
       ),

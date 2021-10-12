@@ -1,7 +1,10 @@
+import { IsUUID } from 'class-validator';
+
 export class CreateTaskDto {
-    public readonly _id: string;
-    public readonly name: string;
-    public readonly projecId: string;
-    public readonly employees: string[];
-    public readonly deadline?: Date;
+  @IsUUID(4)
+  public readonly _id: string;
+  public readonly name: string;
+  public readonly projectId: string;
+  public readonly employees: string[];
+  public readonly deadline?: Date;
 }

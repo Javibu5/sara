@@ -14,6 +14,7 @@ import {
 import { CheckEdit, ChecksList } from '../resources/checks';
 import { ExpenseCreate, ExpenseEdit, ExpenseList } from '../resources/expense';
 import { ProjectCreate, ProjectEdit, ProjectList } from '../resources/project';
+import { TaskCreate, TaskEdit, TaskList } from '../resources/task';
 
 const App = () => (
   <Admin
@@ -49,6 +50,13 @@ const App = () => (
       list={ProjectList}
       edit={ProjectEdit}
       create={ProjectCreate}
+    />
+
+    <Resource
+      name="tasks"
+      list={TaskList}
+      edit={TaskEdit}
+      create={TaskCreate}
     />
   </Admin>
 );

@@ -1,20 +1,24 @@
-import { IdAlreadyRegisteredError } from '@aulasoftwarelibre/nestjs-eventstore';
 import {
-  Post,
+  IdAlreadyRegisteredError,
+  IdNotFoundError,
+} from '@aulasoftwarelibre/nestjs-eventstore';
+import {
   Body,
   ConflictException,
-  Res,
-  Get,
-  Param,
-  NotFoundException,
-  Put,
   Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  Res,
 } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { CreateTaskDto, EditTaskDto, TaskDto } from '@sara/contracts/task';
 import { catchError, Role, Roles } from '@sara/nestjs/common';
-import { CreateTaskDto, TaskDto } from '@sara/contracts/task';
-import { TaskService } from '../services';
 import { Response } from 'express';
-import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
+
+import { TaskService } from '../services';
 
 @ApiBearerAuth()
 @Controller('tasks')
@@ -23,7 +27,7 @@ export class TaskController {
 
   @Post()
   @Roles(Role.Admin)
-  async create(@Body() task: CreateTaskDto): Promise<CreateTaskDto> {
+  async create(@Body() task: CreateTaskDto): Promise<TaskDto> {
     try {
       return await this.taskService.create(task);
     } catch (e) {
@@ -49,31 +53,31 @@ export class TaskController {
     }
   }
 
-  // @Get(':id')
-  // @Roles(Role.Admin)
-  // async findOne(@Param('id') id: string): Promise<TaskDto> {
-  //     try {
-  //         return this.taskService.findOne(id);
-  //     } catch (e) {
-  //         if (e instanceof IdNotFoundError) {
-  //             throw new NotFoundException('Task not found');
-  //         } else {
-  //             throw catchError(e);
-  //         }
-  //     }
-  // }
+  @Get(':id')
+  @Roles(Role.Admin)
+  async findOne(@Param('id') id: string): Promise<TaskDto> {
+    try {
+      return this.taskService.findOne(id);
+    } catch (e) {
+      if (e instanceof IdNotFoundError) {
+        throw new NotFoundException('Task not found');
+      } else {
+        throw catchError(e);
+      }
+    }
+  }
 
-  // @Put(':id')
-  // @Roles(Role.Admin)
-  // async update(@Param('id') id: string, @Body() taskDto: EditTaskDto) {
-  //     try {
-  //         return await this.taskService.update(id, taskDto);
-  //     } catch (e) {
-  //         if (e instanceof IdNotFoundError) {
-  //             throw new NotFoundException('Task not found');
-  //         } else {
-  //             throw catchError(e);
-  //         }
-  //     }
-  // }
+  @Put(':id')
+  @Roles(Role.Admin)
+  async update(@Param('id') id: string, @Body() taskDto: EditTaskDto) {
+    try {
+      return await this.taskService.update(id, taskDto);
+    } catch (e) {
+      if (e instanceof IdNotFoundError) {
+        throw new NotFoundException('Task not found');
+      } else {
+        throw catchError(e);
+      }
+    }
+  }
 }

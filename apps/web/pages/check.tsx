@@ -1,6 +1,6 @@
 import { Box, Container } from '@material-ui/core';
 import { useTodayChecks, useUser } from '@sara/hooks';
-import { AccessDenied,Layout, UIcheckModule } from '@sara/ui';
+import { AccessDenied, Layout, UIcheckModule } from '@sara/ui';
 import { useSession } from 'next-auth/client';
 import React, { useEffect, useState } from 'react';
 
