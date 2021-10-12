@@ -1,22 +1,37 @@
-import { IdAlreadyRegisteredError, IdNotFoundError } from '@aulasoftwarelibre/nestjs-eventstore';
-import { Body, ConflictException, Controller, Get, NotFoundException, Param, Post, Put, Res } from '@nestjs/common';
-import { CreateProjectDto, ProjectDto, EditProjectDto } from '@sara/contracts/project';
+import {
+  IdAlreadyRegisteredError,
+  IdNotFoundError,
+} from '@aulasoftwarelibre/nestjs-eventstore';
+import {
+  Body,
+  ConflictException,
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  Res,
+} from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
+import {
+  CreateProjectDto,
+  EditProjectDto,
+  ProjectDto,
+} from '@sara/contracts/project';
 import { catchError, Role, Roles } from '@sara/nestjs/common';
 import { Response } from 'express';
-import { ApiBearerAuth } from '@nestjs/swagger';
 
 import { ProjectService } from '../services/project.service';
-
 
 @ApiBearerAuth()
 @Controller('projects')
 export class ProjectController {
-  constructor(private readonly projectService: ProjectService) { }
+  constructor(private readonly projectService: ProjectService) {}
 
   @Post()
   @Roles(Role.Admin)
-  async create(@Body() project: CreateProjectDto): Promise<void> {
-
+  async create(@Body() project: CreateProjectDto): Promise<ProjectDto> {
     try {
       return await this.projectService.create(project);
     } catch (e) {

@@ -16,7 +16,13 @@ const httpClient = (url, options = { headers: undefined }) => {
 
 export const dataProvider = restDataProvider(
   `${process.env.NODE_API_URL || process.env.NX_API_URL}/api`,
-  { users: '_id', creditCards: '_id', checks: '_id', expenses: '_id' },
+  {
+    users: '_id',
+    creditCards: '_id',
+    checks: '_id',
+    expenses: '_id',
+    projects: '_id',
+  },
   {},
   httpClient,
   'X-Total-Count'
