@@ -1,3 +1,4 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { theme } from '@sara/ui';
 import { AppProps } from 'next/app';
@@ -6,6 +7,8 @@ import { Provider as NextAuthProvider } from 'next-auth/client';
 import PropTypes from 'prop-types';
 import React from 'react';
 import useSWR, { SWRConfig } from 'swr';
+
+import chakraTheme from '../themes/theme';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
@@ -24,22 +27,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             fetch(resource, init).then((res) => res.json()),
         }}
       >
-        <React.Fragment>
+        <ChakraProvider resetCSS theme={chakraTheme}>
           <Head>
-            <title>NX Sara</title>
+            <title>Sara</title>
             <meta
               name="viewport"
-              content="minimum-scale=1, initial-scale=1, width=device-width"
+              content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <ThemeProvider theme={theme}>
-            <div style={{ display: 'flex' }}>
-              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-              <CssBaseline />
-              <Component {...pageProps} />
-            </div>
-          </ThemeProvider>
-        </React.Fragment>
+          <Component {...pageProps} />
+        </ChakraProvider>
       </SWRConfig>
     </NextAuthProvider>
   );

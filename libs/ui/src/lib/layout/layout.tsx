@@ -1,39 +1,32 @@
 import {
   Box,
   Container,
-  CssBaseline,
-  Drawer,
-  Grid,
-  Paper,
-  Typography,
-} from '@material-ui/core';
-import { Session } from 'next-auth';
+  Flex,
+  useColorModeValue,
+  useStyleConfig,
+} from '@chakra-ui/react';
 import React from 'react';
 
-import Navbar from '../navbar/navbar';
-import Sidebar from '../sidebar/sidebar';
-import { useStyles } from '../theme';
+import { Navbar } from '../navbar';
 
-export interface LayoutProps {
-  session?: Session;
-}
-
-export const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+export const Layout = ({ children }) => {
+  const styles = useStyleConfig('Layout');
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Navbar open={open} onOpenSidebar={() => setOpen(true)} />
-      <Sidebar open={open} onCloseSidebar={() => setOpen(false)} />
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth={false} className={classes.container}>
-          {children}
-        </Container>
-      </main>
-    </div>
+    <Flex height="100vh" sx={styles}>
+      <Flex flexDirection="column" flex="1 1 0%">
+        <Navbar />
+        <Box as="main" pb="16" overflowY="auto">
+          <Container
+            maxWidth="container.xl"
+            px={{ base: '0', sm: '6' }}
+            mx="auto"
+          >
+            {children}
+          </Container>
+        </Box>
+      </Flex>
+    </Flex>
   );
 };
 

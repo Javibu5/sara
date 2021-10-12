@@ -33,7 +33,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
       }
     );
 
-    mutate([`/api/checks/today`, session.access_token]);
+    setTimeout(() => mutate([`/api/checks/today`, session.access_token]), 500);
   };
 
   const handleClickCheckOut = async () => {
@@ -56,7 +56,7 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
       }
     );
 
-    mutate([`/api/checks/today`, session.access_token]);
+    setTimeout(() => mutate([`/api/checks/today`, session.access_token]), 500);
   };
 
   return (
