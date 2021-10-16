@@ -1,15 +1,19 @@
 import {
-  Card,
-  CardContent,
+  Alert,
+  Box,
   Divider,
-  Grid,
-  List,
-  ListItem,
-  Typography,
-} from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
+  Table,
+  TableCaption,
+  Tbody,
+  Td,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { CheckDto } from '@sara/contracts/check';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useStyles } from '../../theme';
 
@@ -32,52 +36,69 @@ const PrintCheck: React.FunctionComponent<PrintCheckProps> = ({
   outAt,
 }) => {
   return (
-    <ListItem key={id}>
-      Entrada:{' '}
-      {inAt
-        ? `${new Date(inAt).getHours()}:${new Date(inAt).getMinutes()}`
-        : 'pendiente'}
-      &nbsp;|&nbsp;Salida:{' '}
-      {outAt
-        ? `${new Date(outAt).getHours()}:${new Date(outAt).getMinutes()}`
-        : 'pendiente'}
-    </ListItem>
+    <Tr>
+      <Td key={id}>
+        Entrada:{' '}
+        {inAt
+          ? `${new Date(inAt).getHours()}:${new Date(inAt).getMinutes()}`
+          : 'pendiente'}
+      </Td>
+      <Td>
+        Salida:{' '}
+        {outAt
+          ? `${new Date(outAt).getHours()}:${new Date(outAt).getMinutes()}`
+          : 'pendiente'}
+      </Td>
+    </Tr>
   );
 };
 
 export function LastChecks(props: LastChecksProps) {
   const classes = useStyles();
+  const [clockState, setClockState] = useState(new Date().toLocaleString());
 
+  useEffect(() => {
+    setInterval(() => {
+      const date = new Date();
+      setClockState(date.toLocaleString());
+    }, 1000);
+  }, []);
   console.debug('props', props);
 
   return (
-    <Grid container>
-      <Card style={{ width: '100%' }}>
-        <CardContent>
-          <Typography component="h2">{props.date.toLocaleString()}</Typography>
-
+    <Box
+      bg={useColorModeValue('white', 'gray.800')}
+      borderWidth="2px"
+      borderRadius="lg"
+      overflow="visible"
+    >
+      <Table variant="simple">
+        <TableCaption placement="top">Fecha : {clockState}</TableCaption>
+        <TableCaption placement="top">
+          {' '}
           {props.working && (
-            <Alert variant="outlined" severity="warning">
-              Tienes una ticaje abierto
-            </Alert>
+            <Alert status="warning">Tienes un ticaje abierto</Alert>
           )}
-
-          <Divider className={classes.divider} />
-
-          <List className={classes.listRoot}>
-            {!props.checks && <ListItem>No hay ticajes</ListItem>}
-            {props.checks &&
-              props.checks.map((check: CheckDto) => (
-                <PrintCheck
-                  id={check._id}
-                  inAt={check.inAt}
-                  outAt={check.outAt}
-                />
-              ))}
-          </List>
-        </CardContent>
-      </Card>
-    </Grid>
+        </TableCaption>
+        <Thead>
+          <Tr>
+            <Th>Entradas</Th>
+            <Th>Salidas</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {!props.checks && <Td>No hay ticajes</Td>}
+          {props.checks &&
+            props.checks.map((check: CheckDto) => (
+              <PrintCheck
+                id={check._id}
+                inAt={check.inAt}
+                outAt={check.outAt}
+              />
+            ))}
+        </Tbody>
+      </Table>
+    </Box>
   );
 }
 

@@ -1,3 +1,4 @@
+import { Text, useColorMode } from '@chakra-ui/react';
 import { Grid, Typography } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import AdjustIcon from '@material-ui/icons/Adjust';
@@ -12,6 +13,10 @@ export interface GreetingsUserProps {
 
 export function GreetingsUser(props: GreetingsUserProps) {
   const classes = useStyles();
+
+  const { colorMode, toggleColorMode } = useColorMode();
+  const isDark = colorMode === 'dark';
+
   return (
     <Grid
       container
@@ -21,10 +26,14 @@ export function GreetingsUser(props: GreetingsUserProps) {
       spacing={2}
     >
       <Grid item>
-        <Typography component="h1" variant="h6" style={{ color: 'white' }}>
+        <Text
+          fontSize="4xl"
+          variant="h6"
+          style={{ color: isDark ? 'white' : 'black' }}
+        >
           {' '}
           ¡Hola {props.username}!
-        </Typography>{' '}
+        </Text>{' '}
       </Grid>
       <Grid item>
         <AdjustIcon style={props.working ? { color: green[500] } : {}}>

@@ -1,9 +1,10 @@
-import { ButtonGroup, Grid } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Grid } from '@material-ui/core';
 import { useTodayChecks } from '@sara/hooks';
 import { useSession } from 'next-auth/client';
 import React from 'react';
+import { ImEnter, ImExit } from 'react-icons/im';
 import { mutate } from 'swr';
 import { v4 as uuid } from 'uuid';
 
@@ -64,21 +65,21 @@ export function CheckButtonsGroup(props: CheckButtonsGroupProps) {
       <Grid item spacing={2}>
         <ButtonGroup disableElevation variant="contained" color="primary">
           <Button
-            variant="contained"
-            color="primary"
+            variant={props.working ? 'outline' : 'solid'}
+            colorScheme="blue"
             onClick={handleClickCheckIn}
-            size={props.working ? 'small' : 'large'}
-            endIcon={<ExitToAppOutlinedIcon />}
+            size={props.working ? 'sm' : 'lg'}
+            rightIcon={<ImEnter />}
           >
             Entrada
           </Button>
 
           <Button
-            variant="contained"
-            color="secondary"
+            variant={props.working ? 'solid' : 'outline'}
+            colorScheme="blue"
             onClick={handleClickCheckOut}
-            size={props.working ? 'large' : 'small'}
-            endIcon={<ExitToAppOutlinedIcon />}
+            size={props.working ? 'lg' : 'sm'}
+            rightIcon={<ImExit />}
           >
             Salida
           </Button>
