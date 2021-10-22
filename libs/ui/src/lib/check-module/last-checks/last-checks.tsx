@@ -16,6 +16,7 @@ import { CheckDto } from '@sara/contracts/check';
 import React, { useEffect, useState } from 'react';
 
 import { useStyles } from '../../theme';
+import { getTimeString } from '../../time';
 
 /* eslint-disable-next-line */
 export interface LastChecksProps {
@@ -36,18 +37,12 @@ const PrintCheck: React.FunctionComponent<PrintCheckProps> = ({
   outAt,
 }) => {
   return (
-    <Tr>
-      <Td key={id}>
-        Entrada:{' '}
-        {inAt
-          ? `${new Date(inAt).getHours()}:${new Date(inAt).getMinutes()}`
-          : 'pendiente'}
+    <Tr key={id}>
+      <Td>
+        Entrada: {inAt ? `${getTimeString(new Date(inAt))}` : 'pendiente'}
       </Td>
       <Td>
-        Salida:{' '}
-        {outAt
-          ? `${new Date(outAt).getHours()}:${new Date(outAt).getMinutes()}`
-          : 'pendiente'}
+        Salida: {outAt ? `${getTimeString(new Date(outAt))}` : 'pendiente'}
       </Td>
     </Tr>
   );
@@ -63,7 +58,6 @@ export function LastChecks(props: LastChecksProps) {
       setClockState(date.toLocaleString());
     }, 1000);
   }, []);
-  console.debug('props', props);
 
   return (
     <Box
@@ -87,7 +81,11 @@ export function LastChecks(props: LastChecksProps) {
           </Tr>
         </Thead>
         <Tbody>
-          {!props.checks && <Td>No hay ticajes</Td>}
+          {!props.checks && (
+            <Tr>
+              <Td colSpan={2}>No hay ticajes</Td>
+            </Tr>
+          )}
           {props.checks &&
             props.checks.map((check: CheckDto) => (
               <PrintCheck
