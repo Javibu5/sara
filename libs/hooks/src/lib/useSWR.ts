@@ -38,6 +38,35 @@ export function useTodayChecks(): IuseTodayChecks {
   };
 }
 
+export function useTasks() {
+  const [session, loading] = useSession();
+
+  const { data, error } = useSWR(
+    !loading ? [`/api/tasks`, session.access_token] : null,
+    fetchWithUser
+  );
+  return {
+    tasks: data,
+    isLoadingTasks: !error && !data,
+    isErrorTasks: error,
+  };
+}
+
+export function useProjects() {
+  const [session, loading] = useSession();
+
+  const { data, error } = useSWR(
+    !loading ? [`/api/projects`, session.access_token] : null,
+    fetchWithUser
+  );
+
+  return {
+    projects: data,
+    isLoadingProjects: !error && !data,
+    isErrorProjects: error,
+  };
+}
+
 export function useUser() {
   const [session, loading] = useSession();
   const { data, error } = useSWR(
