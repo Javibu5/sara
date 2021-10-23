@@ -7,8 +7,10 @@ import {
   Stack,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { ProjectDto } from '@sara/contracts/project';
 import { TaskDto } from '@sara/contracts/task';
-import { useTasks } from '@sara/hooks';
+import { useProjects, useTasks } from '@sara/hooks';
+import { useSession } from 'next-auth/client';
 import { BsCheckSquareFill } from 'react-icons/bs';
 
 interface TaskProps {
@@ -19,8 +21,30 @@ interface TaskProps {
 }
 
 function TaskList() {
+  const [session, loadingSession] = useSession();
   const { tasks = [] }: { tasks: TaskDto[] } = useTasks();
-  console.log('🚀 ~ file: task-list.tsx ~ line 23 ~ TaskList ~ tasks', tasks);
+
+  async function handleClickTaskCompleted(task: TaskDto) {
+    const state = true;
+    await fetch(
+      `${
+        process.env.NEXT_PUBLIC_API_URL || process.env.NX_PUBLIC_API_URL
+      }/api/tasks/${task._id}`,
+      {
+        method: 'Put',
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: task.name,
+          projectId: task.projecId,
+          employees: task.employeeId,
+          isFinished: state,
+        }),
+      }
+    );
+  }
 
   return (
     <Stack
@@ -30,36 +54,43 @@ function TaskList() {
       shadow="lg"
     >
       {tasks.map((token, tid) => {
-        return (
-          <Flex w="full" direction={{ base: 'row', md: 'column' }} key={tid}>
-            <SimpleGrid
-              spacingY={3}
-              columns={{ base: 1, md: 2 }}
-              w="full"
-              py={2}
-              px={10}
-              fontWeight="hairline"
-            >
-              <chakra.span
-                textOverflow="ellipsis"
-                overflow="hidden"
-                whiteSpace="nowrap"
+        if (token.isFinished === false) {
+          return (
+            <Flex w="full" direction={{ base: 'row', md: 'column' }} key={tid}>
+              <SimpleGrid
+                spacingY={3}
+                columns={{ base: 1, md: 2 }}
+                w="full"
+                py={2}
+                px={10}
+                fontWeight="hairline"
               >
-                {token.name}
-              </chakra.span>
-              <Flex justify={{ md: 'end' }}>
-                <Button
-                  size="sm"
-                  variant="solid"
-                  leftIcon={<Icon as={BsCheckSquareFill} />}
-                  colorScheme="purple"
+                <chakra.span
+                  textOverflow="ellipsis"
+                  overflow="hidden"
+                  whiteSpace="nowrap"
                 >
-                  Completada
-                </Button>
-              </Flex>
-            </SimpleGrid>
-          </Flex>
-        );
+                  {token.name}
+                </chakra.span>
+
+                <Flex justify={{ md: 'end' }}>
+                  <Button
+                    size="sm"
+                    variant="solid"
+                    leftIcon={<Icon as={BsCheckSquareFill} />}
+                    colorScheme="purple"
+                    onClick={() => {
+                      handleClickTaskCompleted(token);
+                    }}
+                  >
+                    Completada
+                  </Button>
+                </Flex>
+              </SimpleGrid>
+            </Flex>
+          );
+        }
+        return;
       })}
     </Stack>
   );

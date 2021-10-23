@@ -23,33 +23,6 @@ interface TaskProps {
 }
 
 export const Project = () => {
-  const tasksTest = [
-    {
-      name: 'Caja 15',
-      projectId: '7 days ago',
-      isFinished: false,
-      employeeId: ['saasdf'],
-    },
-    {
-      name: 'Caja 4',
-      projectId: '7 days ago',
-      isFinished: true,
-      employeeId: ['saasdf'],
-    },
-    {
-      name: 'Caja 2',
-      projectId: '7 days ago',
-      isFinished: false,
-      employeeId: ['saasdf'],
-    },
-    {
-      name: 'Tramo 71',
-      projectId: '7 days ago',
-      isFinished: false,
-      employeeId: ['saasdf'],
-    },
-  ] as TaskProps[];
-
   return (
     <Flex
       bg={useColorModeValue('#F9FAFB', 'gray.600')}
