@@ -1,41 +1,22 @@
 import {
-  Avatar,
   Box,
   BoxProps,
   CloseButton,
-  Drawer,
-  DrawerContent,
   Flex,
   FlexProps,
   HStack,
   Icon,
   IconButton,
   Link,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
   Text,
   useColorModeValue,
-  useDisclosure,
-  VStack,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React, { ReactNode, ReactText } from 'react';
+import React, { ReactText } from 'react';
 import { IconType } from 'react-icons';
-import { BiTask } from 'react-icons/bi';
-import {
-  FiBell,
-  FiChevronDown,
-  FiClock,
-  FiCompass,
-  FiHome,
-  FiMenu,
-  FiSettings,
-  FiStar,
-  FiTrendingUp,
-} from 'react-icons/fi';
+import { BiMoney, BiTask } from 'react-icons/bi';
+import { CgProfile } from 'react-icons/cg';
+import { FiClock, FiHome, FiSettings } from 'react-icons/fi';
 
 interface LinkItemProps {
   name: string;
@@ -51,6 +32,9 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome, href: '/' },
   { name: 'Fichaje', icon: FiClock, href: '/check' },
   { name: 'Tareas', icon: BiTask, href: '/task' },
+  { name: 'Gastos', icon: BiMoney, href: '/expenses' },
+  { name: 'Perfil', icon: CgProfile, href: '/employee-profile' },
+
   { name: 'Configurar', icon: FiSettings, href: '/' },
 ];
 

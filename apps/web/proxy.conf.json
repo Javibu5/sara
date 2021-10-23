@@ -6,5 +6,9 @@
   "/api/checks/(in|out|today)": {
     "target": "http://localhost:3333",
     "secure": false
+  },
+  "/api/tasks/*": {
+    "target": "http://localhost:3333",
+    "secure": false
   }
 }

@@ -1,8 +1,7 @@
-import { AccessDenied, Layout, UIcheckModule } from '@sara/ui';
+import { AccessDenied, EmployeeProfile, Layout } from '@sara/ui';
 import { useSession } from 'next-auth/client';
-import React, { useEffect, useState } from 'react';
 
-export default function Check() {
+export default function EmployeeProfilePage() {
   const [session, loading] = useSession();
 
   if (!session) {
@@ -11,7 +10,7 @@ export default function Check() {
 
   return (
     <Layout>
-      <UIcheckModule></UIcheckModule>
+      <EmployeeProfile></EmployeeProfile>
     </Layout>
   );
 }
