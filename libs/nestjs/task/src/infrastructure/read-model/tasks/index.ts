@@ -1,6 +1,6 @@
-import { TaskEmployeesWasUpdated } from '../../../domain/event/task-employees-was-updated.event';
-import { TaskNameWasUpdated } from '../../../domain/event/task-name-was-updated.event';
-import { TaskStatusWasUpdated } from '../../../domain/event/task-status-was-updated.event';
+import { TaskEmployeesWasUpdatedTaskProjection } from './task-employees-was-updated.projection';
+import { TaskNameWasUpdatedTaskProjection } from './task-name-was-updated.projection';
+import { TaskStatusWasUpdatedTaskProjection } from './task-status-was-updated.projection';
 import { TaskWasCreatedProjection } from './task-was-created.projection';
 
 export * from './task.schema';
@@ -12,7 +12,7 @@ export * from './task-was-created.projection';
 
 export const projectionHandlers = [
   TaskWasCreatedProjection,
-  TaskNameWasUpdated,
-  TaskStatusWasUpdated,
-  TaskEmployeesWasUpdated,
+  TaskNameWasUpdatedTaskProjection,
+  TaskStatusWasUpdatedTaskProjection,
+  TaskEmployeesWasUpdatedTaskProjection,
 ];

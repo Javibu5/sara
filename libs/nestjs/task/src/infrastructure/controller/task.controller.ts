@@ -70,6 +70,10 @@ export class TaskController {
   @Put(':id')
   @Roles(Role.Admin)
   async update(@Param('id') id: string, @Body() taskDto: EditTaskDto) {
+    console.log(
+      '🚀 ~ file: task.controller.ts ~ line 73 ~ TaskController ~ update ~ taskDto',
+      taskDto
+    );
     try {
       return await this.taskService.update(id, taskDto);
     } catch (e) {

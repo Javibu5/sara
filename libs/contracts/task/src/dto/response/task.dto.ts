@@ -9,9 +9,9 @@ interface Props {
 export class TaskDto {
   public readonly id: string;
   public readonly name: string;
-  public readonly projecId: string;
+  public readonly projectId: string;
   public readonly isFinished: boolean;
-  public readonly employeeId: string[];
+  public readonly employees: string[];
 
   constructor(props: Partial<Props>) {
     Object.assign(this, props);

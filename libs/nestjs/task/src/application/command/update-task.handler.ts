@@ -23,25 +23,18 @@ export class UpdateTaskHandler implements ICommandHandler<UpdateTaskCommand> {
       throw IdNotFoundError.withId(taskId);
     }
 
-    if (command.editTaskDto.name) {
-      const name = TaskName.fromString(command.editTaskDto.name);
-      this.updateTaskName(task, name);
-    }
+    const name = TaskName.fromString(command.editTaskDto.name);
+    this.updateTaskName(task, name);
 
-    if (command.editTaskDto.projectId) {
-      const projectId = ProjectId.fromString(command.editTaskDto.projectId);
-      this.updateProject(task, projectId);
-    }
+    const projectId = ProjectId.fromString(command.editTaskDto.projectId);
+    this.updateProject(task, projectId);
 
-    if (command.editTaskDto.employees) {
-      const employees = command.editTaskDto.employees.map((employee) =>
-        EmployeeId.fromString(employee)
-      );
-      this.updateEmployees(task, employees);
-    }
-    if (command.editTaskDto.isFinished) {
-      this.updateTaskStatus(task, command.editTaskDto.isFinished);
-    }
+    const employees = command.editTaskDto.employees.map((employee) =>
+      EmployeeId.fromString(employee)
+    );
+    this.updateEmployees(task, employees);
+
+    this.updateTaskStatus(task, command.editTaskDto.isFinished);
 
     this.tasks.save(task);
   }

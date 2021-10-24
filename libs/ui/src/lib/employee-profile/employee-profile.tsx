@@ -27,9 +27,8 @@ import {
   Radio,
 } from '@chakra-ui/react';
 import { FaUser } from 'react-icons/fa';
-import ExpenseList from '../expense-list/expense-list';
 
-export function ExpenseModule() {
+export function EmployeeProfile() {
   return (
     <Box bg={useColorModeValue('gray.50', 'inherit')} p={10}>
       <Box visibility={{ base: 'hidden', sm: 'visible' }} aria-hidden="true">
@@ -50,15 +49,8 @@ export function ExpenseModule() {
           <GridItem colSpan={{ md: 1 }}>
             <Box px={[4, 0]}>
               <Heading fontSize="lg" fontWeight="medium" lineHeight="6">
-                Página de gastos
+                Información personal
               </Heading>
-              <Text
-                mt={1}
-                fontSize="sm"
-                color={useColorModeValue('gray.600', 'gray.400')}
-              >
-                Regista tus gastos
-              </Text>
             </Box>
           </GridItem>
           <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
@@ -83,7 +75,7 @@ export function ExpenseModule() {
                       fontWeight="md"
                       color={useColorModeValue('gray.700', 'gray.50')}
                     >
-                      Concepto
+                      Nombre
                     </FormLabel>
                     <Input
                       type="text"
@@ -106,7 +98,7 @@ export function ExpenseModule() {
                       fontWeight="md"
                       color={useColorModeValue('gray.700', 'gray.50')}
                     >
-                      Cantidad
+                      Apellidos
                     </FormLabel>
                     <Input
                       type="text"
@@ -122,31 +114,108 @@ export function ExpenseModule() {
                     />
                   </FormControl>
 
-                  <FormControl as={GridItem} colSpan={[6, 3]}>
+                  <FormControl as={GridItem} colSpan={[6, 4]}>
                     <FormLabel
-                      htmlFor="country"
+                      htmlFor="email_address"
                       fontSize="sm"
                       fontWeight="md"
                       color={useColorModeValue('gray.700', 'gray.50')}
                     >
-                      Tarjeta de crédito
+                      Email address
                     </FormLabel>
-                    <Select
-                      id="country"
-                      name="country"
-                      autoComplete="country"
-                      placeholder="Selecciona una opción"
+                    <Input
+                      type="text"
+                      name="email_address"
+                      id="email_address"
+                      autoComplete="email"
                       mt={1}
                       focusBorderColor="brand.400"
                       shadow="sm"
                       size="sm"
                       w="full"
                       rounded="md"
+                    />
+                  </FormControl>
+
+                  <FormControl as={GridItem} colSpan={[6, 3]}>
+                    <FormLabel
+                      fontSize="sm"
+                      fontWeight="md"
+                      color={useColorModeValue('gray.700', 'gray.50')}
                     >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </Select>
+                      Photo
+                    </FormLabel>
+                    <Flex alignItems="center" mt={1}>
+                      <Avatar
+                        boxSize={12}
+                        bg={useColorModeValue('gray.100', 'gray.800')}
+                        icon={
+                          <Icon
+                            as={FaUser}
+                            boxSize={9}
+                            mt={3}
+                            rounded="full"
+                            color={useColorModeValue('gray.300', 'gray.700')}
+                          />
+                        }
+                      />
+                      <Button
+                        type="button"
+                        ml={5}
+                        variant="outline"
+                        size="sm"
+                        fontWeight="medium"
+                        _focus={{ shadow: 'none' }}
+                      >
+                        Change
+                      </Button>
+                    </Flex>
+                  </FormControl>
+
+                  <FormControl as={GridItem} colSpan={6}>
+                    <FormLabel
+                      htmlFor="street_address"
+                      fontSize="sm"
+                      fontWeight="md"
+                      color={useColorModeValue('gray.700', 'gray.50')}
+                    >
+                      Direccion
+                    </FormLabel>
+                    <Input
+                      type="text"
+                      name="street_address"
+                      id="street_address"
+                      autoComplete="street-address"
+                      mt={1}
+                      focusBorderColor="brand.400"
+                      shadow="sm"
+                      size="sm"
+                      w="full"
+                      rounded="md"
+                    />
+                  </FormControl>
+
+                  <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
+                    <FormLabel
+                      htmlFor="city"
+                      fontSize="sm"
+                      fontWeight="md"
+                      color={useColorModeValue('gray.700', 'gray.50')}
+                    >
+                      Dni
+                    </FormLabel>
+                    <Input
+                      type="text"
+                      name="city"
+                      id="city"
+                      autoComplete="city"
+                      mt={1}
+                      focusBorderColor="brand.400"
+                      shadow="sm"
+                      size="sm"
+                      w="full"
+                      rounded="md"
+                    />
                   </FormControl>
                 </SimpleGrid>
               </Stack>
@@ -156,17 +225,24 @@ export function ExpenseModule() {
                 bg={useColorModeValue('gray.50', 'gray.900')}
                 textAlign="right"
               >
-                <Button>Guardar</Button>
+                <Button type="submit" _focus={{ shadow: '' }} fontWeight="md">
+                  Save
+                </Button>
               </Box>
             </chakra.form>
           </GridItem>
-          <SimpleGrid>
-            <ExpenseList></ExpenseList>
-          </SimpleGrid>
         </SimpleGrid>
+      </Box>
+
+      <Box visibility={{ base: 'hidden', sm: 'visible' }} aria-hidden="true">
+        <Box py={5}>
+          <Box
+            borderTop="solid 1px"
+            borderTopColor={useColorModeValue('gray.200', 'whiteAlpha.200')}
+          ></Box>
+        </Box>
       </Box>
     </Box>
   );
 }
-
-export default ExpenseModule;
+export default EmployeeProfile;

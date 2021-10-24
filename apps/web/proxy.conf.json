@@ -1,5 +1,5 @@
 {
-  "/api/(users|login|checks|tasks|projects)": {
+  "/api/(users|login|checks|tasks|projects|expenses|creditCards)": {
     "target": "http://localhost:3333",
     "secure": false
   },
@@ -7,7 +7,7 @@
     "target": "http://localhost:3333",
     "secure": false
   },
-  "/api/tasks/*": {
+  "/api/(users|login|checks|tasks|projects|expenses|creditCards)/*": {
     "target": "http://localhost:3333",
     "secure": false
   }

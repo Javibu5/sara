@@ -67,6 +67,36 @@ export function useProjects() {
   };
 }
 
+export function useExpenses() {
+  const [session, loading] = useSession();
+
+  const { data, error } = useSWR(
+    !loading ? [`/api/expenses`, session.access_token] : null,
+    fetchWithUser
+  );
+
+  return {
+    expenses: data,
+    isLoadingExpenses: !error && !data,
+    isErrorExpenses: error,
+  };
+}
+
+export function useCreditCard(id: string) {
+  const [session, loading] = useSession();
+
+  const { data, error } = useSWR(
+    !loading ? [`/api/creditCards/${id}`, session.access_token] : null,
+    fetchWithUser
+  );
+
+  return {
+    creditCard: data,
+    isLoadingCreditCard: !error && !data,
+    isErrorCreditCard: error,
+  };
+}
+
 export function useUser() {
   const [session, loading] = useSession();
   const { data, error } = useSWR(

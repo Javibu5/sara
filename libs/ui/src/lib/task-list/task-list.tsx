@@ -12,6 +12,7 @@ import { TaskDto } from '@sara/contracts/task';
 import { useProjects, useTasks } from '@sara/hooks';
 import { useSession } from 'next-auth/client';
 import { BsCheckSquareFill } from 'react-icons/bs';
+import { mutate } from 'swr';
 
 interface TaskProps {
   name: string;
@@ -26,24 +27,27 @@ function TaskList() {
 
   async function handleClickTaskCompleted(task: TaskDto) {
     const state = true;
+
     await fetch(
       `${
         process.env.NEXT_PUBLIC_API_URL || process.env.NX_PUBLIC_API_URL
       }/api/tasks/${task._id}`,
       {
-        method: 'Put',
+        method: 'PUT',
         headers: {
           Authorization: `Bearer ${session.access_token}`,
           'Content-Type': 'application/json',
         },
+
         body: JSON.stringify({
           name: task.name,
-          projectId: task.projecId,
-          employees: task.employeeId,
+          projectId: task.projectId,
+          employees: task.employees,
           isFinished: state,
         }),
       }
     );
+    setTimeout(() => mutate([`/api/tasks`, session.access_token]), 500);
   }
 
   return (

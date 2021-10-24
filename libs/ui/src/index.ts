@@ -1,6 +1,8 @@
 export * from './lib/access-denied';
 export * from './lib/check-module';
 export * from './lib/elements';
+export * from './lib/employee-profile/employee-profile';
+export * from './lib/expense-list/expense-list';
 export * from './lib/expense-module/expense-module';
 export * from './lib/layout/layout';
 export * from './lib/navbar';
@@ -10,4 +12,5 @@ export * from './lib/task-list/task-list';
 export * from './lib/task-module';
 export * from './lib/theme';
 export * from './lib/time';
+export * from './lib/wizard-document/wizard-document';
 export * from './lib/wizard-upload-document/wizard-upload-document';
